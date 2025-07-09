@@ -107,8 +107,8 @@ export const userData = {
         architecture: "Cell Dependency Engine"
       },
       github: "https://github.com/Ehiane/spreadsheet_application",
-      stillImage: "/assets/bentoGrids/Spreadsheet/SpreadSheet_still.png",
-      hoverVideo: "/assets/bentoGrids/Spreadsheet/SpreadSheet_hover.mp4",
+      stillImage: "/assets/bentoGrids/SpreadSheet/SpreadSheet_still.png",
+      hoverVideo: "/assets/bentoGrids/SpreadSheet/SpreadSheet_hover.mp4",
       gridSize: "medium"
     },
     {
