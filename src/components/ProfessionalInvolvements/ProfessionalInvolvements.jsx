@@ -59,7 +59,7 @@ const ProfessionalInvolvements = ({ userData }) => {
               <span className="text-orange-400 font-mono text-sm">EXPERIENCE.LOG</span>
             </div>
           </motion.div>
-          
+
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-400 to-orange-400">
               Work Experience
@@ -75,104 +75,167 @@ const ProfessionalInvolvements = ({ userData }) => {
           <div className="relative">
             {/* Central Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-orange-400 via-red-400 to-orange-400 opacity-60" />
-            
+
             {/* Timeline Items */}
             <div className="space-y-16">
-              {professionalInvolvements.map((involvement, index) => (
-                <motion.div
-                  key={involvement.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                  }`}
-                >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
-                    <motion.div
-                      className="w-6 h-6 rounded-full bg-gradient-to-r from-orange-400 to-red-400 border-4 border-black shadow-2xl"
-                      whileHover={{ scale: 1.2 }}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: index * 0.2 + 0.3 }}
-                    >
-                      <div className="w-full h-full rounded-full bg-gradient-to-r from-orange-400 to-red-400 animate-pulse" />
-                    </motion.div>
-                  </div>
-
-                  {/* Content Card */}
+              {/* Mobile Simple Cards Layout (visible only on mobile) */}
+              <div className="md:hidden z-10 max-w-2xl mx-auto px-2 space-y-6">
+                {professionalInvolvements.map((involvement, index) => (
                   <motion.div
-                    className={`w-5/12 ${
-                      index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
+                    key={`mobile-${involvement.id}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
                     onClick={() => setSelectedInvolvement(involvement)}
+                    className="bg-black/80 backdrop-blur-sm border border-orange-400/30 rounded-xl p-5 cursor-pointer hover:border-orange-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-orange-400/20"
                   >
-                    <div className="bg-black/80 backdrop-blur-sm border border-orange-400/30 rounded-xl p-6 cursor-pointer hover:border-orange-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-orange-400/20">
-                      {/* Header */}
-                      <div className={`flex items-center justify-between mb-4 ${
-                        index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'
-                      }`}>
-                        <div>
-                          <h3 className="text-xl font-bold text-orange-400 mb-1">
-                            {involvement.name}
-                          </h3>
-                          <p className="text-sm text-gray-400 mb-1">{involvement.role}</p>
-                          <p className="text-sm text-gray-500">{involvement.company}</p>
-                        </div>
-                        <div className="bg-orange-400/10 border border-orange-400/30 rounded-full px-4 py-1 whitespace-nowrap">
-                          <span className="text-orange-400 text-sm font-mono">{involvement.period}</span>
-                        </div>
+                    {/* Mobile Header */}
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-bold text-orange-400 mb-1 truncate">
+                          {involvement.name}
+                        </h3>
+                        <p className="text-sm text-gray-400 mb-1 truncate">{involvement.role}</p>
+                        <p className="text-xs text-gray-500 truncate">{involvement.company}</p>
                       </div>
-
-                      {/* Description */}
-                      <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                        {involvement.description}
-                      </p>
-
-                      {/* Highlights */}
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-orange-400 mb-2">Key Highlights</h4>
-                        <ul className="space-y-1">
-                          {involvement.highlights.slice(0, 3).map((highlight, highlightIndex) => (
-                            <li key={highlightIndex} className="flex items-center text-gray-300 text-sm">
-                              <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2 flex-shrink-0" />
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-1">
-                        {involvement.tags.slice(0, 4).map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 bg-orange-400/10 border border-orange-400/20 rounded text-xs text-orange-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {involvement.tags.length > 4 && (
-                          <span className="px-2 py-1 bg-gray-800/60 rounded text-xs text-gray-400">
-                            +{involvement.tags.length - 4} more
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Click indicator */}
-                      <div className="mt-3 text-xs text-orange-400/60">
-                        Click to view details →
+                      <div className="bg-orange-400/10 border border-orange-400/30 rounded-full px-3 py-1 ml-3 flex-shrink-0">
+                        <span className="text-orange-400 text-xs font-mono whitespace-nowrap">{involvement.period}</span>
                       </div>
                     </div>
+                    {/* Mobile Description */}
+                    <p className="text-gray-300 text-sm mb-3 leading-relaxed">
+                      {involvement.description.length > 100
+                        ? `${involvement.description.substring(0, 100)}...`
+                        : involvement.description
+                      }
+                    </p>
+                    {/* Mobile Highlights */}
+                    <div className="mb-3">
+                      <h4 className="text-xs font-semibold text-orange-400 mb-2">Key Highlights</h4>
+                      <ul className="space-y-1">
+                        {involvement.highlights.slice(0, 2).map((highlight, highlightIndex) => (
+                          <li key={highlightIndex} className="flex items-start text-gray-300 text-xs">
+                            <div className="w-1 h-1 bg-orange-400 rounded-full mr-2 mt-1.5 flex-shrink-0" />
+                            <span className="leading-relaxed">{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Mobile Tags */}
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {involvement.tags.slice(0, 3).map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-2 py-1 bg-orange-400/10 border border-orange-400/20 rounded text-xs text-orange-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {involvement.tags.length > 3 && (
+                        <span className="px-2 py-1 bg-gray-800/60 rounded text-xs text-gray-400">
+                          +{involvement.tags.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                    {/* Mobile Click indicator */}
+                    <div className="text-xs text-orange-400/60">
+                      Tap to view details →
+                    </div>
                   </motion.div>
+                ))}
+              </div>
+              {/* Desktop Timeline Cards Layout */}
+              {/* Desktop Timeline Layout (visible only on desktop) */}
+              <div className="hidden md:block">
+                {professionalInvolvements.map((involvement, index) => (
+                  <motion.div
+                    key={involvement.id}
+                    className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'} group`}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    {/* Timeline Node */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-orange-400 to-red-400 rounded-full border-4 border-black z-10 group-hover:scale-125 transition-transform duration-300" />
 
-                  {/* Empty space for the other side */}
-                  <div className="w-5/12" />
-                </motion.div>
-              ))}
+                    {/* Content Card */}
+                    <motion.div
+                      className={`relative ${index % 2 === 0 ? 'mr-auto pr-12' : 'ml-auto pl-12'} w-5/12 cursor-pointer group-hover:z-20`}
+                      whileHover={{ scale: 1.02 }}
+                      onClick={() => setSelectedInvolvement(involvement)}
+                    >
+                      <div className="bg-black/80 backdrop-blur-sm border border-orange-400/30 rounded-xl p-6 group-hover:border-orange-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-orange-400/20">
+                        {/* Header */}
+                        <div className="flex items-center space-x-4 mb-4">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-400 to-red-400 p-1">
+                            <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
+                              {involvement.icon ? (
+                                <img
+                                  src={involvement.icon}
+                                  alt={`${involvement.name} icon`}
+                                  className="w-8 h-8 object-contain"
+                                />
+                              ) : (
+                                <span className="text-xl">🏢</span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-xl font-bold text-orange-400 mb-1 truncate">
+                              {involvement.name}
+                            </h3>
+                            <p className="text-gray-400 truncate">{involvement.role}</p>
+                            <p className="text-sm text-gray-500 truncate">{involvement.company}</p>
+                          </div>
+                          <div className="bg-orange-400/10 border border-orange-400/30 rounded-full px-4 py-2">
+                            <span className="text-orange-400 font-mono text-sm">{involvement.period}</span>
+                          </div>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-300 mb-4 leading-relaxed">
+                          {involvement.description}
+                        </p>
+
+                        {/* Highlights */}
+                        <div className="mb-4">
+                          <h4 className="text-sm font-semibold text-orange-400 mb-2">Key Highlights</h4>
+                          <ul className="space-y-1">
+                            {involvement.highlights.slice(0, 3).map((highlight, highlightIndex) => (
+                              <li key={highlightIndex} className="flex items-start text-gray-300 text-sm">
+                                <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-3 mt-2 flex-shrink-0" />
+                                <span className="leading-relaxed">{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2">
+                          {involvement.tags.slice(0, 4).map((tech, techIndex) => (
+                            <span
+                              key={techIndex}
+                              className="px-3 py-1 bg-orange-400/10 border border-orange-400/20 rounded-full text-sm text-orange-300"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {involvement.tags.length > 4 && (
+                            <span className="px-3 py-1 bg-gray-800/60 rounded-full text-sm text-gray-400">
+                              +{involvement.tags.length - 4} more
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Connector Line */}
+                        <div className={`absolute top-1/2 transform -translate-y-1/2 ${index % 2 === 0 ? 'right-0' : 'left-0'} w-12 h-0.5 bg-gradient-to-r from-orange-400/50 to-transparent`} />
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -236,8 +299,8 @@ const ProfessionalInvolvements = ({ userData }) => {
                   <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-400 to-red-400 p-1">
                     <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
                       {selectedInvolvement.icon ? (
-                        <img 
-                          src={selectedInvolvement.icon} 
+                        <img
+                          src={selectedInvolvement.icon}
                           alt={`${selectedInvolvement.name} icon`}
                           className="w-8 h-8 object-contain"
                         />
