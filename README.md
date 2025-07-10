@@ -1,5 +1,12 @@
 # 🌌 Ehiane's Cosmic Portfolio
 
+## Demo
+
+https://github.com/user-attachments/assets/3bfa6853-510a-4c6f-bced-b003a35bd84f
+
+
+
+
 A cinematic, space-exploration themed portfolio website that feels like launching into a cosmic OS. Built with React and featuring a 3D interactive experience with planetary project navigation.
 
 ## 🚀 Features
