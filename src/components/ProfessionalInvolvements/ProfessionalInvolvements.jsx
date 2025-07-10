@@ -247,18 +247,23 @@ const ProfessionalInvolvements = ({ userData }) => {
             viewport={{ once: true }}
             className="mt-16 flex justify-center"
           >
-            <div className="bg-black/80 backdrop-blur-sm border border-orange-400/30 rounded-lg px-6 py-3">
-              <div className="flex items-center space-x-4 font-mono text-sm">
-                <div className="flex items-center space-x-2">
+            <div className="bg-black/80 backdrop-blur-sm border border-orange-400/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 mx-2 sm:mx-0">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 font-mono text-xs sm:text-sm space-y-1 sm:space-y-0">
+                {/* Status - Always visible */}
+                <div className="flex items-center justify-center sm:justify-start space-x-2">
                   <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
                   <span className="text-orange-400">STATUS: PROFESSIONAL</span>
                 </div>
-                <div className="text-gray-400">|</div>
-                <div className="text-red-400">
+
+                {/* Experiences count - Show on mobile */}
+                <div className="text-gray-400 hidden sm:block">|</div>
+                <div className="text-red-400 text-center sm:text-left">
                   EXPERIENCES: {professionalInvolvements.length}
                 </div>
-                <div className="text-gray-400">|</div>
-                <div className="text-yellow-400">
+
+                {/* Impact - Hide on mobile */}
+                <div className="text-gray-400 hidden md:block">|</div>
+                <div className="text-yellow-400 hidden md:block">
                   IMPACT: ENTERPRISE_LEVEL
                 </div>
               </div>

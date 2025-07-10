@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const GalacticRoadmap = () => {
   const [activeNode, setActiveNode] = useState(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const containerRef = useRef(null)
 
   // Roadmap nodes representing your galactic journey
@@ -159,7 +159,7 @@ const GalacticRoadmap = () => {
   const ConnectionLine = ({ from, to, delay = 0 }) => {
     const fromNode = roadmapNodes.find(node => node.id === from)
     const toNode = roadmapNodes.find(node => node.id === to)
-    
+
     if (!fromNode || !toNode) return null
 
     return (
@@ -188,7 +188,7 @@ const GalacticRoadmap = () => {
   // Individual roadmap node component
   const RoadmapNode = ({ node, index }) => {
     const [isHovered, setIsHovered] = useState(false)
-    
+
     const sizeClasses = {
       medium: 'w-16 h-16',
       large: 'w-20 h-20',
@@ -212,17 +212,17 @@ const GalacticRoadmap = () => {
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 3, repeat: Infinity }}
         />
-        
+
         {/* Main Node */}
         <motion.div
           className={`relative ${sizeClasses[node.size]} rounded-full bg-gradient-to-r ${node.glowColor} p-1 shadow-2xl`}
-          whileHover={{ 
+          whileHover={{
             scale: 1.15,
-            boxShadow: `0 0 30px rgba(${node.glowColor.includes('blue') ? '6, 182, 212' : 
-                                       node.glowColor.includes('purple') ? '147, 51, 234' : 
-                                       node.glowColor.includes('green') ? '34, 197, 94' :
-                                       node.glowColor.includes('yellow') ? '251, 146, 60' :
-                                       node.glowColor.includes('red') ? '239, 68, 68' : '139, 92, 246'}, 0.6)`,
+            boxShadow: `0 0 30px rgba(${node.glowColor.includes('blue') ? '6, 182, 212' :
+              node.glowColor.includes('purple') ? '147, 51, 234' :
+                node.glowColor.includes('green') ? '34, 197, 94' :
+                  node.glowColor.includes('yellow') ? '251, 146, 60' :
+                    node.glowColor.includes('red') ? '239, 68, 68' : '139, 92, 246'}, 0.6)`,
             transition: { duration: 0.3 }
           }}
           whileTap={{ scale: 0.95 }}
@@ -241,7 +241,7 @@ const GalacticRoadmap = () => {
         >
           <motion.div
             className="bg-black/80 backdrop-blur-sm border border-cyan-400/30 rounded-lg px-3 py-2 whitespace-nowrap"
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               borderColor: 'rgba(6, 182, 212, 0.6)',
               backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -256,21 +256,21 @@ const GalacticRoadmap = () => {
         {/* Orbital Ring */}
         <motion.div
           className="absolute inset-0 rounded-full border border-cyan-400/20"
-          style={{ 
-            width: `${sizeClasses[node.size] === 'w-16 h-16' ? '80px' : 
-                     sizeClasses[node.size] === 'w-20 h-20' ? '100px' : '120px'}`,
-            height: `${sizeClasses[node.size] === 'w-16 h-16' ? '80px' : 
-                      sizeClasses[node.size] === 'w-20 h-20' ? '100px' : '120px'}`,
+          style={{
+            width: `${sizeClasses[node.size] === 'w-16 h-16' ? '80px' :
+              sizeClasses[node.size] === 'w-20 h-20' ? '100px' : '120px'}`,
+            height: `${sizeClasses[node.size] === 'w-16 h-16' ? '80px' :
+              sizeClasses[node.size] === 'w-20 h-20' ? '100px' : '120px'}`,
             left: '50%',
             top: '50%',
             transform: 'translate(-50%, -50%)'
           }}
-          animate={{ 
+          animate={{
             rotate: 360,
             borderColor: isHovered ? 'rgba(6, 182, 212, 0.6)' : 'rgba(6, 182, 212, 0.2)',
             scale: isHovered ? 1.1 : 1
           }}
-          transition={{ 
+          transition={{
             rotate: { duration: 20, repeat: Infinity, ease: "linear" },
             borderColor: { duration: 0.3 },
             scale: { duration: 0.3 }
@@ -315,7 +315,7 @@ const GalacticRoadmap = () => {
   }
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative min-h-screen py-20 overflow-hidden bg-black"
       id="roadmap"
@@ -332,11 +332,11 @@ const GalacticRoadmap = () => {
             className="absolute inset-0 w-full h-full object-cover opacity-20"
             style={{ filter: 'hue-rotate(180deg) brightness(0.7)' }}
             initial={{ scale: 1.1 }}
-            animate={{ 
+            animate={{
               scale: [1.1, 1.05, 1.1],
               opacity: [0.15, 0.25, 0.15]
             }}
-            transition={{ 
+            transition={{
               duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
@@ -344,7 +344,7 @@ const GalacticRoadmap = () => {
           >
             <source src="/assets/contact-page-background-video.mp4" type="video/mp4" />
           </motion.video>
-          
+
           {/* Video overlay for better blending */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         </div>
@@ -385,12 +385,12 @@ const GalacticRoadmap = () => {
           <motion.div
             className="absolute text-2xl opacity-60"
             initial={{ x: '-100px', y: '-100px', rotate: 45 }}
-            animate={{ 
-              x: 'calc(100vw + 100px)', 
+            animate={{
+              x: 'calc(100vw + 100px)',
               y: 'calc(100vh + 100px)',
               rotate: 45
             }}
-            transition={{ 
+            transition={{
               duration: 15,
               repeat: Infinity,
               ease: "linear",
@@ -404,12 +404,12 @@ const GalacticRoadmap = () => {
           <motion.div
             className="absolute text-xl opacity-40"
             initial={{ x: '-80px', y: 'calc(100vh + 80px)', rotate: -135 }}
-            animate={{ 
-              x: 'calc(100vw + 80px)', 
+            animate={{
+              x: 'calc(100vw + 80px)',
               y: '-80px',
               rotate: -135
             }}
-            transition={{ 
+            transition={{
               duration: 20,
               repeat: Infinity,
               ease: "linear",
@@ -423,11 +423,11 @@ const GalacticRoadmap = () => {
           <motion.div
             className="absolute text-lg opacity-50 top-1/3"
             initial={{ x: '-60px', rotate: 90 }}
-            animate={{ 
+            animate={{
               x: 'calc(100vw + 60px)',
               rotate: 90
             }}
-            transition={{ 
+            transition={{
               duration: 12,
               repeat: Infinity,
               ease: "linear",
@@ -441,55 +441,56 @@ const GalacticRoadmap = () => {
 
       {/* Section Header */}
       <motion.div
-        className="relative z-10 text-center mb-20 px-6"
+        className="relative z-10 text-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6"
         initial={{ opacity: 0, y: 50 }}
         animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 1 }}
       >
         <motion.div
-          className="inline-block mb-6"
+          className="inline-block mb-4 sm:mb-6"
           initial={{ scale: 0 }}
           animate={isVisible ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className="bg-gradient-to-r from-violet-400/10 to-purple-400/10 border border-violet-400/30 rounded-full px-6 py-2">
-            <span className="text-violet-400 font-mono text-sm">JOURNEY.LOG</span>
+          <div className="bg-gradient-to-r from-violet-400/10 to-purple-400/10 border border-violet-400/30 rounded-full px-4 sm:px-6 py-2">
+            <span className="text-violet-400 font-mono text-xs sm:text-sm">JOURNEY.LOG</span>
           </div>
         </motion.div>
 
-        <h2 className="text-5xl md:text-7xl font-bold mb-6">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-green-400">
-            Galactic Roadmap
-          </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 px-2 text-violet-400 sm:text-transparent sm:bg-clip-text sm:bg-gradient-to-r sm:from-violet-400 sm:via-cyan-400 sm:to-green-400">
+          Galactic Roadmap
         </h2>
-        
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+
+
+
+
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
           Navigate through the cosmic milestones of my technical evolution — from HIIT Nigeria to full-stack mastery
         </p>
 
         {/* Mission Status */}
         <motion.div
-          className="mt-8 flex justify-center"
+          className="mt-6 sm:mt-8 flex justify-center"
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <div className="bg-black/80 border border-green-500/30 rounded-lg px-6 py-3">
-            <div className="flex items-center space-x-4 font-mono text-sm">
-              <div className="flex items-center space-x-2">
+          <div className="bg-black/80 border border-green-500/30 rounded-lg px-4 sm:px-6 py-2 sm:py-3">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 font-mono text-xs sm:text-sm">
+              <div className="flex items-center space-x-2 justify-center sm:justify-start">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span className="text-green-400">MISSION_STATUS: ACTIVE</span>
               </div>
-              <div className="text-gray-400">|</div>
-              <div className="text-cyan-400">NODES_EXPLORED: {roadmapNodes.length}</div>
+              <div className="text-gray-400 hidden sm:block">|</div>
+              <div className="text-cyan-400 text-center sm:text-left mt-1 sm:mt-0">NODES_EXPLORED: {roadmapNodes.length}</div>
             </div>
           </div>
         </motion.div>
       </motion.div>
 
       {/* Roadmap Visualization */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="relative h-[600px] md:h-[700px] w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full hidden md:block">
           {/* SVG for connection lines */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none">
             <defs>
@@ -499,7 +500,7 @@ const GalacticRoadmap = () => {
                 <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.6" />
               </linearGradient>
             </defs>
-            
+
             {/* Connection lines between nodes */}
             <ConnectionLine from="launchpad" to="first-orbit" delay={1} />
             <ConnectionLine from="first-orbit" to="cosmic-shift" delay={1.5} />
@@ -531,23 +532,23 @@ const GalacticRoadmap = () => {
                 {index < roadmapNodes.length - 1 && (
                   <div className="absolute left-6 top-16 w-0.5 h-16 bg-gradient-to-b from-cyan-400 to-purple-400 opacity-60" />
                 )}
-                
+
                 {/* Node icon */}
                 <div className={`relative w-12 h-12 rounded-full bg-gradient-to-r ${node.glowColor} p-1 shadow-lg flex-shrink-0`}>
                   <div className="w-full h-full rounded-full bg-black/80 flex items-center justify-center">
                     <span className="text-lg">{node.icon}</span>
                   </div>
                 </div>
-                
+
                 {/* Content */}
-                <div 
+                <div
                   className="flex-1 bg-black/80 border border-cyan-400/30 rounded-lg p-4 cursor-pointer hover:border-cyan-400/60 transition-all duration-300"
                   onClick={() => setActiveNode(node)}
                 >
                   <h3 className="text-lg font-bold text-cyan-400 mb-1">{node.title}</h3>
                   <p className="text-sm text-gray-400 mb-2">{node.period}</p>
                   <p className="text-gray-300 text-sm leading-relaxed">{node.description}</p>
-                  
+
                   <div className="flex flex-wrap gap-1 mt-3">
                     {node.techStack.slice(0, 3).map((tech, techIndex) => (
                       <span key={techIndex} className="px-2 py-1 bg-gray-800/60 rounded text-xs text-gray-400">
@@ -655,10 +656,10 @@ const GalacticRoadmap = () => {
       {/* Floating HUD Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Corner brackets */}
-        <div className="absolute top-10 left-10 w-8 h-8 border-l-2 border-t-2 border-violet-400/50" />
-        <div className="absolute top-10 right-10 w-8 h-8 border-r-2 border-t-2 border-violet-400/50" />
-        <div className="absolute bottom-10 left-10 w-8 h-8 border-l-2 border-b-2 border-violet-400/50" />
-        <div className="absolute bottom-10 right-10 w-8 h-8 border-r-2 border-b-2 border-violet-400/50" />
+        <div className="absolute top-4 sm:top-6 lg:top-10 left-4 sm:left-6 lg:left-10 w-6 h-6 sm:w-8 sm:h-8 border-l-2 border-t-2 border-violet-400/50" />
+        <div className="absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-6 lg:right-10 w-6 h-6 sm:w-8 sm:h-8 border-r-2 border-t-2 border-violet-400/50" />
+        <div className="absolute bottom-4 sm:bottom-6 lg:bottom-10 left-4 sm:left-6 lg:left-10 w-6 h-6 sm:w-8 sm:h-8 border-l-2 border-b-2 border-violet-400/50" />
+        <div className="absolute bottom-4 sm:bottom-6 lg:bottom-10 right-4 sm:right-6 lg:right-10 w-6 h-6 sm:w-8 sm:h-8 border-r-2 border-b-2 border-violet-400/50" />
       </div>
     </section>
   )

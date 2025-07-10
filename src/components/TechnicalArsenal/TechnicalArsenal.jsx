@@ -28,7 +28,7 @@ const TechnicalArsenal = ({ userData }) => {
     {
       title: "Concepts",
       icon: aiIcon,
-      key: "concepts", 
+      key: "concepts",
       color: "from-green-400 to-emerald-500",
       borderColor: "border-green-400/30",
       glowColor: "shadow-green-400/20"
@@ -37,7 +37,7 @@ const TechnicalArsenal = ({ userData }) => {
       title: "Frameworks & Libraries",
       icon: frontendIcon,
       key: "frameworks",
-      color: "from-yellow-400 to-orange-500", 
+      color: "from-yellow-400 to-orange-500",
       borderColor: "border-yellow-400/30",
       glowColor: "shadow-yellow-400/20"
     },
@@ -62,7 +62,7 @@ const TechnicalArsenal = ({ userData }) => {
       icon: cloudIcon,
       key: "systems",
       color: "from-purple-400 to-pink-500",
-      borderColor: "border-purple-400/30", 
+      borderColor: "border-purple-400/30",
       glowColor: "shadow-purple-400/20"
     },
     {
@@ -115,10 +115,10 @@ const TechnicalArsenal = ({ userData }) => {
     <section className="relative min-h-screen py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black" />
-      
+
       {/* Animated grid background */}
       <div className="absolute inset-0 opacity-10">
-        <div 
+        <div
           className="w-full h-full"
           style={{
             backgroundImage: `
@@ -181,7 +181,7 @@ const TechnicalArsenal = ({ userData }) => {
               Technical Arsenal
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             A comprehensive toolkit forged through years of exploration in the digital frontier
           </p>
@@ -219,7 +219,7 @@ const TechnicalArsenal = ({ userData }) => {
           >
             <div className="w-full max-w-2xl">
               <h3 className="text-3xl font-bold text-white mb-8 text-center">Skills Distribution</h3>
-              
+
               <div className="bg-black/60 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-8">
                 {/* Chart Container */}
                 <div className="h-80 mb-8">
@@ -246,10 +246,10 @@ const TechnicalArsenal = ({ userData }) => {
                           <Cell key={`cell-${index}`} fill={COLORS[index]} />
                         ))}
                       </Pie>
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'rgba(0, 0, 0, 0.9)', 
-                          border: '1px solid #40e0d0', 
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                          border: '1px solid #40e0d0',
                           borderRadius: '8px',
                           color: '#ffffff',
                           fontSize: '14px'
@@ -262,17 +262,17 @@ const TechnicalArsenal = ({ userData }) => {
                 </div>
 
                 {/* Chart Legend in 2 columns */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6">
                   {chartData.map((item, index) => (
                     <div key={item.name} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div 
-                          className="w-4 h-4 rounded-full"
+                      <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
+                        <div
+                          className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0"
                           style={{ backgroundColor: COLORS[index] }}
                         />
-                        <span className="text-gray-300 text-sm">{item.name}</span>
+                        <span className="text-gray-300 text-xs sm:text-sm truncate">{item.name}</span>
                       </div>
-                      <span className="text-white font-mono text-sm">{item.value}</span>
+                      <span className="text-white font-mono text-xs sm:text-sm ml-2 flex-shrink-0">{item.value}</span>
                     </div>
                   ))}
                 </div>
@@ -311,8 +311,8 @@ const TechnicalArsenal = ({ userData }) => {
                 key={category.key}
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: categoryIndex * 0.1,
                   type: "spring",
                   stiffness: 100
@@ -327,12 +327,12 @@ const TechnicalArsenal = ({ userData }) => {
                   ${category.borderColor} ${category.glowColor}
                   group-hover:border-opacity-60 group-hover:shadow-xl
                 `}>
-                  
+
                   {/* Header */}
                   <div className="flex items-center space-x-3 mb-6">
                     <div className="group-hover:scale-110 transition-transform duration-300">
-                      <img 
-                        src={category.icon} 
+                      <img
+                        src={category.icon}
                         alt={category.title}
                         className="w-10 h-10 object-contain"
                         onError={(e) => {
@@ -343,7 +343,7 @@ const TechnicalArsenal = ({ userData }) => {
                         onLoad={() => console.log('Icon loaded successfully:', category.icon)}
                       />
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
                         {category.title}
@@ -375,7 +375,7 @@ const TechnicalArsenal = ({ userData }) => {
                           <span className="text-gray-300 group-hover/skill:text-white transition-colors text-sm">
                             {skill}
                           </span>
-                          
+
                           {/* Skill Level Indicator */}
                           <div className="flex space-x-1">
                             {[...Array(4)].map((_, i) => (
@@ -383,8 +383,8 @@ const TechnicalArsenal = ({ userData }) => {
                                 key={i}
                                 className={`
                                   w-1.5 h-1.5 rounded-full transition-all duration-200
-                                  ${i < (Math.floor(Math.random() * 2) + 3) 
-                                    ? `bg-gradient-to-r ${category.color}` 
+                                  ${i < (Math.floor(Math.random() * 2) + 3)
+                                    ? `bg-gradient-to-r ${category.color}`
                                     : 'bg-gray-600/50'
                                   }
                                   ${hoveredSkill === `${category.key}-${skill}` ? 'scale-125' : ''}

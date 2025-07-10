@@ -486,10 +486,10 @@ const HeroSection = ({ userData }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="order-1 lg:order-2 space-y-6"
+              className="order-1 lg:order-2 space-y-6 mt-20 sm:mt-10 lg:mt-0"
             >
             {/* Main Identity Card */}
-            <div className="bg-black/80 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-6 relative overflow-hidden">
+            <div className="bg-black/80 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-6 relative overflow-hidden mt-16 sm:mt-20 lg:mt-8">
               {/* Animated corner brackets */}
               <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-cyan-400"></div>
               <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-cyan-400"></div>
