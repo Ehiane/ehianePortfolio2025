@@ -617,7 +617,12 @@ const HeroSection = ({ userData }) => {
                     </button>
 
                     <button className="flex items-center space-x-2 px-4 py-3 bg-black/50 hover:bg-black/70 border border-gray-500/30 hover:border-gray-400 rounded-lg transition-all duration-300">
-                      <a download href="/assets/EhianeOigiagbe.pdf" className="text-gray-300 font-mono text-sm">DOWNLOAD_CV</a>
+                      <a download href="/assets/EhianeOigiagbeResume2025_.pdf" className="text-gray-300 font-mono text-sm">Download Resume</a>
+                      <span className="text-gray-400">↓</span>
+                    </button>
+
+                    <button className="flex items-center space-x-2 px-4 py-3 bg-black/50 hover:bg-black/70 border border-gray-500/30 hover:border-gray-400 rounded-lg transition-all duration-300">
+                      <a download href="/assets/EhianeOigiagbe_CV_semi-redacted.pdf" className="text-gray-300 font-mono text-sm">Download CV</a>
                       <span className="text-gray-400">↓</span>
                     </button>
                   </div>
@@ -683,7 +688,7 @@ const HeroSection = ({ userData }) => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-none"
       >
         <div className="flex flex-col items-center space-y-2">
-          <span className="text-cyan-400 font-mono text-xs">SCROLL_TO_EXPLORE</span>
+          {/* <span className="text-cyan-200 font-mono text-xs">SCROLL_DOWN</span> */}
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}

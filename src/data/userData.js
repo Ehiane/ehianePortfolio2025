@@ -4,10 +4,10 @@ export const userData = {
     name: "Ehiane Oigiagbe",
     title: "Full-Stack Engineer",
     subtitle: "AI Explorer. Systems Thinker.",
-    description: "Innovative software engineer with expertise in full-stack development, AI integration, and systems architecture. Passionate about building scalable solutions that bridge technology and human experience.",
+    description: "I’m a purpose-driven software engineer who builds scalable, thoughtful systems that simplify complexity and enhance user experiences. With a foundation in Python, C#, and JavaScript, I combine technical depth with curiosity and empathy to create impactful solutions that help others grow.",
     location: "Available Worldwide",
-    email: "ehiane@example.com", // Update with actual email
-    github: "https://github.com/ehiane", // Update with actual GitHub
+    email: "ehis.oigiagbe@gmail.com",
+    github: "https://github.com/ehiane",
     linkedin: "https://www.linkedin.com/in/ehiane-oigiagbe/",
   },
   
