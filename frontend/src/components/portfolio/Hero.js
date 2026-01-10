@@ -4,6 +4,14 @@ import { Box, Typography, Avatar, Tooltip } from '@mui/material';
 import { personalInfo } from '../../data/portfolioData';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
+// Static banners defined at module scope to avoid useEffect lint warning
+const banners = [
+    '/images/banner/paul_pogba_1.gif',
+    '/images/banner/paul_pogba_2.gif',
+    '/images/banner/paul_pogba_3.gif',
+    '/images/banner/Pogba_dab.gif'
+];
+
 const Hero = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [randomBanner, setRandomBanner] = useState('');
@@ -21,14 +29,6 @@ const Hero = () => {
             }
         },
     };
-
-    // Array of available banners
-    const banners = [
-        '/images/banner/paul_pogba_1.gif',
-        '/images/banner/paul_pogba_2.gif',
-        '/images/banner/paul_pogba_3.gif',
-        '/images/banner/Pogba_dab.gif'
-    ];
 
     // Randomly select a banner on component mount
     useEffect(() => {
@@ -256,9 +256,9 @@ const Hero = () => {
                             },
                         }}
                     >
-                        Things
+                        Software
                     </Typography>
-                    {' That Help '}
+                    {' That Helps '}
                     <Typography
                         component="a"
                         onClick={() => {
@@ -280,6 +280,7 @@ const Hero = () => {
                     >
                         People
                     </Typography>
+                    .
                 </Typography>
 
                 {/* Bio */}
@@ -409,7 +410,7 @@ const Hero = () => {
                             </Typography>
                         </motion.span>
                     </Tooltip>
-                    . I care about how software behaves in the real world, not just how it looks on a screen.
+                    . I care about building software that bridges the gap between technical systems and the people who rely on them, especially in spaces where access and clarity matter most.
                 </Typography>
             </Box>
         </Box>

@@ -5,6 +5,62 @@ import { roles } from '../../data/portfolioData';
 const Experience = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
+    // Helper: get visible sub-roles based on `visible` flag
+    const getVisibleSubRoles = (role) => {
+        if (!role.subRoles) return [];
+        return role.subRoles.filter((sr) => sr.visible !== false);
+    };
+
+    // Helper: pick displayed role title/date based on visibility
+    const getDisplayRole = (role) => {
+        const visible = getVisibleSubRoles(role);
+        return visible.length > 0 ? visible[0].title : role.role;
+    };
+
+    const getDisplayDate = (role) => {
+        const visible = getVisibleSubRoles(role);
+        return visible.length > 0 ? visible[0].date : role.date;
+    };
+
+    // Helper: parse start date from a range like "Sep 2023 — Dec 2024" or "June 2025 — Present"
+    const monthMap = {
+        jan: 0, january: 0,
+        feb: 1, february: 1,
+        mar: 2, march: 2,
+        apr: 3, april: 3,
+        may: 4,
+        jun: 5, june: 5,
+        jul: 6, july: 6,
+        aug: 7, august: 7,
+        sep: 8, sept: 8, september: 8,
+        oct: 9, october: 9,
+        nov: 10, november: 10,
+        dec: 11, december: 11,
+    };
+
+    const parseStartDate = (range) => {
+        if (!range || typeof range !== 'string') return new Date(0).getTime();
+        const startPart = range.split('—')[0].trim();
+        const parts = startPart.split(' ');
+        // Expect formats like "Sep 2023" or "June 2025"
+        if (parts.length === 2) {
+            const m = monthMap[parts[0].toLowerCase()] ?? 0;
+            const y = parseInt(parts[1], 10);
+            if (!Number.isNaN(y)) return new Date(y, m, 1).getTime();
+        }
+        // Fallback: extract year
+        const yearMatch = startPart.match(/(19|20)\d{2}/);
+        const y = yearMatch ? parseInt(yearMatch[0], 10) : 0;
+        return new Date(y, 0, 1).getTime();
+    };
+
+    // Sort roles by computed start date (desc) using display date
+    const sortedRoles = [...roles].sort((a, b) => {
+        const aTime = parseStartDate(getDisplayDate(a));
+        const bTime = parseStartDate(getDisplayDate(b));
+        return bTime - aTime; // descending
+    });
+
     return (
         <Box>
             {/* Section Header */}
@@ -73,7 +129,7 @@ const Experience = () => {
 
             {/* Timeline */}
             <Box sx={{ position: 'relative' }}>
-                {roles.map((role, index) => (
+                {sortedRoles.map((role, index) => (
                     <Box
                         key={index}
                         onMouseEnter={() => setHoveredIndex(index)}
@@ -137,7 +193,7 @@ const Experience = () => {
                                             mt: 0.5,
                                         }}
                                     >
-                                        {role.role}
+                                        {getDisplayRole(role)}
                                     </Typography>
                                 </Box>
                                 <Typography
@@ -150,7 +206,7 @@ const Experience = () => {
                                         letterSpacing: '0.05em',
                                     }}
                                 >
-                                    {role.date}
+                                    {getDisplayDate(role)}
                                 </Typography>
                             </Box>
 
@@ -169,7 +225,9 @@ const Experience = () => {
                                 {role.subRoles ? (
                                     // Display sub-roles as bullet points
                                     <Box sx={{ pl: 2 }}>
-                                        {role.subRoles.map((subRole, subIndex) => (
+                                        {role.subRoles
+                                            .filter((subRole) => subRole.visible !== false)
+                                            .map((subRole, subIndex) => (
                                             <Box key={subIndex} sx={{ mb: 2 }}>
                                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                                                     <Box

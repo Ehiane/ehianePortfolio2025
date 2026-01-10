@@ -290,7 +290,7 @@ const Contact = () => {
                         mb: 2,
                     }}
                 >
-                    "The best code is tested code."
+                    "Technology should work for people, not the other way around."
                 </Typography>
                 <Typography
                     variant="caption"
@@ -317,6 +317,7 @@ const Contact = () => {
                     >
                         Tushar Negi
                     </Typography>
+                    .(check his site out!)
                 </Typography>
             </Box>
         </Box>
