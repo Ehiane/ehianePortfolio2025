@@ -56,7 +56,7 @@ const Hero = () => {
         <Box>
             {/* Banner Image */}
             <Tooltip
-                title="Paul Pogba - My favorite football player"
+                title="Paul Pogba - My favorite footballer."
                 arrow
                 sx={{
                     '& .MuiTooltip-tooltip': {
@@ -410,7 +410,32 @@ const Hero = () => {
                             </Typography>
                         </motion.span>
                     </Tooltip>
-                    . I care about building software that bridges the gap between technical systems and the people who rely on them, especially in spaces where access and clarity matter most.
+                    .{' '}
+                    <Typography
+                        component="span"
+                        sx={{
+                            background: 'linear-gradient(90deg, #39d353 0%, #39d353 50%, #a1a1aa 50%, #a1a1aa 100%)',
+                            backgroundSize: '200% 100%',
+                            backgroundClip: 'text',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            animation: 'colorFill 5.5s ease-in-out infinite',
+                            '@keyframes colorFill': {
+                                '0%': {
+                                    backgroundPosition: '100% 0',
+                                },
+                                '80%': {
+                                    backgroundPosition: '-100% 0',
+                                },
+                                '100%': {
+                                    backgroundPosition: '-100% 0',
+                                },
+                            },
+                        }}
+                    >
+                        I care about building software that bridges the gap between technical systems and the people who rely on them, especially in spaces where access and clarity matter most
+                    </Typography>
+                    .
                 </Typography>
             </Box>
         </Box>

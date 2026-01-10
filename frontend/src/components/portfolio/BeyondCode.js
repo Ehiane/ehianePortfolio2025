@@ -2,21 +2,39 @@ import React, { useState } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import GlassyFolder from './GlassyFolder';
 import AchievementModal from './AchievementModal';
+import CertificateViewer3D from './CertificateViewer3D';
 import { achievements } from '../../data/portfolioData';
 
 const BeyondCode = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const [viewer3DOpen, setViewer3DOpen] = useState(false);
+    const [selectedFolderType, setSelectedFolderType] = useState(null);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = (item, folderType) => {
         setSelectedItem(item);
+        setSelectedFolderType(folderType);
         setModalOpen(true);
     };
 
     const handleCloseModal = () => {
         setModalOpen(false);
         // Keep selectedItem for a moment to allow exit animation
-        setTimeout(() => setSelectedItem(null), 300);
+        setTimeout(() => {
+            setSelectedItem(null);
+            setSelectedFolderType(null);
+        }, 300);
+    };
+
+    const handleOpen3DViewer = () => {
+        setModalOpen(false);
+        setViewer3DOpen(true);
+    };
+
+    const handleClose3DViewer = () => {
+        setViewer3DOpen(false);
+        // Optionally reopen the info modal
+        setTimeout(() => setModalOpen(true), 300);
     };
 
     const folders = [
@@ -24,16 +42,19 @@ const BeyondCode = () => {
             title: 'Certifications',
             icon: '/images/stickers/certificate.png',
             items: achievements.certifications,
+            type: 'certification',
         },
         {
             title: 'Events',
             icon: '/images/stickers/events.png',
             items: achievements.events,
+            type: 'event',
         },
         {
             title: 'Leadership',
             icon: '/images/stickers/leadership.png',
             items: achievements.leadership,
+            type: 'leadership',
         },
     ];
 
@@ -87,7 +108,7 @@ const BeyondCode = () => {
                             title={folder.title}
                             icon={folder.icon}
                             items={folder.items}
-                            onItemClick={handleItemClick}
+                            onItemClick={(item) => handleItemClick(item, folder.type)}
                         />
                     </Grid>
                 ))}
@@ -98,6 +119,15 @@ const BeyondCode = () => {
                 item={selectedItem}
                 open={modalOpen}
                 onClose={handleCloseModal}
+                isCertification={selectedFolderType === 'certification'}
+                onView3D={handleOpen3DViewer}
+            />
+
+            {/* 3D Certificate Viewer */}
+            <CertificateViewer3D
+                certificate={selectedItem}
+                open={viewer3DOpen}
+                onClose={handleClose3DViewer}
             />
         </Box>
     );

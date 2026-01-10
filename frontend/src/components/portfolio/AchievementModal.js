@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Typography, IconButton, Button, Tooltip } from '@mui/material';
-import { Close, OpenInNew, LinkedIn, YouTube, GitHub } from '@mui/icons-material';
+import { Close, OpenInNew, LinkedIn, YouTube, GitHub, ThreeDRotation } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const AchievementModal = ({ item, onClose, open }) => {
+const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) => {
     if (!item) return null;
 
     return (
@@ -450,6 +450,27 @@ const AchievementModal = ({ item, onClose, open }) => {
 
                                     {/* Action Buttons */}
                                     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                                        {isCertification && (
+                                            <Button
+                                                variant="contained"
+                                                onClick={onView3D}
+                                                startIcon={<ThreeDRotation />}
+                                                sx={{
+                                                    bgcolor: 'primary.main',
+                                                    color: '#000',
+                                                    fontWeight: 600,
+                                                    px: 3,
+                                                    py: 1.5,
+                                                    borderRadius: '100px',
+                                                    textTransform: 'none',
+                                                    '&:hover': {
+                                                        bgcolor: 'primary.light',
+                                                    },
+                                                }}
+                                            >
+                                                View in 3D
+                                            </Button>
+                                        )}
                                         {item.credentialUrl && (
                                             <Button
                                                 variant="contained"

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Box, IconButton } from '@mui/material';
 import { GitHub, LinkedIn, Email, LightMode, DarkMode, Menu as MenuIcon, Close } from '@mui/icons-material';
 import { socialLinks } from '../data/portfolioData';
@@ -7,12 +7,43 @@ import { socialLinks } from '../data/portfolioData';
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isBouncing, setIsBouncing] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     const iconLinks = [
         { Icon: GitHub, href: socialLinks.github },
         { Icon: LinkedIn, href: socialLinks.linkedin },
         { Icon: Email, href: socialLinks.email },
     ];
+
+    // Smart navbar: hide on scroll down, show on scroll up
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            // Always show navbar at the top of the page
+            if (currentScrollY < 50) {
+                setIsVisible(true);
+            } else {
+                // Show navbar when scrolling up, hide when scrolling down
+                if (currentScrollY < lastScrollY) {
+                    // Scrolling up
+                    setIsVisible(true);
+                } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    // Scrolling down & past 100px
+                    setIsVisible(false);
+                }
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
 
     const bounceVariants = {
         initial: { scale: 1 },
@@ -44,8 +75,11 @@ const Navbar = () => {
         <motion.nav
             className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 w-full pointer-events-none"
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            animate={{
+                opacity: 1,
+                y: (isVisible || isMobileMenuOpen) ? 0 : -100
+            }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
             {/* Left: Logo */}
             <div className="pointer-events-auto px-4 py-2 rounded-full transition-colors duration-300">
@@ -81,6 +115,20 @@ const Navbar = () => {
                         style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                     >
                         Projects
+                    </button>
+                    <button
+                        onClick={() => scrollToSection('github')}
+                        className="text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                        GitHub
+                    </button>
+                    <button
+                        onClick={() => scrollToSection('tech-stack')}
+                        className="text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                        Tech Stack
                     </button>
                     <button
                         onClick={() => scrollToSection('achievements')}
@@ -127,80 +175,99 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            {isMobileMenuOpen && (
-                <motion.div
-                    className="fixed inset-0 z-40 flex items-start justify-center md:hidden"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <div
-                        className="absolute inset-0 bg-black/70 backdrop-blur"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    />
-
+            <AnimatePresence>
+                {isMobileMenuOpen && (
                     <motion.div
-                        className="relative mt-16 w-[90%] max-w-sm rounded-2xl bg-zinc-900/95 border border-zinc-800 shadow-2xl p-8 flex flex-col items-center gap-6"
-                        initial={{ y: -40, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        className="fixed inset-0 z-40 flex items-start justify-center md:hidden pointer-events-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
                     >
-                        <button
+                        <div
+                            className="absolute inset-0 bg-black/70 backdrop-blur cursor-pointer"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white transition-colors"
-                            aria-label="Close menu"
-                            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        >
-                            <Close sx={{ fontSize: 24 }} />
-                        </button>
+                        />
 
-                        <button
-                            onClick={() => scrollToSection('experience')}
-                            className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300"
-                            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        <motion.div
+                            className="relative mt-16 w-[90%] max-w-sm rounded-2xl bg-zinc-900/95 border border-zinc-800 shadow-2xl p-8 flex flex-col items-center gap-6"
+                            initial={{ y: -40, opacity: 0, scale: 0.95 }}
+                            animate={{ y: 0, opacity: 1, scale: 1 }}
+                            exit={{ y: -40, opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.25, ease: 'easeOut' }}
                         >
-                            Experience
-                        </button>
-                        <button
-                            onClick={() => scrollToSection('projects')}
-                            className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300"
-                            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        >
-                            Projects
-                        </button>
-                        <button
-                            onClick={() => scrollToSection('achievements')}
-                            className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300"
-                            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        >
-                            Achievements
-                        </button>
-                        <button
-                            onClick={() => scrollToSection('contact')}
-                            className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300"
-                            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        >
-                            Contact
-                        </button>
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white transition-colors"
+                                aria-label="Close menu"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                <Close sx={{ fontSize: 24 }} />
+                            </button>
 
-                        <div className="w-full h-px bg-zinc-800" />
+                            <button
+                                onClick={() => scrollToSection('experience')}
+                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                Experience
+                            </button>
+                            <button
+                                onClick={() => scrollToSection('projects')}
+                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                Projects
+                            </button>
+                            <button
+                                onClick={() => scrollToSection('github')}
+                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                GitHub
+                            </button>
+                            <button
+                                onClick={() => scrollToSection('tech-stack')}
+                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                Tech Stack
+                            </button>
+                            <button
+                                onClick={() => scrollToSection('achievements')}
+                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                Achievements
+                            </button>
+                            <button
+                                onClick={() => scrollToSection('contact')}
+                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                Contact
+                            </button>
 
-                        <div className="flex items-center justify-center gap-6">
-                            {iconLinks.map((item, index) => (
-                                <a
-                                    key={index}
-                                    href={item.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-zinc-400 hover:text-white transition-colors"
-                                >
-                                    <item.Icon sx={{ fontSize: 24 }} />
-                                </a>
-                            ))}
-                        </div>
+                            <div className="w-full h-px bg-zinc-800" />
+
+                            <div className="flex items-center justify-center gap-6">
+                                {iconLinks.map((item, index) => (
+                                    <a
+                                        key={index}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-zinc-400 hover:text-white transition-colors"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        <item.Icon sx={{ fontSize: 24 }} />
+                                    </a>
+                                ))}
+                            </div>
+                        </motion.div>
                     </motion.div>
-                </motion.div>
-            )}
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 };

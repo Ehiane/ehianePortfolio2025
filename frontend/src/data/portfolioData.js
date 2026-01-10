@@ -140,7 +140,7 @@ export const socialLinks = {
     site: "https://ehiane.com",
     github: "https://github.com/Ehiane",
     linkedin: "https://www.linkedin.com/in/ehiane-oigiagbe",
-    email: "mailto:ehiane@example.com" // Update with actual email
+    email: "mailto:ehiane.dev@gmail.com" // Update with actual email
 };
 
 export const achievements = {

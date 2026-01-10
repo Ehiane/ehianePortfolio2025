@@ -37,7 +37,7 @@ const HomePage = () => {
             </Box>
 
             {/* 4. GitHub Section */}
-            <Box sx={{ mb: sectionSpacing }}>
+            <Box id="github" sx={{ mb: sectionSpacing }}>
                 <GitHubSection />
             </Box>
 
@@ -47,7 +47,7 @@ const HomePage = () => {
             </Box>
 
             {/* 6. Tech Stack */}
-            <Box sx={{ mb: sectionSpacing }}>
+            <Box id="tech-stack" sx={{ mb: sectionSpacing }}>
                 <TechStack />
             </Box>
 
