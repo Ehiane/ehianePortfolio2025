@@ -65,11 +65,21 @@ const AchievementModal = ({ item, onClose, open }) => {
                                         position: 'absolute',
                                         top: 16,
                                         right: 16,
-                                        bgcolor: 'rgba(255, 255, 255, 0.1)',
-                                        backdropFilter: 'blur(10px)',
+                                        // Frosted dark-silver glass for visibility on light backgrounds
+                                        background: 'linear-gradient(135deg, rgba(120,120,120,0.35), rgba(90,90,90,0.35))',
+                                        backdropFilter: 'blur(12px) saturate(120%)',
+                                        WebkitBackdropFilter: 'blur(12px) saturate(120%)',
+                                        color: '#fff',
+                                        border: '1px solid rgba(255,255,255,0.18)',
+                                        boxShadow: '0 6px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.12)',
                                         zIndex: 10,
                                         '&:hover': {
-                                            bgcolor: 'rgba(255, 255, 255, 0.15)',
+                                            background: 'linear-gradient(135deg, rgba(130,130,130,0.45), rgba(100,100,100,0.45))',
+                                            boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18)',
+                                        },
+                                        '&:focus-visible': {
+                                            outline: '2px solid rgba(57,211,83,0.8)',
+                                            outlineOffset: '2px',
                                         },
                                     }}
                                 >
@@ -152,7 +162,51 @@ const AchievementModal = ({ item, onClose, open }) => {
                                                     Issuer
                                                 </Typography>
                                                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                                                    {item.issuer}
+                                                    {item.issuer === 'CodePath' ? (
+                                                        <Typography
+                                                            component="a"
+                                                            href="https://www.codepath.org/"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            sx={{
+                                                                color: '#39d353',
+                                                                textDecoration: 'underline',
+                                                                fontWeight: 600,
+                                                            }}
+                                                        >
+                                                            CodePath
+                                                        </Typography>
+                                                    ) : item.issuer === 'HackerRank' ? (
+                                                        <Typography
+                                                            component="a"
+                                                            href="https://www.hackerrank.com/"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            sx={{
+                                                                color: '#39d353',
+                                                                textDecoration: 'underline',
+                                                                fontWeight: 600,
+                                                            }}
+                                                        >
+                                                            HackerRank
+                                                        </Typography>
+                                                    ) : item.issuer === 'MongoDB' ? (
+                                                        <Typography
+                                                            component="a"
+                                                            href="https://www.mongodb.com/"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            sx={{
+                                                                color: '#39d353',
+                                                                textDecoration: 'underline',
+                                                                fontWeight: 600,
+                                                            }}
+                                                        >
+                                                            MongoDB
+                                                        </Typography>
+                                                    ) : (
+                                                        item.issuer
+                                                    )}
                                                 </Typography>
                                             </Box>
                                         )}
@@ -244,7 +298,7 @@ const AchievementModal = ({ item, onClose, open }) => {
                                                 rel="noopener noreferrer"
                                                 endIcon={<OpenInNew />}
                                                 sx={{
-                                                    bgcolor: 'primary.main',
+                                                    bgcolor: '#39d353',
                                                     color: '#000',
                                                     fontWeight: 600,
                                                     px: 3,
@@ -252,11 +306,53 @@ const AchievementModal = ({ item, onClose, open }) => {
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
                                                     '&:hover': {
-                                                        bgcolor: 'primary.light',
+                                                        bgcolor: '#43e06a',
                                                     },
                                                 }}
                                             >
                                                 View Credential
+                                            </Button>
+                                        )}
+                                        {item.certificatePdf && (
+                                            <Button
+                                                component="a"
+                                                href={item.certificatePdf}
+                                                download
+                                                sx={{
+                                                    bgcolor: '#39d353',
+                                                    color: '#000',
+                                                    fontWeight: 600,
+                                                    px: 3,
+                                                    py: 1.5,
+                                                    borderRadius: '100px',
+                                                    textTransform: 'none',
+                                                    '&:hover': {
+                                                        bgcolor: '#43e06a',
+                                                    },
+                                                }}
+                                            >
+                                                Download Certificate
+                                            </Button>
+                                        )}
+                                        {item.issuer === 'CodePath' && (
+                                            <Button
+                                                component="a"
+                                                href="/images/achievements/certifications/CodePath_Ehiane_Oigiagbe_TIP02_Certificate.pdf"
+                                                download
+                                                sx={{
+                                                    bgcolor: '#39d353',
+                                                    color: '#000',
+                                                    fontWeight: 600,
+                                                    px: 3,
+                                                    py: 1.5,
+                                                    borderRadius: '100px',
+                                                    textTransform: 'none',
+                                                    '&:hover': {
+                                                        bgcolor: '#43e06a',
+                                                    },
+                                                }}
+                                            >
+                                                Download Certificate
                                             </Button>
                                         )}
                                         <Button

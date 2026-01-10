@@ -151,7 +151,7 @@ export const achievements = {
             date: 'December 2025',
             description: 'Comprehensive technical interview preparation program covering data structures, algorithms, and problem-solving strategies for technical interviews.',
             credentialUrl: null, // PDF available
-            image: 'https://picsum.photos/seed/codepath/600/400'
+            image: '/images/achievements/certifications/codepath.png'
         },
         {
             id: 'cert-2',
@@ -160,7 +160,8 @@ export const achievements = {
             date: 'August 2025',
             description: 'Demonstrated proficiency in SQL fundamentals including queries, joins, aggregations, and database management.',
             credentialUrl: 'https://www.hackerrank.com/certificates/7f40e51ff282',
-            image: 'https://picsum.photos/seed/hackerrank/600/400'
+            image: '/images/achievements/certifications/Hackerrank-sql.png',
+            certificatePdf: '/images/achievements/certifications/Hackerrank SQL_basic certificate-compressed.pdf'
         },
         {
             id: 'cert-3',
@@ -169,7 +170,8 @@ export const achievements = {
             date: 'September 2025',
             description: 'Learned data modeling techniques and best practices for migrating from SQL databases to MongoDB document-based models.',
             credentialUrl: 'https://www.credly.com/badges/d32f1518-8bab-4b78-a8fb-e334089f2a9b/linked_in_profile',
-            image: 'https://picsum.photos/seed/mongodb/600/400'
+            image: '/images/achievements/certifications/mongodb_relational_to_document.png',
+            certificatePdf: '/images/achievements/certifications/mongodb_relational_to_document_model.pdf'
         }
     ],
     events: [

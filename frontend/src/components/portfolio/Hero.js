@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Box, Typography, Avatar, Tooltip } from '@mui/material';
 import { personalInfo } from '../../data/portfolioData';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -7,6 +8,19 @@ const Hero = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [randomBanner, setRandomBanner] = useState('');
     const [currentTime, setCurrentTime] = useState('');
+
+    // Sway animation for organization tooltips
+    const swayVariants = {
+        initial: { opacity: 0, x: -20 },
+        animate: { 
+            opacity: 1, 
+            x: 0,
+            transition: {
+                duration: 0.8,
+                ease: 'easeOut',
+            }
+        },
+    };
 
     // Array of available banners
     const banners = [
@@ -311,19 +325,26 @@ const Hero = () => {
                             },
                         }}
                     >
-                        <Typography
-                            component="span"
-                            sx={{
-                                textDecoration: 'underline',
-                                cursor: 'pointer',
-                                color: 'text.secondary',
-                                '&:hover': {
-                                    color: '#39d353',
-                                },
-                            }}
+                        <motion.span
+                            initial="initial"
+                            animate="animate"
+                            variants={swayVariants}
+                            style={{ display: 'inline' }}
                         >
-                            Washington State University
-                        </Typography>
+                            <Typography
+                                component="span"
+                                sx={{
+                                    textDecoration: 'underline',
+                                    cursor: 'pointer',
+                                    color: 'text.secondary',
+                                    '&:hover': {
+                                        color: '#39d353',
+                                    },
+                                }}
+                            >
+                                Washington State University
+                            </Typography>
+                        </motion.span>
                     </Tooltip>
                     {' '}and former Software Test Engineer Intern at{' '}
                     <Tooltip
@@ -367,19 +388,26 @@ const Hero = () => {
                             },
                         }}
                     >
-                        <Typography
-                            component="span"
-                            sx={{
-                                textDecoration: 'underline',
-                                cursor: 'pointer',
-                                color: 'text.secondary',
-                                '&:hover': {
-                                    color: '#39d353',
-                                },
-                            }}
+                        <motion.span
+                            initial="initial"
+                            animate="animate"
+                            variants={swayVariants}
+                            style={{ display: 'inline' }}
                         >
-                            Schweitzer Engineering Laboratories
-                        </Typography>
+                            <Typography
+                                component="span"
+                                sx={{
+                                    textDecoration: 'underline',
+                                    cursor: 'pointer',
+                                    color: 'text.secondary',
+                                    '&:hover': {
+                                        color: '#39d353',
+                                    },
+                                }}
+                            >
+                                Schweitzer Engineering Laboratories
+                            </Typography>
+                        </motion.span>
                     </Tooltip>
                     . I care about how software behaves in the real world, not just how it looks on a screen.
                 </Typography>

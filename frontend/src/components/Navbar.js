@@ -6,12 +6,31 @@ import { socialLinks } from '../data/portfolioData';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isBouncing, setIsBouncing] = useState(false);
 
     const iconLinks = [
         { Icon: GitHub, href: socialLinks.github },
         { Icon: LinkedIn, href: socialLinks.linkedin },
         { Icon: Email, href: socialLinks.email },
     ];
+
+    const bounceVariants = {
+        initial: { scale: 1 },
+        bounce: {
+            scale: [1, 1.35, 0.85, 1.2, 0.9, 1.15, 0.95, 1.08, 0.98, 1.04, 1],
+            transition: {
+                duration: 2.5,
+                times: [0, 0.15, 0.27, 0.38, 0.47, 0.55, 0.62, 0.7, 0.78, 0.9, 1],
+                ease: "easeOut",
+            },
+        },
+    };
+
+    const handleLogoBounce = () => {
+        setIsBouncing(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => setIsBouncing(false), 2500);
+    };
 
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
@@ -30,18 +49,20 @@ const Navbar = () => {
         >
             {/* Left: Logo */}
             <div className="pointer-events-auto px-4 py-2 rounded-full transition-colors duration-300">
-                <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                <motion.button
+                    onClick={handleLogoBounce}
                     className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
                     style={{ background: 'none', border: 'none' }}
                     aria-label="Back to top"
+                    animate={isBouncing ? "bounce" : "initial"}
+                    variants={bounceVariants}
                 >
                     <img
                         src="/images/ehiane_2026_logo.png"
                         alt="Ehiane Kelvin Oigiagbe logo"
                         className="h-12 w-12 object-contain"
                     />
-                </button>
+                </motion.button>
             </div>
 
             {/* Right: Links and toggles */}
