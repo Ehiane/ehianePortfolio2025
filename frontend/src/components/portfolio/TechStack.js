@@ -9,7 +9,7 @@ const TechStack = () => {
     return (
         <Box sx={{ overflow: 'hidden', width: '100%' }}>
             {/* Section Header */}
-            <Box sx={{ mb: 4 }}>
+            <Box sx={{ mb: 2 }}>
                 <Typography
                     variant="overline"
                     sx={{
@@ -114,7 +114,7 @@ const TechStack = () => {
                                     flexShrink: 0,
                                     '&:hover': {
                                         borderColor: 'primary.main',
-                                        transform: 'translateY(-4px) scale(1.05)',
+                                        transform: 'scale(0.9)',
                                         boxShadow: '0 8px 16px rgba(255, 127, 80, 0.2)',
                                     },
                                 }}

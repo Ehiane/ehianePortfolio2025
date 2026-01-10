@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Typography, Link, Tooltip } from '@mui/material';
 import { GitHubCalendar } from 'react-github-calendar';
 import { socialLinks } from '../../data/portfolioData';
 
@@ -10,6 +10,19 @@ const GitHubSection = () => {
     // GitHub-style green theme
     const customTheme = {
         dark: ['rgba(255, 255, 255, 0.05)', '#0e4429', '#006d32', '#26a641', '#39d353'],
+    };
+
+    // Custom tooltip renderer
+    const renderBlock = (block, activity) => {
+        return (
+            <Tooltip
+                title={`${activity.count} contributions on ${activity.date}`}
+                arrow
+                placement="top"
+            >
+                {block}
+            </Tooltip>
+        );
     };
 
     return (
@@ -63,7 +76,37 @@ const GitHubSection = () => {
                     border: '1px solid',
                     borderColor: 'divider',
                     p: { xs: 2, md: 3 },
-                    overflow: 'auto',
+                    overflowX: { xs: 'scroll', md: 'auto' },
+                    overflowY: 'hidden',
+                    // Hide calendar navigation arrows
+                    '& button': {
+                        display: 'none !important',
+                    },
+                    // Force scrollbar to always show on mobile
+                    '&::-webkit-scrollbar': {
+                        height: '6px',
+                        WebkitAppearance: 'none',
+                    },
+                    '&::-webkit-scrollbar-button': {
+                        display: 'none',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                        backgroundColor: '#1a1a1a',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(57, 211, 83, 0.2)',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        background: 'linear-gradient(90deg, #0e4429, #26a641, #39d353)',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        '&:hover': {
+                            background: 'linear-gradient(90deg, #26a641, #39d353, #26a641)',
+                            boxShadow: '0 0 10px rgba(57, 211, 83, 0.5)',
+                        },
+                    },
+                    // Firefox scrollbar
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#26a641 #1a1a1a',
                 }}
             >
                 <GitHubCalendar
@@ -73,6 +116,7 @@ const GitHubSection = () => {
                     blockSize={12}
                     blockMargin={4}
                     fontSize={14}
+                    renderBlock={renderBlock}
                     style={{
                         width: '100%',
                     }}
@@ -91,7 +135,7 @@ const GitHubSection = () => {
                         color: 'text.secondary',
                         transition: 'color 0.3s',
                         '&:hover': {
-                            color: 'primary.main',
+                            color: '#39d353',
                             textDecoration: 'underline',
                         },
                     }}

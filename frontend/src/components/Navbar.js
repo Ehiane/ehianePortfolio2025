@@ -62,6 +62,13 @@ const Navbar = () => {
                         Projects
                     </button>
                     <button
+                        onClick={() => scrollToSection('achievements')}
+                        className="text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                        Achievements
+                    </button>
+                    <button
                         onClick={() => scrollToSection('contact')}
                         className="text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
                         style={{ background: 'none', border: 'none', cursor: 'pointer' }}
@@ -139,6 +146,13 @@ const Navbar = () => {
                             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                         >
                             Projects
+                        </button>
+                        <button
+                            onClick={() => scrollToSection('achievements')}
+                            className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300"
+                            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        >
+                            Achievements
                         </button>
                         <button
                             onClick={() => scrollToSection('contact')}

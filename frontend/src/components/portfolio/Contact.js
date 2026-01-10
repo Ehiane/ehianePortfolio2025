@@ -128,8 +128,9 @@ const Contact = () => {
                                 cursor: 'pointer',
                                 background: link.isEmail ? 'action.hover' : 'action.hover',
                                 '&:hover': {
-                                    borderColor: 'primary.main',
-                                    bgcolor: 'action.selected',
+                                    borderColor: '#39d353',
+                                    bgcolor: 'rgba(57, 211, 83, 0.08)',
+                                    color: '#39d353',
                                     transform: 'translateY(-2px)',
                                 },
                             }}
@@ -161,6 +162,9 @@ const Contact = () => {
                                         transform: 'translateX(-50%)',
                                         zIndex: 1000,
                                         pointerEvents: 'none',
+                                        width: 'max-content',
+                                        maxWidth: '360px',
+                                        minWidth: '260px',
                                     }}
                                 >
                                     {link.emailAddress ? (
@@ -295,7 +299,24 @@ const Contact = () => {
                         fontSize: '0.75rem',
                     }}
                 >
-                    Built with React, Material-UI, and lots of coffee ☕
+                    Inspiration drawn from{' '}
+                    <Typography
+                        component="a"
+                        href="https://tushaar.me/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                            color: '#39d353',
+                            textDecoration: 'underline',
+                            fontSize: 'inherit',
+                            fontFamily: 'inherit',
+                            '&:hover': {
+                                opacity: 0.8,
+                            },
+                        }}
+                    >
+                        Tushar Negi
+                    </Typography>
                 </Typography>
             </Box>
         </Box>

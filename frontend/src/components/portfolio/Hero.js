@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Avatar } from '@mui/material';
+import { Box, Typography, Avatar, Tooltip } from '@mui/material';
 import { personalInfo } from '../../data/portfolioData';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
 const Hero = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [randomBanner, setRandomBanner] = useState('');
+    const [currentTime, setCurrentTime] = useState('');
 
     // Array of available banners
     const banners = [
@@ -21,29 +22,59 @@ const Hero = () => {
         setRandomBanner(banners[randomIndex]);
     }, []);
 
+    // Update current time in PST
+    useEffect(() => {
+        const updateTime = () => {
+            const now = new Date();
+            const pstTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+            const hours = pstTime.getHours();
+            const minutes = String(pstTime.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            setCurrentTime(`${displayHours}:${minutes} ${ampm} PST`);
+        };
+        updateTime();
+        const interval = setInterval(updateTime, 60000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <Box>
             {/* Banner Image */}
-            <Box
+            <Tooltip
+                title="Paul Pogba - My favorite football player"
+                arrow
                 sx={{
-                    width: '100%',
-                    height: { xs: '200px', sm: '250px', md: '280px' },
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    mb: '-60px',
-                    position: 'relative',
+                    '& .MuiTooltip-tooltip': {
+                        backgroundColor: '#1a1a1a',
+                        border: '1px solid #333333',
+                        borderRadius: '8px',
+                        padding: '8px 12px',
+                    },
                 }}
             >
-                <img
-                    src={randomBanner}
-                    alt="Banner"
-                    style={{
+                <Box
+                    sx={{
                         width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
+                        height: { xs: '200px', sm: '250px', md: '280px' },
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        mb: '-60px',
+                        position: 'relative',
+                        cursor: 'pointer',
                     }}
-                />
-            </Box>
+                >
+                    <img
+                        src={randomBanner}
+                        alt="Banner"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                        }}
+                    />
+                </Box>
+            </Tooltip>
 
             {/* Profile Avatar */}
             <Box
@@ -110,24 +141,62 @@ const Hero = () => {
                     >
                         {personalInfo.name}
                     </Typography>
-                    <VerifiedIcon
+                    <Tooltip
+                        title="yes! it's really me 😂"
+                        arrow
                         sx={{
-                            fontSize: '1.5rem',
-                            color: '#3b82f6',
+                            '& .MuiTooltip-tooltip': {
+                                backgroundColor: '#1a1a1a',
+                                border: '1px solid #333333',
+                                borderRadius: '8px',
+                                padding: '8px 12px',
+                            },
                         }}
-                    />
+                    >
+                        <VerifiedIcon
+                            sx={{
+                                fontSize: '1.5rem',
+                                color: '#3b82f6',
+                                cursor: 'pointer',
+                            }}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        title={
+                            <Box sx={{ textAlign: 'center', py: 0.5 }}>
+                                <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
+                                    🇺🇸 Washington, USA
+                                </Typography>
+                                <Typography sx={{ fontSize: '0.75rem', color: '#a1a1aa' }}>
+                                    {currentTime}
+                                </Typography>
+                            </Box>
+                        }
+                        arrow
+                        sx={{
+                            '& .MuiTooltip-tooltip': {
+                                backgroundColor: '#1a1a1a',
+                                border: '1px solid #333333',
+                                borderRadius: '8px',
+                                padding: '8px 12px',
+                            },
+                        }}
+                    >
+                        <Box
+                            component="img"
+                            src="/images/stickers/location.png"
+                            alt="Location"
+                            sx={{
+                                height: '36px',
+                                cursor: 'pointer',
+                                transition: 'transform 0.2s',
+                                '&:hover': {
+                                    transform: 'scale(1.1)',
+                                },
+                            }}
+                        />
+                    </Tooltip>
                 </Box>
-
-                <Typography
-                    variant="body1"
-                    sx={{
-                        color: 'text.secondary',
-                        fontSize: '0.95rem',
-                        mb: 3,
-                    }}
-                >
-                    📍 {personalInfo.location}
-                </Typography>
 
                 {/* Tagline */}
                 <Typography
@@ -141,18 +210,61 @@ const Hero = () => {
                         lineHeight: 1.2,
                     }}
                 >
-                    {personalInfo.tagline}{' '}
                     <Typography
                         component="span"
                         sx={{
-                            fontFamily: 'Inter, sans-serif',
-                            fontStyle: 'normal',
-                            fontWeight: 300,
-                            color: 'text.secondary',
-                            fontSize: { xs: '1.5rem', md: '2rem' },
+                            fontWeight: 600,
+                            color: 'text.primary',
+                            fontSize: 'inherit',
+                            fontFamily: 'inherit',
+                            fontStyle: 'inherit',
                         }}
                     >
-                        {personalInfo.taglineAccent}
+                        Building
+                    </Typography>
+                    {' '}
+                    <Typography
+                        component="a"
+                        onClick={() => {
+                            document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }}
+                        sx={{
+                            fontWeight: 400,
+                            color: 'text.primary',
+                            fontSize: 'inherit',
+                            fontFamily: 'inherit',
+                            fontStyle: 'inherit',
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                            transition: 'color 0.3s',
+                            '&:hover': {
+                                color: '#39d353',
+                            },
+                        }}
+                    >
+                        Things
+                    </Typography>
+                    {' That Help '}
+                    <Typography
+                        component="a"
+                        onClick={() => {
+                            document.getElementById('achievements').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }}
+                        sx={{
+                            fontWeight: 400,
+                            color: 'text.primary',
+                            fontSize: 'inherit',
+                            fontFamily: 'inherit',
+                            fontStyle: 'inherit',
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                            transition: 'color 0.3s',
+                            '&:hover': {
+                                color: '#39d353',
+                            },
+                        }}
+                    >
+                        People
                     </Typography>
                 </Typography>
 
@@ -166,7 +278,110 @@ const Hero = () => {
                         maxWidth: '650px',
                     }}
                 >
-                    {personalInfo.bio}
+                    Computer Science graduate from{' '}
+                    <Tooltip
+                        title={
+                            <Box sx={{ textAlign: 'center' }}>
+                                <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
+                                    Washington State University
+                                </Typography>
+                                <Typography 
+                                    component="a"
+                                    href="https://www.linkedin.com/posts/ehiane-oigiagbe_wsugrad-classof2025-computerscience-activity-7325900623353122817-3JLI?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnTtAMBmoNJRlQWeYEy2ywCMLykjyUqkh4"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    sx={{ 
+                                        color: '#39d353',
+                                        textDecoration: 'underline',
+                                        cursor: 'pointer',
+                                        fontSize: '0.75rem'
+                                    }}
+                                >
+                                    View LinkedIn Post
+                                </Typography>
+                            </Box>
+                        }
+                        arrow
+                        sx={{
+                            '& .MuiTooltip-tooltip': {
+                                backgroundColor: '#1a1a1a',
+                                border: '1px solid #333333',
+                                borderRadius: '8px',
+                                padding: '8px 12px',
+                            },
+                        }}
+                    >
+                        <Typography
+                            component="span"
+                            sx={{
+                                textDecoration: 'underline',
+                                cursor: 'pointer',
+                                color: 'text.secondary',
+                                '&:hover': {
+                                    color: '#39d353',
+                                },
+                            }}
+                        >
+                            Washington State University
+                        </Typography>
+                    </Tooltip>
+                    {' '}and former Software Test Engineer Intern at{' '}
+                    <Tooltip
+                        title={
+                            <Box sx={{ textAlign: 'center' }}>
+                                <Box
+                                    component="img"
+                                    src="https://selinc.com/favicon.ico"
+                                    alt="SEL Logo"
+                                    sx={{
+                                        height: '40px',
+                                        mb: 0.5,
+                                    }}
+                                />
+                                <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
+                                    Schweitzer Engineering Laboratories
+                                </Typography>
+                                <Typography 
+                                    component="a"
+                                    href="https://selinc.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    sx={{ 
+                                        color: '#39d353',
+                                        textDecoration: 'underline',
+                                        cursor: 'pointer',
+                                        fontSize: '0.75rem'
+                                    }}
+                                >
+                                    Visit Website
+                                </Typography>
+                            </Box>
+                        }
+                        arrow
+                        sx={{
+                            '& .MuiTooltip-tooltip': {
+                                backgroundColor: '#1a1a1a',
+                                border: '1px solid #333333',
+                                borderRadius: '8px',
+                                padding: '8px 12px',
+                            },
+                        }}
+                    >
+                        <Typography
+                            component="span"
+                            sx={{
+                                textDecoration: 'underline',
+                                cursor: 'pointer',
+                                color: 'text.secondary',
+                                '&:hover': {
+                                    color: '#39d353',
+                                },
+                            }}
+                        >
+                            Schweitzer Engineering Laboratories
+                        </Typography>
+                    </Tooltip>
+                    . I care about how software behaves in the real world, not just how it looks on a screen.
                 </Typography>
             </Box>
         </Box>

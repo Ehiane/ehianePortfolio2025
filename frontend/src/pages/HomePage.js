@@ -4,6 +4,7 @@ import Hero from '../components/portfolio/Hero';
 import Experience from '../components/portfolio/Experience';
 import Projects from '../components/portfolio/Projects';
 import GitHubSection from '../components/portfolio/GitHubSection';
+import BeyondCode from '../components/portfolio/BeyondCode';
 import TechStack from '../components/portfolio/TechStack';
 import Contact from '../components/portfolio/Contact';
 
@@ -31,7 +32,7 @@ const HomePage = () => {
             </Box>
 
             {/* 3. Projects (Selected Works) */}
-            <Box id="projects" sx={{ mb: sectionSpacing }}>
+            <Box id="projects" sx={{ mb: { xs: 4, md: 6 } }}>
                 <Projects />
             </Box>
 
@@ -40,12 +41,17 @@ const HomePage = () => {
                 <GitHubSection />
             </Box>
 
-            {/* 5. Tech Stack */}
+            {/* 5. Beyond Code (Achievements) */}
+            <Box id="achievements" sx={{ mb: sectionSpacing }}>
+                <BeyondCode />
+            </Box>
+
+            {/* 6. Tech Stack */}
             <Box sx={{ mb: sectionSpacing }}>
                 <TechStack />
             </Box>
 
-            {/* 6. Contact Section */}
+            {/* 7. Contact Section */}
             <Box id="contact">
                 <Contact />
             </Box>

@@ -9,28 +9,28 @@ const ProjectCard = ({ project, index }) => {
         return techStack.find(t => t.name === techName) || { name: techName, icon: null };
     });
 
-    return (
+    const handleCardClick = () => {
+        if (project.live) {
+            window.open(project.live, '_blank', 'noopener,noreferrer');
+        }
+    };
+
+    const imageBox = (
         <Box
+            onClick={handleCardClick}
             sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2.5,
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '16/9',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+                cursor: project.live ? 'pointer' : 'default',
+                '&:hover': {
+                    transform: project.live ? 'scale(1.01)' : 'none',
+                },
             }}
         >
-            {/* Image/Gradient Area */}
-            <Box
-                sx={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: '16/9',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
-                    '&:hover': {
-                        transform: 'scale(1.01)',
-                    },
-                }}
-            >
                 {/* Background Base */}
                 <Box
                     sx={{
@@ -136,11 +136,86 @@ const ProjectCard = ({ project, index }) => {
                                 {project.title.charAt(0)}
                             </Typography>
                         )}
+
+                        {/* Coming Soon overlay when no live link */}
+                        {!project.live && (
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    inset: 0,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    pointerEvents: 'none',
+                                    p: { xs: 2, md: 3 },
+                                }}
+                            >
+                                <Box
+                                    component="img"
+                                    src="/images/stickers/coming-soon.png"
+                                    alt="Coming soon"
+                                    sx={{
+                                        width: { xs: '70%', md: '55%' },
+                                        maxWidth: '340px',
+                                        opacity: 0.9,
+                                        filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.25))',
+                                    }}
+                                />
+                            </Box>
+                        )}
                     </Box>
                 </Box>
             </Box>
+        );
 
-            {/* Content Area */}
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2.5,
+            }}
+        >
+            {/* Image/Gradient Area - with optional tooltip for Portfolio v2.0 */}
+            {project.id === 'current-portfolio' ? (
+                <Tooltip
+                    title={
+                        <Box sx={{ textAlign: 'center' }}>
+                            <Typography sx={{ fontSize: '0.85rem', fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif' }}>
+                                <Typography
+                                    component="a"
+                                    href="https://en.wikipedia.org/wiki/Recursion_(computer_science)"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    sx={{
+                                        color: '#ffffff',
+                                        textDecoration: 'underline',
+                                        cursor: 'pointer',
+                                        display: 'inline',
+                                        fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+                                    }}
+                                >
+                                    recursion
+                                </Typography>
+                                ? 🤔
+                            </Typography>
+                        </Box>
+                    }
+                    arrow
+                    sx={{
+                        '& .MuiTooltip-tooltip': {
+                            backgroundColor: '#1a1a1a',
+                            border: '1px solid #333333',
+                            borderRadius: '8px',
+                            padding: '8px 12px',
+                        },
+                    }}
+                >
+                    <Box>{imageBox}</Box>
+                </Tooltip>
+            ) : (
+                imageBox
+            )}
             <Box sx={{ px: 0.5 }}>
                 {/* Header: Title & Links */}
                 <Box
@@ -193,7 +268,7 @@ const ProjectCard = ({ project, index }) => {
                         }}
                         className="action-buttons"
                     >
-                        {project.live && (
+                        {project.live ? (
                             <Tooltip title="Live Demo" arrow>
                                 <IconButton
                                     size="small"
@@ -209,6 +284,25 @@ const ProjectCard = ({ project, index }) => {
                                 >
                                     <OpenInNew sx={{ fontSize: '0.875rem' }} />
                                 </IconButton>
+                            </Tooltip>
+                        ) : (
+                            <Tooltip title="Coming Soon" arrow>
+                                <Box
+                                    sx={{
+                                        px: 2,
+                                        py: 0.75,
+                                        borderRadius: '100px',
+                                        bgcolor: 'action.hover',
+                                        border: '1px solid',
+                                        borderColor: 'divider',
+                                        fontSize: '0.75rem',
+                                        fontWeight: 500,
+                                        color: 'text.secondary',
+                                        whiteSpace: 'nowrap',
+                                    }}
+                                >
+                                    Coming Soon
+                                </Box>
                             </Tooltip>
                         )}
                         {project.github && (
@@ -311,6 +405,7 @@ const TechCircle = ({ tech }) => {
                             height: '20px',
                             objectFit: 'contain',
                             opacity: 0.8,
+                            filter: tech.invertDark ? 'invert(1)' : 'none',
                         }}
                     />
                 ) : (

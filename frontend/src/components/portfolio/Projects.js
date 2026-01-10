@@ -83,7 +83,7 @@ const Projects = () => {
             <Box
                 sx={{
                     textAlign: 'center',
-                    pt: 10,
+                    pt: 3,
                     overflow: 'hidden',
                     pointerEvents: 'none',
                     userSelect: 'none',

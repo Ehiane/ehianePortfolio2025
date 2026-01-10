@@ -81,7 +81,7 @@ const Experience = () => {
                         sx={{
                             display: 'flex',
                             gap: 3,
-                            mb: index !== roles.length - 1 ? 4 : 0,
+                            mb: 3,
                             position: 'relative',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -157,11 +157,13 @@ const Experience = () => {
                             {/* Expandable Description - Dropdown on Hover */}
                             <Box
                                 sx={{
-                                    maxHeight: hoveredIndex === index ? '500px' : '0',
+                                    maxHeight: hoveredIndex === index ? '500px' : '0px',
                                     overflow: 'hidden',
-                                    transition: 'max-height 0.5s ease-in-out, padding 0.5s ease-in-out, margin-top 0.5s ease-in-out',
+                                    transition: 'max-height 1.2s ease-in-out',
                                     pt: hoveredIndex === index ? 2 : 0,
+                                    pb: hoveredIndex === index ? 2 : 0,
                                     mt: hoveredIndex === index ? 1 : 0,
+                                    visibility: hoveredIndex === index ? 'visible' : 'hidden',
                                 }}
                             >
                                 {role.subRoles ? (
