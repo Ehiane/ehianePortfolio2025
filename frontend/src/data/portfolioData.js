@@ -176,49 +176,58 @@ export const achievements = {
     ],
     events: [
         {
+            id: 'event-2',
+            title: 'NSBE National Convention 2025',
+            date: 'March 2025',
+            location: 'Chicago, IL',
+            role: 'Attendee',
+            description: 'Participated in the National Society of Black Engineers annual convention, engaging with industry professionals, attending technical workshops, and networking with fellow engineers.',
+            image: '/images/achievements/events/NSBE51_2025-logo.png'
+        },
+        {
+            id: 'event-3',
+            title: '2024 NSBE National Convention',
+            date: 'March 2024',
+            location: 'Atlanta, GA',
+            role: 'Attendee',
+            description: 'Attended technical sessions, career fair, and networking events at the NSBE National Convention, gaining insights into industry trends and building professional connections.',
+            image: '/images/achievements/events/NSBE50_2024-logo.png'
+        },
+        {
             id: 'event-1',
             title: 'AfroTech 2025',
             date: 'October 2025',
             location: 'Houston, TX',
             role: 'Attendee',
             description: 'Attended one of the largest Black tech conferences, connecting with industry leaders, exploring emerging technologies, and participating in workshops focused on career growth and innovation in tech.',
-            image: 'https://picsum.photos/seed/afrotech/600/400'
-        },
-        {
-            id: 'event-2',
-            title: 'NSBE National Convention 2025',
-            date: 'February 2025',
-            location: 'Chicago, IL',
-            role: 'Attendee',
-            description: 'Participated in the National Society of Black Engineers annual convention, engaging with industry professionals, attending technical workshops, and networking with fellow engineers.',
-            image: 'https://picsum.photos/seed/nsbe25/600/400'
-        },
-        {
-            id: 'event-3',
-            title: 'NSBE National Convention 2024',
-            date: 'March 2024',
-            location: 'Atlanta, GA',
-            role: 'Attendee',
-            description: 'Attended technical sessions, career fair, and networking events at the NSBE National Convention, gaining insights into industry trends and building professional connections.',
-            image: 'https://picsum.photos/seed/nsbe24/600/400'
+            image: '/images/achievements/events/AfroTech-logo.png'
         }
     ],
     leadership: [
-        {
-            id: 'lead-1',
-            title: 'Director of Conferences',
-            organization: 'National Society of Black Engineers (NSBE)',
-            date: 'July 2024 — May 2025',
-            description: 'Led conference planning and execution, coordinated logistics for regional and national events, and managed communication between chapters to ensure successful conference experiences.',
-            image: 'https://picsum.photos/seed/nsbe-doc/600/400'
-        },
         {
             id: 'lead-2',
             title: 'Secretary',
             organization: 'National Society of Black Engineers (NSBE)',
             date: 'August 2023 — July 2024',
             description: 'Managed organizational documentation, recorded meeting minutes, maintained member records, and ensured effective communication across the chapter leadership team.',
-            image: 'https://picsum.photos/seed/nsbe-sec/600/400'
+            image: '/images/achievements/leadership/Secretary.png'
+        },
+        {
+            id: 'lead-1',
+            title: 'Director of Conferences',
+            organization: 'National Society of Black Engineers (NSBE)',
+            date: 'July 2024 — May 2025',
+            description: 'Partnered with Valike Tamakloe and the rest of the Executive board to plan and execute regional and national conferences, coordinating logistics and communication across chapters.',
+            image: '/images/achievements/leadership/Dir_of_conf.png'
+        },
+        {
+            id: 'lead-3',
+            title: 'Hackathon-Win',
+            date: 'March 2025',
+            description: 'Collaborated with a multidisciplinary team to build Hackronomics in a 24-hour hackathon, earning Best Use of MongoDB and continuing development beyond the competition.',
+            image: '/images/achievements/leadership/Hackronomics.png',
+            githubUrl: 'https://github.com/Ehiane/Hackronomics',
+            linkedinUrl: 'https://www.linkedin.com/posts/ehiane-oigiagbe_hackathon-mongodb-hackronomics-activity-7297717726150545408-2LLW?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnTtAMBmoNJRlQWeYEy2ywCMLykjyUqkh4'
         }
     ]
 };
