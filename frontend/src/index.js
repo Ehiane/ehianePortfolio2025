@@ -9,36 +9,58 @@ import './index.css';
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      main: '#6750a4',
-      light: '#8b79c1',
-      dark: '#452c7a',
+      main: '#ff7f50', // Coral/Orange accent
+      light: '#ffa07a',
+      dark: '#ff6347',
     },
     secondary: {
-      main: '#625b71',
-      light: '#7f7888',
-      dark: '#46404f',
+      main: '#a855f7', // Purple accent
+      light: '#c084fc',
+      dark: '#9333ea',
     },
     background: {
-      default: '#f9f9f9',
-      paper: '#ffffff',
+      default: '#000000', // Pure black background
+      paper: '#0a0a0a', // Slightly lighter for cards
     },
     text: {
-      primary: '#1c1b1f',
-      secondary: '#49454f',
+      primary: '#ffffff',
+      secondary: '#a1a1aa', // Gray for secondary text
     },
+    divider: 'rgba(255, 255, 255, 0.08)',
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h1: {
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: 'italic',
+      fontWeight: 400,
+    },
+    h2: {
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: 'italic',
+      fontWeight: 400,
+    },
+    h3: {
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: 'italic',
+      fontWeight: 400,
+    },
     h4: {
-      fontWeight: 700,
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: 'italic',
+      fontWeight: 400,
     },
     h5: {
-      fontWeight: 600,
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: 'italic',
+      fontWeight: 400,
     },
     h6: {
-      fontWeight: 600,
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: 'italic',
+      fontWeight: 400,
     },
   },
   components: {
@@ -61,16 +83,16 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '12px',
-          border: '1px solid #e0e0e0',
-          boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.1)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          boxShadow: 'none',
+          backgroundColor: '#0a0a0a',
         },
       },
     },
-    MuiChip: {
+    MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: '6px',
-          height: '24px',
+          backgroundImage: 'none',
         },
       },
     },
