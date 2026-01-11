@@ -40,8 +40,8 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                             transition={{ duration: 0.3, ease: 'easeOut' }}
                             onClick={(e) => e.stopPropagation()}
                             style={{
-                                maxWidth: { xs: '90vw', md: '700px' },
-                                width: '100%',
+                                width: '90vw',
+                                maxWidth: '775px',
                                 maxHeight: '90vh',
                                 overflow: 'auto',
                                 scrollbarWidth: 'thin',
@@ -159,6 +159,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     title="National Society of Black Engineers"
                                                     arrow
                                                     placement="top"
+                                                    enterTouchDelay={0}
                                                 >
                                                     <span style={{ borderBottom: '2px dotted rgba(255,255,255,0.3)', cursor: 'help' }}>
                                                         NSBE
@@ -288,10 +289,11 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     Location
                                                 </Typography>
                                                 {item.title === 'AfroTech 2025' ? (
-                                                    <Tooltip 
-                                                        title="George R. Brown Convention Center in Houston, Texas" 
+                                                    <Tooltip
+                                                        title="George R. Brown Convention Center in Houston, Texas"
                                                         arrow
                                                         placement="top"
+                                                        enterTouchDelay={0}
                                                     >
                                                         <Typography 
                                                             variant="body2" 
@@ -306,10 +308,11 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         </Typography>
                                                     </Tooltip>
                                                 ) : item.title === '2024 NSBE National Convention' ? (
-                                                    <Tooltip 
-                                                        title="Georgia World Congress Center" 
+                                                    <Tooltip
+                                                        title="Georgia World Congress Center"
                                                         arrow
                                                         placement="top"
+                                                        enterTouchDelay={0}
                                                     >
                                                         <Typography 
                                                             variant="body2" 
@@ -324,10 +327,11 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         </Typography>
                                                     </Tooltip>
                                                 ) : item.title === 'NSBE National Convention 2025' ? (
-                                                    <Tooltip 
-                                                        title="McCormick Place convention center" 
+                                                    <Tooltip
+                                                        title="McCormick Place convention center"
                                                         arrow
                                                         placement="top"
+                                                        enterTouchDelay={0}
                                                     >
                                                         <Typography 
                                                             variant="body2" 
@@ -385,6 +389,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                 title="L-R: Bruno Sanchez, Will Rae, me, Osaze Ogieriakhi"
                                                 placement="top"
                                                 arrow
+                                                enterTouchDelay={0}
                                             >
                                                 <Typography
                                                     component="span"
@@ -434,6 +439,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                 title="Co-Director of Conferences"
                                                 placement="top"
                                                 arrow
+                                                enterTouchDelay={0}
                                             >
                                                 <Typography
                                                     component="a"
