@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Typography, Avatar } from '@mui/material';
 import { personalInfo, achievements } from '../../data/portfolioData';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -17,12 +17,26 @@ const banners = [
     '/images/banner/Pogba_dab.gif'
 ];
 
+// Greeting messages for profile picture tooltip
+const greetings = [
+    "Hey there! 👋",
+    "Hello, World! 🌍",
+    "Welcome! 👋 Glad you're here",
+    "What's up! 🚀",
+    "Hey! Thanks for stopping by 😊",
+    "Welcome in! Take a look around ✨",
+    "Hey friend! 👋 Nice to meet you",
+    "Yo! 🎉 Check out what I've been building"
+];
+
 const Hero = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [randomBanner, setRandomBanner] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [selectedCertificate, setSelectedCertificate] = useState(null);
     const [viewerOpen, setViewerOpen] = useState(false);
+    const [showGreeting, setShowGreeting] = useState(false);
+    const [greeting, setGreeting] = useState('');
 
     // Sway animation for organization tooltips
     const swayVariants = {
@@ -41,6 +55,27 @@ const Hero = () => {
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * banners.length);
         setRandomBanner(banners[randomIndex]);
+    }, []);
+
+    // Show greeting tooltip on every page load
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * greetings.length);
+        setGreeting(greetings[randomIndex]);
+
+        // Show greeting shortly after load
+        const showTimer = setTimeout(() => {
+            setShowGreeting(true);
+        }, 500);
+
+        // Hide greeting after a few seconds
+        const hideTimer = setTimeout(() => {
+            setShowGreeting(false);
+        }, 7000);
+
+        return () => {
+            clearTimeout(showTimer);
+            clearTimeout(hideTimer);
+        };
     }, []);
 
     // Update current time in PST
@@ -144,14 +179,14 @@ const Hero = () => {
 
             {/* Profile Avatar */}
             <Box
-                sx={{ pl: 3, position: 'relative', zIndex: 2 }}
+                sx={{ ml: 3, position: 'relative', zIndex: 2, width: sizing.avatar, height: sizing.avatar, overflow: 'visible' }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <Box
                     sx={{
-                        width: sizing.avatar,
-                        height: sizing.avatar,
+                        width: '100%',
+                        height: '100%',
                         position: 'relative',
                         borderRadius: '50%',
                         cursor: 'pointer',
@@ -190,6 +225,97 @@ const Hero = () => {
                         }}
                     />
                 </Box>
+
+                {/* Greeting Tooltip anchored to avatar but outside the clipped circle */}
+                <AnimatePresence>
+                    {showGreeting && (
+                        <Box
+                            component={motion.div}
+                            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                            transition={{ duration: 0.3, ease: 'easeOut' }}
+                            sx={{
+                                position: 'absolute',
+                                top: '-44px',
+                                left: '50%',
+                                transform: 'translateX(-60%)',
+                                zIndex: 10000,
+                                pointerEvents: 'none',
+                                whiteSpace: 'nowrap',
+                                // Frosted glass effect
+                                background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(20, 20, 20, 0.98))',
+                                backdropFilter: 'blur(20px) saturate(180%)',
+                                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                                border: '1px solid rgba(255, 255, 255, 0.15)',
+                                borderRadius: '12px',
+                                padding: '10px 16px',
+                                boxShadow: `
+                                    0 8px 32px rgba(0, 0, 0, 0.4),
+                                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                                    0 0 0 1px rgba(0, 0, 0, 0.2)
+                                `,
+                                overflow: 'hidden',
+                                // Arrow
+                                '&::after': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    bottom: '-8px',
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    width: 0,
+                                    height: 0,
+                                    borderStyle: 'solid',
+                                    borderWidth: '8px 8px 0 8px',
+                                    borderColor: 'rgba(26, 26, 26, 0.98) transparent transparent transparent',
+                                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+                                },
+                                // Shimmer effect
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: '-100%',
+                                    width: '100%',
+                                    height: '100%',
+                                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)',
+                                    animation: 'shimmer 3s infinite',
+                                    borderRadius: '12px',
+                                },
+                                '@keyframes shimmer': {
+                                    '0%': { left: '-100%' },
+                                    '100%': { left: '200%' },
+                                },
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: '#ffffff',
+                                    fontSize: '0.875rem',
+                                    fontWeight: 500,
+                                    position: 'relative',
+                                    zIndex: 1,
+                                }}
+                            >
+                                {greeting}
+                            </Typography>
+
+                            {/* Glossy highlight overlay */}
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    right: 0,
+                                    height: '50%',
+                                    background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%)',
+                                    borderRadius: '12px 12px 0 0',
+                                    pointerEvents: 'none',
+                                }}
+                            />
+                        </Box>
+                    )}
+                </AnimatePresence>
             </Box>
 
             {/* Name and Bio */}
@@ -209,7 +335,22 @@ const Hero = () => {
                             {personalInfo.name}
                         </Typography>
                         <FrostedTooltip
-                            title="yes! it's really me 😂"
+                            title={
+                                <Box sx={{ textAlign: 'center' }}>
+                                    <Box
+                                        component="img"
+                                        src="/images/validation_spongebob_meme.gif"
+                                        alt="Validation GIF"
+                                        sx={{
+                                            width: '120px',
+                                            height: 'auto',
+                                            borderRadius: '12px',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }}
+                                    />
+                                </Box>
+                            }
                             placement="top"
                             enterTouchDelay={0}
                         >
@@ -218,12 +359,12 @@ const Hero = () => {
                                     fontSize: '1.5rem',
                                     color: '#3b82f6',
                                     cursor: 'pointer',
-                                    transition: 'transform 0.2s, filter 0.2s',
+                                    transition: 'transform 0.4s ease, filter 0.2s',
                                     '&:hover, &:active': {
-                                        transform: 'scale(1.1)',
+                                        transform: 'scale(1.1) rotate(360deg)',
                                     },
                                     '&:active': {
-                                        transform: 'scale(1.05)',
+                                        transform: 'scale(1.05) rotate(360deg)',
                                         filter: 'brightness(1.2)',
                                     },
                                 }}
