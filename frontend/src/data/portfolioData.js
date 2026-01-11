@@ -56,7 +56,7 @@ export const projects = [
         id: "tree-inspect",
         title: "TreeInspect",
         role: "Full Stack",
-        description: "My own mini Tree visualizer. Always wanted to build this since my sophomore year, was too scared to do so lol",
+        description: "A learning tool that turns abstract data structures into interactive visual experiences.",
         longDescription: "TreeInspect is a powerful tree data structure visualization tool designed to help developers and students understand tree algorithms visually. Built with TypeScript and modern web technologies.",
         stack: ["TypeScript", "React", "Node.js"],
         gradient: "from-green-500 to-emerald-500",
@@ -69,7 +69,7 @@ export const projects = [
         id: "harvard-akute",
         title: "Harvard School Akute",
         role: "Full Stack",
-        description: "A comprehensive school management system for Harvard School Akute.",
+        description: "A website built to bring Harvard School Akute online and make the school more digitally accessible.",
         longDescription: "Harvard School Akute is a full-featured school management platform that streamlines administrative tasks, student management, and academic tracking.",
         stack: ["HTML", "CSS", "JavaScript", "PHP"],
         gradient: "from-blue-500 to-indigo-500",
@@ -82,7 +82,7 @@ export const projects = [
         id: "wage-report",
         title: "Wage Report",
         role: "Full Stack",
-        description: "A modern wage reporting and analytics platform (Work in Progress - Revamping)",
+        description: "A modern analytics tool for understanding wage trends and income data (coming soon).",
         longDescription: "Wage Report is a comprehensive wage tracking and reporting system that helps organizations manage payroll data and generate insights through advanced analytics.",
         stack: ["React", "Python", "SQL", "Tailwind CSS"],
         gradient: "from-purple-500 to-pink-500",
@@ -95,7 +95,7 @@ export const projects = [
         id: "current-portfolio",
         title: "Portfolio v2.0",
         role: "Full Stack",
-        description: "", // Left blank - still building
+        description: "this.", // Left blank - still building
         longDescription: "", // Left blank - still building
         stack: ["React", "Tailwind CSS", "Express"],
         gradient: "from-slate-500 to-zinc-500",

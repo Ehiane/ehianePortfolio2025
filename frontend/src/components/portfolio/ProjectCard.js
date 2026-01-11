@@ -63,8 +63,8 @@ const ProjectCard = ({ project, index }) => {
                 <Box
                     sx={{
                         position: 'absolute',
-                        left: { xs: '12px', md: '24px' },
-                        right: { xs: '12px', md: '24px' },
+                        left: { xs: '8px', md: '16px' },
+                        right: { xs: '8px', md: '16px' },
                         top: { xs: '24px', md: '32px' },
                         bottom: '-8px',
                         borderRadius: '8px 8px 0 0',

@@ -231,6 +231,14 @@ const Hero = () => {
                                     fontSize: '1.5rem',
                                     color: '#3b82f6',
                                     cursor: 'pointer',
+                                    transition: 'transform 0.2s, filter 0.2s',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                    },
+                                    '&:active': {
+                                        transform: 'scale(1.05)',
+                                        filter: 'brightness(1.2)',
+                                    },
                                 }}
                             />
                         </Tooltip>
@@ -265,6 +273,9 @@ const Hero = () => {
                                     transition: 'transform 0.2s',
                                     '&:hover': {
                                         transform: 'scale(1.1)',
+                                    },
+                                    '&:active': {
+                                        transform: 'scale(1.05)',
                                     },
                                 }}
                             />
@@ -315,6 +326,9 @@ const Hero = () => {
                             '&:hover': {
                                 color: '#39d353',
                             },
+                            '&:active': {
+                                color: '#39d353',
+                            },
                         }}
                     >
                         Software
@@ -335,6 +349,9 @@ const Hero = () => {
                             cursor: 'pointer',
                             transition: 'color 0.3s',
                             '&:hover': {
+                                color: '#39d353',
+                            },
+                            '&:active': {
                                 color: '#39d353',
                             },
                         }}
