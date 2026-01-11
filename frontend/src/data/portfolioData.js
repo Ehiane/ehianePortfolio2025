@@ -68,7 +68,7 @@ export const projects = [
     {
         id: "harvard-akute",
         title: "Harvard School Akute",
-        role: "Full Stack",
+        role: "Frontend",
         description: "A website built to bring Harvard School Akute online and make the school more digitally accessible.",
         longDescription: "Harvard School Akute is a full-featured school management platform that streamlines administrative tasks, student management, and academic tracking.",
         stack: ["HTML", "CSS", "JavaScript", "PHP"],
