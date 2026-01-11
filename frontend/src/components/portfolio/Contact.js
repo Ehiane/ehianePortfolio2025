@@ -25,7 +25,7 @@ const Contact = () => {
             icon: <LinkedIn />,
             label: 'LinkedIn',
             url: socialLinks.linkedin,
-            preview: '/images/previews/linkedin-preview.png',
+            preview: '/images/previews/linkedin_preview.png',
             previewText: 'Ehiane Oigiagbe'
         },
         {
