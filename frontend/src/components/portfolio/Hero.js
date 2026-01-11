@@ -333,7 +333,7 @@ const Hero = () => {
                     >
                         Software
                     </Typography>
-                    {' That Helps '}
+                    {' To Help '}
                     <Typography
                         component="a"
                         onClick={() => {
