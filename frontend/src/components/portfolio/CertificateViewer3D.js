@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Box, IconButton, Button, Typography } from '@mui/material';
-import { Close, Download, ZoomIn, ZoomOut, RotateLeft, RotateRight } from '@mui/icons-material';
+import { Close, Download, ZoomIn, ZoomOut, RotateLeft, RotateRight, KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CertificateViewer3D = ({ certificate, open, onClose }) => {
     const [rotateX, setRotateX] = useState(0);
     const [rotateY, setRotateY] = useState(0);
-    const [zoom, setZoom] = useState(1);
+    const [zoom, setZoom] = useState(0.6);
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
@@ -56,10 +56,18 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
         setRotateY(Math.min(MAX_ROTATE_Y, rotateY + 15));
     };
 
+    const handleRotateUp = () => {
+        setRotateX(Math.max(-MAX_ROTATE_X, rotateX - 15));
+    };
+
+    const handleRotateDown = () => {
+        setRotateX(Math.min(MAX_ROTATE_X, rotateX + 15));
+    };
+
     const handleReset = () => {
         setRotateX(0);
         setRotateY(0);
-        setZoom(1);
+        setZoom(0.8);
     };
 
     const handleDownload = () => {
@@ -277,6 +285,26 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         <RotateLeft />
                                     </IconButton>
                                     <IconButton
+                                        onClick={handleRotateUp}
+                                        size="small"
+                                        sx={{
+                                            color: 'white',
+                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                        }}
+                                    >
+                                        <KeyboardArrowUp />
+                                    </IconButton>
+                                    <IconButton
+                                        onClick={handleRotateDown}
+                                        size="small"
+                                        sx={{
+                                            color: 'white',
+                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                        }}
+                                    >
+                                        <KeyboardArrowDown />
+                                    </IconButton>
+                                    <IconButton
                                         onClick={handleRotateRight}
                                         size="small"
                                         sx={{
@@ -330,10 +358,16 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         startIcon={<Download />}
                                         onClick={handleDownload}
                                         sx={{
-                                            bgcolor: 'primary.main',
-                                            color: '#000',
+                                            background: 'rgba(34, 197, 94, 0.15)',
+                                            backdropFilter: 'blur(10px)',
+                                            WebkitBackdropFilter: 'blur(10px)',
+                                            border: '1px solid rgba(34, 197, 94, 0.3)',
+                                            color: 'white',
+                                            boxShadow: '0 0 10px rgba(34, 197, 94, 0.2)',
                                             '&:hover': {
-                                                bgcolor: 'primary.light',
+                                                background: 'rgba(34, 197, 94, 0.3)',
+                                                border: '1px solid rgba(34, 197, 94, 0.5)',
+                                                boxShadow: '0 0 25px rgba(34, 197, 94, 0.4)',
                                             },
                                         }}
                                     >
