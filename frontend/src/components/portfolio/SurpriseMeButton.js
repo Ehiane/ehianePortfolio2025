@@ -25,7 +25,7 @@ const SurpriseMeButton = ({ onClick }) => {
                     boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                     overflow: 'visible',
                     zIndex: 1,
-                    '&:hover': {
+                    '&:hover, &:active': {
                         background: 'rgba(255, 255, 255, 0.15)',
                         transform: 'translateY(-2px)',
                         boxShadow: `

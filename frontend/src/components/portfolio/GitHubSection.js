@@ -93,7 +93,7 @@ const GitHubSection = () => {
                         '&::-webkit-scrollbar-thumb': {
                             backgroundColor: '#10b981',
                             borderRadius: '4px',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 backgroundColor: '#34d399',
                             },
                         },
@@ -138,7 +138,7 @@ const GitHubSection = () => {
                         textDecoration: 'none',
                         color: 'text.secondary',
                         transition: 'color 0.3s',
-                        '&:hover': {
+                        '&:hover, &:active': {
                             color: '#39d353',
                             textDecoration: 'underline',
                         },

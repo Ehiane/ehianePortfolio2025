@@ -28,10 +28,10 @@ const ProjectCard = ({ project, index }) => {
                 overflow: 'hidden',
                 transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
                 cursor: project.live ? 'pointer' : 'default',
-                '&:hover': {
+                '&:hover, &:active': {
                     transform: project.live ? 'scale(1.01)' : 'none',
                 },
-                '&:hover::before': {
+                '&:hover::before, &:active::before': {
                     transform: 'translate(-100%, -100%)',
                 },
                 '&::before': {
@@ -73,7 +73,7 @@ const ProjectCard = ({ project, index }) => {
                         border: '1px solid rgba(0,0,0,0.05)',
                         overflow: 'hidden',
                         transition: 'transform 0.5s ease-out',
-                        '&:hover': {
+                        '&:hover, &:active': {
                             transform: 'translateY(-6px)',
                         },
                     }}
@@ -277,17 +277,18 @@ const ProjectCard = ({ project, index }) => {
                             gap: 0.75,
                             opacity: { xs: 1, md: 0 },
                             transition: 'opacity 0.3s',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 opacity: 1,
                             },
                         }}
                         className="action-buttons"
                     >
                         {project.live ? (
-                            <Tooltip 
-                                title="Live Demo" 
-                                arrow 
+                            <Tooltip
+                                title="Live Demo"
+                                arrow
                                 placement="top"
+                                enterTouchDelay={0}
                             >
                                 <IconButton
                                     size="small"
@@ -296,7 +297,7 @@ const ProjectCard = ({ project, index }) => {
                                     rel="noopener noreferrer"
                                     sx={{
                                         bgcolor: 'action.hover',
-                                        '&:hover': {
+                                        '&:hover, &:active': {
                                             bgcolor: 'action.selected',
                                         },
                                     }}
@@ -305,10 +306,11 @@ const ProjectCard = ({ project, index }) => {
                                 </IconButton>
                             </Tooltip>
                         ) : (
-                            <Tooltip 
-                                title="Coming Soon" 
-                                arrow 
+                            <Tooltip
+                                title="Coming Soon"
+                                arrow
                                 placement="top"
+                                enterTouchDelay={0}
                             >
                                 <Box
                                     sx={{
@@ -329,10 +331,11 @@ const ProjectCard = ({ project, index }) => {
                             </Tooltip>
                         )}
                         {project.github && (
-                            <Tooltip 
-                                title="GitHub Repo" 
-                                arrow 
+                            <Tooltip
+                                title="GitHub Repo"
+                                arrow
                                 placement="top"
+                                enterTouchDelay={0}
                             >
                                 <IconButton
                                     size="small"
@@ -341,7 +344,7 @@ const ProjectCard = ({ project, index }) => {
                                     rel="noopener noreferrer"
                                     sx={{
                                         bgcolor: 'action.hover',
-                                        '&:hover': {
+                                        '&:hover, &:active': {
                                             bgcolor: 'action.selected',
                                         },
                                     }}
@@ -383,7 +386,7 @@ const ProjectCard = ({ project, index }) => {
                             '& > *': {
                                 marginLeft: { xs: '-4px', md: '-8px' },
                             },
-                            '&:hover > *': {
+                            '&:hover > *, &:active > *': {
                                 marginLeft: { xs: '2px', md: '4px' },
                             },
                             transition: 'all 0.3s',
@@ -403,7 +406,7 @@ const ProjectCard = ({ project, index }) => {
 
 const TechCircle = ({ tech }) => {
     return (
-        <Tooltip title={tech.name} arrow>
+        <Tooltip title={tech.name} arrow enterTouchDelay={0}>
             <Box
                 sx={{
                     position: 'relative',
@@ -418,7 +421,7 @@ const TechCircle = ({ tech }) => {
                     borderColor: 'divider',
                     transition: 'all 0.3s',
                     cursor: 'help',
-                    '&:hover': {
+                    '&:hover, &:active': {
                         borderColor: 'text.secondary',
                         transform: 'scale(1.1)',
                         zIndex: 20,

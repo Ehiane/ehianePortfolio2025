@@ -132,7 +132,7 @@ const Hero = () => {
                             cursor: 'pointer',
                             transition: 'all 0.4s ease',
                             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 background: 'rgba(255, 255, 255, 0.15)',
                                 transform: 'translateY(-2px)',
                                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
@@ -232,7 +232,7 @@ const Hero = () => {
                                     color: '#3b82f6',
                                     cursor: 'pointer',
                                     transition: 'transform 0.2s, filter 0.2s',
-                                    '&:hover': {
+                                    '&:hover, &:active': {
                                         transform: 'scale(1.1)',
                                     },
                                     '&:active': {
@@ -271,7 +271,7 @@ const Hero = () => {
                                     height: '36px',
                                     cursor: 'pointer',
                                     transition: 'transform 0.2s',
-                                    '&:hover': {
+                                    '&:hover, &:active': {
                                         transform: 'scale(1.1)',
                                     },
                                     '&:active': {
@@ -323,7 +323,7 @@ const Hero = () => {
                             textDecoration: 'underline',
                             cursor: 'pointer',
                             transition: 'color 0.3s',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 color: '#39d353',
                             },
                             '&:active': {
@@ -348,7 +348,7 @@ const Hero = () => {
                             textDecoration: 'underline',
                             cursor: 'pointer',
                             transition: 'color 0.3s',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 color: '#39d353',
                             },
                             '&:active': {
@@ -417,7 +417,7 @@ const Hero = () => {
                                     textDecoration: 'underline',
                                     cursor: 'pointer',
                                     color: 'text.secondary',
-                                    '&:hover': {
+                                    '&:hover, &:active': {
                                         color: '#39d353',
                                     },
                                 }}
@@ -480,7 +480,7 @@ const Hero = () => {
                                     textDecoration: 'underline',
                                     cursor: 'pointer',
                                     color: 'text.secondary',
-                                    '&:hover': {
+                                    '&:hover, &:active': {
                                         color: '#39d353',
                                     },
                                 }}

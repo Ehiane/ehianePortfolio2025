@@ -95,7 +95,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                         color: '#fff',
                                         border: '1px solid rgba(255,255,255,0.18)',
                                         boxShadow: '0 6px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.12)',
-                                        '&:hover': {
+                                        '&:hover, &:active': {
                                             background: 'linear-gradient(135deg, rgba(130,130,130,0.45), rgba(100,100,100,0.45))',
                                             boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18)',
                                         },
@@ -414,7 +414,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         borderBottom: '2px dotted rgba(255,255,255,0.3)',
                                                         cursor: 'pointer',
                                                         display: 'inline',
-                                                        '&:hover': {
+                                                        '&:hover, &:active': {
                                                             borderBottomColor: 'rgba(255,255,255,0.6)'
                                                         }
                                                     }}
@@ -452,7 +452,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         borderBottom: '2px dotted rgba(10, 102, 194, 0.5)',
                                                         cursor: 'pointer',
                                                         display: 'inline',
-                                                        '&:hover': {
+                                                        '&:hover, &:active': {
                                                             color: '#004182',
                                                             borderBottomColor: 'rgba(0, 65, 130, 0.7)',
                                                         },
@@ -491,7 +491,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: 'primary.light',
                                                     },
                                                 }}
@@ -514,7 +514,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: '#43e06a',
                                                     },
                                                 }}
@@ -535,7 +535,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: '#43e06a',
                                                     },
                                                 }}
@@ -556,7 +556,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: '#43e06a',
                                                     },
                                                 }}
@@ -580,7 +580,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: '#004182',
                                                     },
                                                 }}
@@ -605,7 +605,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         py: 1.5,
                                                         borderRadius: '100px',
                                                         textTransform: 'none',
-                                                        '&:hover': {
+                                                        '&:hover, &:active': {
                                                             bgcolor: '#004182',
                                                         },
                                                     }}
@@ -627,7 +627,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         py: 1.5,
                                                         borderRadius: '100px',
                                                         textTransform: 'none',
-                                                        '&:hover': {
+                                                        '&:hover, &:active': {
                                                             bgcolor: '#CC0000',
                                                         },
                                                     }}
@@ -652,7 +652,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: '#004182',
                                                     },
                                                 }}
@@ -676,7 +676,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     py: 1.5,
                                                     borderRadius: '100px',
                                                     textTransform: 'none',
-                                                    '&:hover': {
+                                                    '&:hover, &:active': {
                                                         bgcolor: '#CC0000',
                                                     },
                                                 }}
@@ -702,7 +702,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         py: 1.5,
                                                         borderRadius: '100px',
                                                         textTransform: 'none',
-                                                        '&:hover': {
+                                                        '&:hover, &:active': {
                                                             bgcolor: '#004182',
                                                         },
                                                     }}
@@ -725,7 +725,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         py: 1.5,
                                                         borderRadius: '100px',
                                                         textTransform: 'none',
-                                                        '&:hover': {
+                                                        '&:hover, &:active': {
                                                             bgcolor: '#1F2328',
                                                         },
                                                     }}
@@ -744,7 +744,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                 py: 1.5,
                                                 borderRadius: '100px',
                                                 textTransform: 'none',
-                                                '&:hover': {
+                                                '&:hover, &:active': {
                                                     borderColor: 'text.secondary',
                                                     bgcolor: 'rgba(255, 255, 255, 0.05)',
                                                 },

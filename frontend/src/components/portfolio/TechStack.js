@@ -113,7 +113,7 @@ const TechStack = () => {
                                     transition: 'all 0.3s',
                                     cursor: 'pointer',
                                     flexShrink: 0,
-                                    '&:hover': {
+                                    '&:hover, &:active': {
                                         borderColor: '#39d353',
                                         transform: 'scale(0.95)',
                                         boxShadow: '0 8px 16px rgba(57, 211, 83, 0.25)',

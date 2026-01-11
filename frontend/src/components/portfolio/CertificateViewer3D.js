@@ -151,7 +151,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                     sx={{
                                         color: 'white',
                                         bgcolor: 'rgba(255, 255, 255, 0.1)',
-                                        '&:hover': {
+                                        '&:hover, &:active': {
                                             bgcolor: 'rgba(255, 255, 255, 0.2)',
                                         },
                                     }}
@@ -279,7 +279,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         size="small"
                                         sx={{
                                             color: 'white',
-                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                            '&:hover, &:active': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
                                         }}
                                     >
                                         <RotateLeft />
@@ -289,7 +289,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         size="small"
                                         sx={{
                                             color: 'white',
-                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                            '&:hover, &:active': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
                                         }}
                                     >
                                         <KeyboardArrowUp />
@@ -299,7 +299,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         size="small"
                                         sx={{
                                             color: 'white',
-                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                            '&:hover, &:active': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
                                         }}
                                     >
                                         <KeyboardArrowDown />
@@ -309,7 +309,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         size="small"
                                         sx={{
                                             color: 'white',
-                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                            '&:hover, &:active': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
                                         }}
                                     >
                                         <RotateRight />
@@ -320,7 +320,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         size="small"
                                         sx={{
                                             color: 'white',
-                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                            '&:hover, &:active': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
                                         }}
                                     >
                                         <ZoomOut />
@@ -330,7 +330,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         size="small"
                                         sx={{
                                             color: 'white',
-                                            '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
+                                            '&:hover, &:active': { bgcolor: 'rgba(255, 255, 255, 0.2)' },
                                         }}
                                     >
                                         <ZoomIn />
@@ -345,7 +345,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                         sx={{
                                             color: 'white',
                                             borderColor: 'rgba(255, 255, 255, 0.3)',
-                                            '&:hover': {
+                                            '&:hover, &:active': {
                                                 borderColor: 'white',
                                                 bgcolor: 'rgba(255, 255, 255, 0.1)',
                                             },
@@ -364,7 +364,7 @@ const CertificateViewer3D = ({ certificate, open, onClose }) => {
                                             border: '1px solid rgba(34, 197, 94, 0.3)',
                                             color: 'white',
                                             boxShadow: '0 0 10px rgba(34, 197, 94, 0.2)',
-                                            '&:hover': {
+                                            '&:hover, &:active': {
                                                 background: 'rgba(34, 197, 94, 0.3)',
                                                 border: '1px solid rgba(34, 197, 94, 0.5)',
                                                 boxShadow: '0 0 25px rgba(34, 197, 94, 0.4)',

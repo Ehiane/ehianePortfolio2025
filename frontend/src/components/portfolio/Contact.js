@@ -128,7 +128,7 @@ const Contact = () => {
                                 transition: 'all 0.3s',
                                 cursor: 'pointer',
                                 background: link.isEmail ? 'action.hover' : 'action.hover',
-                                '&:hover': {
+                                '&:hover, &:active': {
                                     borderColor: '#39d353',
                                     bgcolor: 'rgba(57, 211, 83, 0.08)',
                                     color: '#39d353',
@@ -302,7 +302,7 @@ const Contact = () => {
                             fontFamily: 'inherit',
                             fontStyle: 'inherit',
                             fontSize: 'inherit',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 textDecoration: 'underline',
                             },
                         }}
@@ -330,7 +330,7 @@ const Contact = () => {
                             textDecoration: 'underline',
                             fontFamily: 'inherit',
                             fontStyle: 'inherit',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 color: 'text.primary',
                             },
                         }}
@@ -360,7 +360,7 @@ const Contact = () => {
                             fontSize: 'inherit',
                             fontFamily: 'inherit',
                             fontStyle: 'inherit',
-                            '&:hover': {
+                            '&:hover, &:active': {
                                 opacity: 0.8,
                             },
                         }}

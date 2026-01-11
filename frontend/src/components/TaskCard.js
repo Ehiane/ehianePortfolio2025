@@ -60,7 +60,7 @@ const TaskCard = ({ task, index, columnId, moveTask, onTaskDeleted, allColumns, 
         backgroundColor: isDragging ? '#f8fafc' : '#fff',
         opacity: isDragging ? 0.7 : 1,
         cursor: 'pointer',
-        '&:hover': {
+        '&:hover, &:active': {
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
         },
       }}
