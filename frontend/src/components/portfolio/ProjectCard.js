@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Typography, IconButton, Tooltip } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import { GitHub, OpenInNew } from '@mui/icons-material';
 import { techStack } from '../../data/portfolioData';
 import { typography, spacing, sizing } from '../../theme/designTokens';
+import FrostedTooltip from './FrostedTooltip';
 
 const ProjectCard = ({ project, index }) => {
     // Map project stack strings to the full techStack objects to get icons
@@ -196,7 +197,7 @@ const ProjectCard = ({ project, index }) => {
         >
             {/* Image/Gradient Area - with optional tooltip for Portfolio v2.0 */}
             {project.id === 'current-portfolio' ? (
-                <Tooltip
+                <FrostedTooltip
                     title={
                         <Box sx={{ textAlign: 'center' }}>
                             <Typography sx={{ fontSize: '0.85rem', fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif' }}>
@@ -219,18 +220,10 @@ const ProjectCard = ({ project, index }) => {
                             </Typography>
                         </Box>
                     }
-                    arrow
-                    sx={{
-                        '& .MuiTooltip-tooltip': {
-                            backgroundColor: '#1a1a1a',
-                            border: '1px solid #333333',
-                            borderRadius: '8px',
-                            padding: '8px 12px',
-                        },
-                    }}
+                    placement="top"
                 >
                     <Box>{imageBox}</Box>
-                </Tooltip>
+                </FrostedTooltip>
             ) : (
                 imageBox
             )}
@@ -284,9 +277,8 @@ const ProjectCard = ({ project, index }) => {
                         className="action-buttons"
                     >
                         {project.live ? (
-                            <Tooltip
+                            <FrostedTooltip
                                 title="Live Demo"
-                                arrow
                                 placement="top"
                                 enterTouchDelay={0}
                             >
@@ -304,11 +296,10 @@ const ProjectCard = ({ project, index }) => {
                                 >
                                     <OpenInNew sx={{ fontSize: '0.875rem' }} />
                                 </IconButton>
-                            </Tooltip>
+                            </FrostedTooltip>
                         ) : (
-                            <Tooltip
+                            <FrostedTooltip
                                 title="Coming Soon"
-                                arrow
                                 placement="top"
                                 enterTouchDelay={0}
                             >
@@ -328,12 +319,11 @@ const ProjectCard = ({ project, index }) => {
                                 >
                                     Coming Soon
                                 </Box>
-                            </Tooltip>
+                            </FrostedTooltip>
                         )}
                         {project.github && (
-                            <Tooltip
+                            <FrostedTooltip
                                 title="GitHub Repo"
-                                arrow
                                 placement="top"
                                 enterTouchDelay={0}
                             >
@@ -351,7 +341,7 @@ const ProjectCard = ({ project, index }) => {
                                 >
                                     <GitHub sx={{ fontSize: '0.875rem' }} />
                                 </IconButton>
-                            </Tooltip>
+                            </FrostedTooltip>
                         )}
                     </Box>
                 </Box>
@@ -406,7 +396,7 @@ const ProjectCard = ({ project, index }) => {
 
 const TechCircle = ({ tech }) => {
     return (
-        <Tooltip title={tech.name} arrow enterTouchDelay={0}>
+        <FrostedTooltip title={tech.name} placement="top" enterTouchDelay={0}>
             <Box
                 sx={{
                     position: 'relative',
@@ -452,7 +442,7 @@ const TechCircle = ({ tech }) => {
                     />
                 )}
             </Box>
-        </Tooltip>
+        </FrostedTooltip>
     );
 };
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, Tooltip } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { techStack } from '../../data/portfolioData';
 import { typography } from '../../theme/designTokens';
+import FrostedTooltip from './FrostedTooltip';
 
 const TechStack = () => {
     // Duplicate the tech stack array for seamless infinite scroll
@@ -93,7 +94,7 @@ const TechStack = () => {
                     }}
                 >
                     {duplicatedTechStack.map((tech, index) => (
-                        <Tooltip key={index} title={tech.name} arrow>
+                        <FrostedTooltip key={index} title={tech.name} placement="top" enterTouchDelay={0}>
                             <Box
                                 component="a"
                                 href={tech.url}
@@ -143,7 +144,7 @@ const TechStack = () => {
                                     />
                                 )}
                             </Box>
-                        </Tooltip>
+                        </FrostedTooltip>
                     ))}
                 </Box>
             </Box>

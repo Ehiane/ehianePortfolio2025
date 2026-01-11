@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, IconButton, Button, Tooltip } from '@mui/material';
+import { Box, Typography, IconButton, Button } from '@mui/material';
 import { Close, OpenInNew, LinkedIn, YouTube, GitHub, ThreeDRotation } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
+import FrostedTooltip from './FrostedTooltip';
 
 const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) => {
     if (!item) return null;
@@ -155,16 +156,15 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                         {item.title === '2024 NSBE National Convention' ? (
                                             <>
                                                 2024{' '}
-                                                <Tooltip
+                                                <FrostedTooltip
                                                     title="National Society of Black Engineers"
-                                                    arrow
                                                     placement="top"
                                                     enterTouchDelay={0}
                                                 >
                                                     <span style={{ borderBottom: '2px dotted rgba(255,255,255,0.3)', cursor: 'help' }}>
                                                         NSBE
                                                     </span>
-                                                </Tooltip>
+                                                </FrostedTooltip>
                                                 {' '}National Convention
                                             </>
                                         ) : (
@@ -289,9 +289,8 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                     Location
                                                 </Typography>
                                                 {item.title === 'AfroTech 2025' ? (
-                                                    <Tooltip
+                                                    <FrostedTooltip
                                                         title="George R. Brown Convention Center in Houston, Texas"
-                                                        arrow
                                                         placement="top"
                                                         enterTouchDelay={0}
                                                     >
@@ -306,11 +305,10 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         >
                                                             {item.location}
                                                         </Typography>
-                                                    </Tooltip>
+                                                    </FrostedTooltip>
                                                 ) : item.title === '2024 NSBE National Convention' ? (
-                                                    <Tooltip
+                                                    <FrostedTooltip
                                                         title="Georgia World Congress Center"
-                                                        arrow
                                                         placement="top"
                                                         enterTouchDelay={0}
                                                     >
@@ -325,11 +323,10 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         >
                                                             {item.location}
                                                         </Typography>
-                                                    </Tooltip>
+                                                    </FrostedTooltip>
                                                 ) : item.title === 'NSBE National Convention 2025' ? (
-                                                    <Tooltip
+                                                    <FrostedTooltip
                                                         title="McCormick Place convention center"
-                                                        arrow
                                                         placement="top"
                                                         enterTouchDelay={0}
                                                     >
@@ -344,7 +341,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                         >
                                                             {item.location}
                                                         </Typography>
-                                                    </Tooltip>
+                                                    </FrostedTooltip>
                                                 ) : (
                                                     <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                                         {item.location}
@@ -385,10 +382,9 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                             }}
                                         >
                                             Collaborated with a{' '}
-                                            <Tooltip
+                                            <FrostedTooltip
                                                 title="L-R: Bruno Sanchez, Will Rae, me, Osaze Ogieriakhi"
                                                 placement="top"
-                                                arrow
                                                 enterTouchDelay={0}
                                             >
                                                 <Typography
@@ -401,7 +397,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                 >
                                                     multidisciplinary
                                                 </Typography>
-                                            </Tooltip>
+                                            </FrostedTooltip>
                                             {' '}team to build {item.githubUrl ? (
                                                 <Typography
                                                     component="a"
@@ -435,10 +431,9 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                             }}
                                         >
                                             Partnered with{' '}
-                                            <Tooltip
+                                            <FrostedTooltip
                                                 title="Co-Director of Conferences"
                                                 placement="top"
-                                                arrow
                                                 enterTouchDelay={0}
                                             >
                                                 <Typography
@@ -460,7 +455,7 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                                                 >
                                                     Valike Tamakloe
                                                 </Typography>
-                                            </Tooltip>
+                                            </FrostedTooltip>
                                             {' '}and the rest of the Executive board to plan and execute regional and national conferences, coordinating logistics and communication across chapters.
                                         </Typography>
                                     ) : (

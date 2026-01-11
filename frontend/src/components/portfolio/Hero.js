@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Box, Typography, Avatar, Tooltip } from '@mui/material';
+import { Box, Typography, Avatar } from '@mui/material';
 import { personalInfo, achievements } from '../../data/portfolioData';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { typography, sizing } from '../../theme/designTokens';
 import SurpriseMeButton from './SurpriseMeButton';
 import CertificateViewer3D from './CertificateViewer3D';
+import FrostedTooltip from './FrostedTooltip';
 
 // Static banners defined at module scope to avoid useEffect lint warning
 const banners = [
@@ -75,17 +76,10 @@ const Hero = () => {
     return (
         <Box sx={{ mt: 4 }}>
             {/* Banner Image */}
-            <Tooltip
+            <FrostedTooltip
                 title="Paul Pogba - My favorite footballer."
-                arrow
-                sx={{
-                    '& .MuiTooltip-tooltip': {
-                        backgroundColor: '#1a1a1a',
-                        border: '1px solid #333333',
-                        borderRadius: '8px',
-                        padding: '8px 12px',
-                    },
-                }}
+                placement="top"
+                fullWidth
             >
                 <Box
                     sx={{
@@ -146,7 +140,7 @@ const Hero = () => {
                         <ShuffleIcon sx={{ fontSize: '1rem' }} />
                     </Box>
                 </Box>
-            </Tooltip>
+            </FrostedTooltip>
 
             {/* Profile Avatar */}
             <Box
@@ -214,17 +208,10 @@ const Hero = () => {
                         >
                             {personalInfo.name}
                         </Typography>
-                        <Tooltip
+                        <FrostedTooltip
                             title="yes! it's really me 😂"
-                            arrow
-                            sx={{
-                                '& .MuiTooltip-tooltip': {
-                                    backgroundColor: '#1a1a1a',
-                                    border: '1px solid #333333',
-                                    borderRadius: '8px',
-                                    padding: '8px 12px',
-                                },
-                            }}
+                            placement="top"
+                            enterTouchDelay={0}
                         >
                             <VerifiedIcon
                                 sx={{
@@ -241,27 +228,33 @@ const Hero = () => {
                                     },
                                 }}
                             />
-                        </Tooltip>
-                        <Tooltip
+                        </FrostedTooltip>
+                        <FrostedTooltip
                             title={
                                 <Box sx={{ textAlign: 'center', py: 0.5 }}>
+                                    <Box
+                                        component="img"
+                                        src="/images/us_flag_gif.gif"
+                                        alt="US Flag"
+                                        sx={{
+                                            width: '48px',
+                                            height: 'auto',
+                                            mb: 0.5,
+                                            borderRadius: '4px',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }}
+                                    />
                                     <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
-                                        🇺🇸 Washington, USA
+                                        Washington, USA
                                     </Typography>
                                     <Typography sx={{ fontSize: '0.75rem', color: '#a1a1aa' }}>
                                         {currentTime}
                                     </Typography>
                                 </Box>
                             }
-                            arrow
-                            sx={{
-                                '& .MuiTooltip-tooltip': {
-                                    backgroundColor: '#1a1a1a',
-                                    border: '1px solid #333333',
-                                    borderRadius: '8px',
-                                    padding: '8px 12px',
-                                },
-                            }}
+                            placement="top"
+                            enterTouchDelay={0}
                         >
                             <Box
                                 component="img"
@@ -279,7 +272,7 @@ const Hero = () => {
                                     },
                                 }}
                             />
-                        </Tooltip>
+                        </FrostedTooltip>
                     </Box>
                     <SurpriseMeButton onClick={handleSurpriseClick} />
                 </Box>
@@ -373,18 +366,31 @@ const Hero = () => {
                     }}
                 >
                     Computer Science graduate from{' '}
-                    <Tooltip
+                    <FrostedTooltip
                         title={
                             <Box sx={{ textAlign: 'center' }}>
+                                <Box
+                                    component="img"
+                                    src="/images/wsuCougarsFlag.gif"
+                                    alt="WSU Cougars Flag"
+                                    sx={{
+                                        width: '48px',
+                                        height: 'auto',
+                                        mb: 0.5,
+                                        borderRadius: '4px',
+                                        display: 'block',
+                                        margin: '0 auto',
+                                    }}
+                                />
                                 <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
                                     Washington State University
                                 </Typography>
-                                <Typography 
+                                <Typography
                                     component="a"
                                     href="https://www.linkedin.com/posts/ehiane-oigiagbe_wsugrad-classof2025-computerscience-activity-7325900623353122817-3JLI?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnTtAMBmoNJRlQWeYEy2ywCMLykjyUqkh4"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    sx={{ 
+                                    sx={{
                                         color: '#39d353',
                                         textDecoration: 'underline',
                                         cursor: 'pointer',
@@ -395,15 +401,8 @@ const Hero = () => {
                                 </Typography>
                             </Box>
                         }
-                        arrow
-                        sx={{
-                            '& .MuiTooltip-tooltip': {
-                                backgroundColor: '#1a1a1a',
-                                border: '1px solid #333333',
-                                borderRadius: '8px',
-                                padding: '8px 12px',
-                            },
-                        }}
+                        placement="top"
+                        enterTouchDelay={0}
                     >
                         <motion.span
                             initial="initial"
@@ -425,9 +424,9 @@ const Hero = () => {
                                 Washington State University
                             </Typography>
                         </motion.span>
-                    </Tooltip>
+                    </FrostedTooltip>
                     {' '}and former Software Test Engineer Intern at{' '}
-                    <Tooltip
+                    <FrostedTooltip
                         title={
                             <Box sx={{ textAlign: 'center' }}>
                                 <Box
@@ -442,12 +441,12 @@ const Hero = () => {
                                 <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
                                     Schweitzer Engineering Laboratories
                                 </Typography>
-                                <Typography 
+                                <Typography
                                     component="a"
                                     href="https://selinc.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    sx={{ 
+                                    sx={{
                                         color: '#39d353',
                                         textDecoration: 'underline',
                                         cursor: 'pointer',
@@ -458,15 +457,8 @@ const Hero = () => {
                                 </Typography>
                             </Box>
                         }
-                        arrow
-                        sx={{
-                            '& .MuiTooltip-tooltip': {
-                                backgroundColor: '#1a1a1a',
-                                border: '1px solid #333333',
-                                borderRadius: '8px',
-                                padding: '8px 12px',
-                            },
-                        }}
+                        placement="top"
+                        enterTouchDelay={0}
                     >
                         <motion.span
                             initial="initial"
@@ -488,7 +480,7 @@ const Hero = () => {
                                 Schweitzer Engineering Laboratories
                             </Typography>
                         </motion.span>
-                    </Tooltip>
+                    </FrostedTooltip>
                     .{' '}
                     <Typography
                         component="span"
