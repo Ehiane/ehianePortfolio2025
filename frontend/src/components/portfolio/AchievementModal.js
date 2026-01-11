@@ -40,12 +40,34 @@ const AchievementModal = ({ item, onClose, open, isCertification, onView3D }) =>
                             transition={{ duration: 0.3, ease: 'easeOut' }}
                             onClick={(e) => e.stopPropagation()}
                             style={{
-                                maxWidth: '700px',
+                                maxWidth: { xs: '90vw', md: '700px' },
                                 width: '100%',
                                 maxHeight: '90vh',
                                 overflow: 'auto',
+                                scrollbarWidth: 'thin',
+                                scrollbarColor: 'rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.05)',
                             }}
                         >
+                            <style>{`
+                                motion-div::-webkit-scrollbar {
+                                    width: 8px;
+                                }
+                                motion-div::-webkit-scrollbar-track {
+                                    background: rgba(255, 255, 255, 0.05);
+                                    border-radius: 4px;
+                                }
+                                motion-div::-webkit-scrollbar-thumb {
+                                    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+                                    border-radius: 4px;
+                                    backdrop-filter: blur(10px);
+                                    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15) inset, 0 0 8px rgba(255, 255, 255, 0.1);
+                                    border: 1px solid rgba(255, 255, 255, 0.1);
+                                }
+                                motion-div::-webkit-scrollbar-thumb:hover {
+                                    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.25));
+                                    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25) inset, 0 0 12px rgba(255, 255, 255, 0.15);
+                                }
+                            `}</style>
                             <Box
                                 sx={{
                                     position: 'relative',

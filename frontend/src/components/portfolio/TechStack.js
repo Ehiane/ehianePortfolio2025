@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Tooltip } from '@mui/material';
 import { techStack } from '../../data/portfolioData';
+import { typography } from '../../theme/designTokens';
 
 const TechStack = () => {
     // Duplicate the tech stack array for seamless infinite scroll
@@ -13,7 +14,7 @@ const TechStack = () => {
                 <Typography
                     variant="overline"
                     sx={{
-                        fontSize: '9px',
+                        fontSize: typography.caption,
                         fontFamily: 'monospace',
                         letterSpacing: '0.3em',
                         textTransform: 'uppercase',
@@ -27,7 +28,7 @@ const TechStack = () => {
                 <Typography
                     variant="h5"
                     sx={{
-                        fontSize: { xs: '1.5rem', md: '1.75rem' },
+                        fontSize: typography.h5,
                         fontFamily: '"Playfair Display", serif',
                         fontStyle: 'italic',
                         fontWeight: 400,
@@ -58,7 +59,7 @@ const TechStack = () => {
                         content: '""',
                         position: 'absolute',
                         top: 0,
-                        width: '100px',
+                        width: { xs: '60px', md: '100px' },
                         height: '100%',
                         zIndex: 2,
                         pointerEvents: 'none',
@@ -76,7 +77,7 @@ const TechStack = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        gap: 4,
+                        gap: { xs: 2, md: 4 },
                         animation: 'scroll 40s linear infinite',
                         '&:hover': {
                             animationPlayState: 'paused',
@@ -103,8 +104,8 @@ const TechStack = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    minWidth: '64px',
-                                    height: '64px',
+                                    minWidth: { xs: '56px', md: '64px' },
+                                    height: { xs: '56px', md: '64px' },
                                     borderRadius: '12px',
                                     bgcolor: 'action.hover',
                                     border: '1px solid',

@@ -1,65 +1,44 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import { motion } from 'framer-motion';
 
 const SurpriseMeButton = ({ onClick }) => {
     return (
-        <div
-            style={{
+        <Button
+            onClick={onClick}
+            sx={{
                 position: 'relative',
-                display: 'inline-block',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: '50px',
+                color: '#ffffff',
+                fontSize: '0.95rem',
+                fontWeight: 400,
+                fontFamily: '"Playfair Display", serif',
+                px: 3,
+                py: 1.2,
+                textTransform: 'none',
+                transition: 'all 0.4s ease',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                '&:hover': {
+                    background: 'rgba(255, 255, 255, 0.15)',
+                    transform: 'translateY(-2px)',
+                    boxShadow: `
+                        0 0 15px rgba(34, 197, 94, 0.3),
+                        0 0 30px rgba(34, 197, 94, 0.2),
+                        0 0 45px rgba(34, 197, 94, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3)
+                    `,
+                    border: '1px solid rgba(34, 197, 94, 0.3)',
+                },
+                '&:active': {
+                    transform: 'translateY(0px)',
+                },
             }}
         >
-            {/* Animated Rainbow Border */}
-            <motion.div
-                animate={{
-                    rotate: 360,
-                }}
-                transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: 'linear',
-                }}
-                style={{
-                    position: 'absolute',
-                    inset: -3,
-                    borderRadius: '50px',
-                    background: 'conic-gradient(from 0deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000)',
-                    zIndex: 0,
-                    filter: 'blur(4px)',
-                }}
-            />
-
-            {/* Button */}
-            <Button
-                onClick={onClick}
-                sx={{
-                    position: 'relative',
-                    zIndex: 1,
-                    bgcolor: 'rgba(0, 0, 0, 0.8)',
-                    color: '#F1F4E3',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    fontFamily: 'Inter, sans-serif',
-                    px: 3,
-                    py: 1.2,
-                    borderRadius: '50px',
-                    textTransform: 'none',
-                    border: '2px solid rgba(0, 0, 0, 0.9)',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                        bgcolor: 'rgba(0, 0, 0, 0.95)',
-                        transform: 'scale(1.05)',
-                        boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
-                    },
-                    '&:active': {
-                        transform: 'scale(0.98)',
-                    },
-                }}
-            >
-                Surprise me!
-            </Button>
-        </div>
+            Surprise me
+        </Button>
     );
 };
 

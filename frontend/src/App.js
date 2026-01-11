@@ -21,6 +21,9 @@ function App() {
           bgcolor: 'background.default',
           opacity: introComplete ? 1 : 0,
           transition: 'opacity 0.5s ease-in-out',
+          maxWidth: '100vw',
+          overflow: 'hidden',
+          width: '100%',
         }}
       >
         <Navbar />

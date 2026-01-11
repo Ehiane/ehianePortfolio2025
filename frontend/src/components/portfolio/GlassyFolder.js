@@ -150,8 +150,8 @@ const GlassyFolder = ({ title, icon, items, onItemClick }) => {
                 component={motion.div}
                 sx={{
                     position: 'relative',
-                    width: { xs: '100%', sm: '28rem', md: '32rem', lg: '36rem' },
-                    height: { xs: '230px', md: '185px' },
+                    width: { xs: '75%', sm: '21rem', md: '24rem', lg: '27rem' },
+                    height: { xs: '215px', md: '185px' },
                     cursor: 'pointer',
                     perspective: 1200,
                     transformStyle: 'preserve-3d',
@@ -178,7 +178,7 @@ const GlassyFolder = ({ title, icon, items, onItemClick }) => {
                             position: 'absolute',
                             top: '-16px',
                             left: 0,
-                            width: '144px',
+                            width: '108px',
                             height: '40px',
                             bgcolor: '#2b2b2b',
                             borderTopLeftRadius: '12px',
@@ -241,7 +241,7 @@ const GlassyFolder = ({ title, icon, items, onItemClick }) => {
                             }}
                             style={{
                                 position: 'absolute',
-                                width: '190px', // slightly narrower so contents sit comfortably inside wider cover
+                                width: '143px', // slightly narrower so contents sit comfortably inside wider cover
                                 height: '160px',
                                 backgroundColor: index === 0 ? '#2a2a2a' : index === 1 ? '#262626' : '#303030',
                                 borderRadius: '12px',
@@ -303,8 +303,8 @@ const GlassyFolder = ({ title, icon, items, onItemClick }) => {
                                 src={icon}
                                 alt={title}
                                 sx={{
-                                    width: '64px',
-                                    height: '64px',
+                                    width: '74px',
+                                    height: '74px',
                                     opacity: 0.9,
                                     objectFit: 'contain',
                                 }}

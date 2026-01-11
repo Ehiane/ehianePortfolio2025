@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import ProjectCard from './ProjectCard';
 import { projects } from '../../data/portfolioData';
+import { typography, spacing } from '../../theme/designTokens';
 
 const Projects = () => {
     return (
@@ -9,8 +10,8 @@ const Projects = () => {
             {/* Section Header */}
             <Box
                 sx={{
-                    mb: 8,
-                    pb: 4,
+                    mb: spacing.sectionHeaderMb,
+                    pb: { xs: 3, sm: 3.5, md: 4 },
                     borderBottom: '1px solid',
                     borderColor: 'divider',
                     display: 'flex',
@@ -22,7 +23,7 @@ const Projects = () => {
                     <Typography
                         variant="overline"
                         sx={{
-                            fontSize: '9px',
+                            fontSize: typography.caption,
                             fontFamily: 'monospace',
                             letterSpacing: '0.3em',
                             textTransform: 'uppercase',
@@ -36,7 +37,7 @@ const Projects = () => {
                     <Typography
                         variant="h4"
                         sx={{
-                            fontSize: { xs: '2rem', md: '2.5rem' },
+                            fontSize: typography.h4,
                             fontFamily: '"Playfair Display", serif',
                             fontStyle: 'italic',
                             fontWeight: 400,
@@ -60,7 +61,7 @@ const Projects = () => {
                 <Typography
                     variant="caption"
                     sx={{
-                        fontSize: '10px',
+                        fontSize: typography.caption,
                         fontFamily: 'monospace',
                         color: 'text.secondary',
                         display: { xs: 'none', md: 'block' },
@@ -71,7 +72,7 @@ const Projects = () => {
             </Box>
 
             {/* Projects Grid */}
-            <Grid container spacing={{ xs: 6, md: 8 }}>
+            <Grid container spacing={spacing.gridSpacing}>
                 {projects.map((project, index) => (
                     <Grid item xs={12} md={6} key={project.id}>
                         <ProjectCard project={project} index={index} />
@@ -91,7 +92,7 @@ const Projects = () => {
             >
                 <Typography
                     sx={{
-                        fontSize: { xs: '10vw', md: '3vw' },
+                        fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
                         fontFamily: '"Playfair Display", serif',
                         fontStyle: 'italic',
                         fontWeight: 400,

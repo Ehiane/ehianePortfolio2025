@@ -3,6 +3,7 @@ import { Box, Typography, Grid } from '@mui/material';
 import GlassyFolder from './GlassyFolder';
 import AchievementModal from './AchievementModal';
 import { achievements } from '../../data/portfolioData';
+import { typography, spacing } from '../../theme/designTokens';
 
 const BeyondCode = ({ onOpen3DViewer }) => {
     const [selectedItem, setSelectedItem] = useState(null);
@@ -53,11 +54,11 @@ const BeyondCode = ({ onOpen3DViewer }) => {
     return (
         <Box>
             {/* Section Header */}
-            <Box sx={{ mb: 6 }}>
+            <Box sx={{ mb: spacing.sectionHeaderMb }}>
                 <Typography
                     variant="overline"
                     sx={{
-                        fontSize: '9px',
+                        fontSize: typography.caption,
                         fontFamily: 'monospace',
                         letterSpacing: '0.3em',
                         textTransform: 'uppercase',
@@ -69,9 +70,9 @@ const BeyondCode = ({ onOpen3DViewer }) => {
                     Achievements
                 </Typography>
                 <Typography
-                    variant="h5"
+                    variant="h4"
                     sx={{
-                        fontSize: { xs: '1.5rem', md: '1.75rem' },
+                        fontSize: typography.h4,
                         fontFamily: '"Playfair Display", serif',
                         fontStyle: 'italic',
                         fontWeight: 400,
@@ -93,7 +94,7 @@ const BeyondCode = ({ onOpen3DViewer }) => {
             </Box>
 
             {/* Folders Grid */}
-            <Grid container spacing={3}>
+            <Grid container spacing={spacing.gridSpacing}>
                 {folders.map((folder, index) => (
                     <Grid item xs={12} md={6} key={index}>
                         <GlassyFolder

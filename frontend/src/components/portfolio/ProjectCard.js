@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, IconButton, Tooltip } from '@mui/material';
 import { GitHub, OpenInNew } from '@mui/icons-material';
 import { techStack } from '../../data/portfolioData';
+import { typography, spacing, sizing } from '../../theme/designTokens';
 
 const ProjectCard = ({ project, index }) => {
     // Map project stack strings to the full techStack objects to get icons
@@ -21,6 +22,7 @@ const ProjectCard = ({ project, index }) => {
             sx={{
                 position: 'relative',
                 width: '100%',
+                height: '250px',
                 aspectRatio: '16/9',
                 borderRadius: '12px',
                 overflow: 'hidden',
@@ -28,6 +30,22 @@ const ProjectCard = ({ project, index }) => {
                 cursor: project.live ? 'pointer' : 'default',
                 '&:hover': {
                     transform: project.live ? 'scale(1.01)' : 'none',
+                },
+                '&:hover::before': {
+                    transform: 'translate(-100%, -100%)',
+                },
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: '-100%',
+                    right: '-100%',
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent)',
+                    transform: 'translate(100%, 100%)',
+                    transition: 'transform 0.3s ease-out',
+                    zIndex: 10,
+                    pointerEvents: 'none',
                 },
             }}
         >
@@ -45,9 +63,9 @@ const ProjectCard = ({ project, index }) => {
                 <Box
                     sx={{
                         position: 'absolute',
-                        left: '24px',
-                        right: '24px',
-                        top: '32px',
+                        left: { xs: '12px', md: '24px' },
+                        right: { xs: '12px', md: '24px' },
+                        top: { xs: '24px', md: '32px' },
                         bottom: '-8px',
                         borderRadius: '8px 8px 0 0',
                         bgcolor: '#fff',
@@ -216,7 +234,7 @@ const ProjectCard = ({ project, index }) => {
             ) : (
                 imageBox
             )}
-            <Box sx={{ px: 0.5 }}>
+            <Box sx={{ px: spacing.cardPadding }}>
                 {/* Header: Title & Links */}
                 <Box
                     sx={{
@@ -233,7 +251,7 @@ const ProjectCard = ({ project, index }) => {
                             sx={{
                                 fontFamily: '"Playfair Display", serif',
                                 fontStyle: 'italic',
-                                fontSize: '1.5rem',
+                                fontSize: typography.h6,
                                 fontWeight: 400,
                             }}
                         >
@@ -257,19 +275,20 @@ const ProjectCard = ({ project, index }) => {
                         sx={{
                             display: 'flex',
                             gap: 0.75,
-                            opacity: 0,
+                            opacity: { xs: 1, md: 0 },
                             transition: 'opacity 0.3s',
                             '&:hover': {
-                                opacity: 1,
-                            },
-                            '@media (hover: none)': {
                                 opacity: 1,
                             },
                         }}
                         className="action-buttons"
                     >
                         {project.live ? (
-                            <Tooltip title="Live Demo" arrow>
+                            <Tooltip 
+                                title="Live Demo" 
+                                arrow 
+                                placement="top"
+                            >
                                 <IconButton
                                     size="small"
                                     href={project.live}
@@ -286,7 +305,11 @@ const ProjectCard = ({ project, index }) => {
                                 </IconButton>
                             </Tooltip>
                         ) : (
-                            <Tooltip title="Coming Soon" arrow>
+                            <Tooltip 
+                                title="Coming Soon" 
+                                arrow 
+                                placement="top"
+                            >
                                 <Box
                                     sx={{
                                         px: 2,
@@ -306,7 +329,11 @@ const ProjectCard = ({ project, index }) => {
                             </Tooltip>
                         )}
                         {project.github && (
-                            <Tooltip title="GitHub Repo" arrow>
+                            <Tooltip 
+                                title="GitHub Repo" 
+                                arrow 
+                                placement="top"
+                            >
                                 <IconButton
                                     size="small"
                                     href={project.github}
@@ -352,14 +379,16 @@ const ProjectCard = ({ project, index }) => {
                     <Box
                         sx={{
                             display: 'flex',
-                            marginLeft: '-8px',
+                            marginLeft: { xs: '-4px', md: '-8px' },
                             '& > *': {
-                                marginLeft: '-8px',
+                                marginLeft: { xs: '-4px', md: '-8px' },
                             },
                             '&:hover > *': {
-                                marginLeft: '4px',
+                                marginLeft: { xs: '2px', md: '4px' },
                             },
                             transition: 'all 0.3s',
+                            maxWidth: '100%',
+                            overflow: 'hidden',
                         }}
                     >
                         {stackItems.map((tech, i) => (
@@ -381,8 +410,8 @@ const TechCircle = ({ tech }) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: '36px',
-                    height: '36px',
+                    width: sizing.techCircle,
+                    height: sizing.techCircle,
                     borderRadius: '50%',
                     bgcolor: 'background.paper',
                     border: '1px solid',
@@ -397,12 +426,13 @@ const TechCircle = ({ tech }) => {
                 }}
             >
                 {tech.icon ? (
-                    <img
+                    <Box
+                        component="img"
                         src={tech.icon}
                         alt={tech.name}
-                        style={{
-                            width: '20px',
-                            height: '20px',
+                        sx={{
+                            width: { xs: 18, sm: 19, md: 20 },
+                            height: { xs: 18, sm: 19, md: 20 },
                             objectFit: 'contain',
                             opacity: 0.8,
                             filter: tech.invertDark ? 'invert(1)' : 'none',

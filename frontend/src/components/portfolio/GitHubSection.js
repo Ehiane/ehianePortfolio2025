@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Link, Tooltip } from '@mui/material';
 import { GitHubCalendar } from 'react-github-calendar';
 import { socialLinks } from '../../data/portfolioData';
+import { typography } from '../../theme/designTokens';
 
 const GitHubSection = () => {
     // Extract username from GitHub URL
@@ -32,7 +33,7 @@ const GitHubSection = () => {
                 <Typography
                     variant="overline"
                     sx={{
-                        fontSize: '9px',
+                        fontSize: typography.caption,
                         fontFamily: 'monospace',
                         letterSpacing: '0.3em',
                         textTransform: 'uppercase',
@@ -46,7 +47,7 @@ const GitHubSection = () => {
                 <Typography
                     variant="h5"
                     sx={{
-                        fontSize: { xs: '1.5rem', md: '1.75rem' },
+                        fontSize: typography.h5,
                         fontFamily: '"Playfair Display", serif',
                         fontStyle: 'italic',
                         fontWeight: 400,
@@ -75,52 +76,55 @@ const GitHubSection = () => {
                     bgcolor: 'action.hover',
                     border: '1px solid',
                     borderColor: 'divider',
-                    p: { xs: 2, md: 3 },
-                    overflowX: { xs: 'scroll', md: 'auto' },
-                    overflowY: 'hidden',
+                    p: { xs: 1, md: 3 },
+                    overflow: 'hidden',
+                    '& .react-activity-calendar__scroll-container': {
+                        overflowX: { xs: 'scroll', md: 'auto' },
+                        overflowY: 'hidden',
+                        scrollbarWidth: 'thin',
+                        scrollbarColor: '#10b981 rgba(255,255,255,0.05)',
+                        '&::-webkit-scrollbar': {
+                            height: '6px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                            backgroundColor: 'rgba(255,255,255,0.05)',
+                            borderRadius: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#10b981',
+                            borderRadius: '4px',
+                            '&:hover': {
+                                backgroundColor: '#34d399',
+                            },
+                        },
+                    },
                     // Hide calendar navigation arrows
                     '& button': {
                         display: 'none !important',
                     },
-                    // Force scrollbar to always show on mobile
-                    '&::-webkit-scrollbar': {
-                        height: '6px',
-                        WebkitAppearance: 'none',
-                    },
-                    '&::-webkit-scrollbar-button': {
-                        display: 'none',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#1a1a1a',
-                        borderRadius: '8px',
-                        border: '1px solid rgba(57, 211, 83, 0.2)',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                        background: 'linear-gradient(90deg, #0e4429, #26a641, #39d353)',
-                        borderRadius: '8px',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        '&:hover': {
-                            background: 'linear-gradient(90deg, #26a641, #39d353, #26a641)',
-                            boxShadow: '0 0 10px rgba(57, 211, 83, 0.5)',
-                        },
-                    },
-                    // Firefox scrollbar
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: '#26a641 #1a1a1a',
                 }}
             >
-                <GitHubCalendar
-                    username={githubUsername}
-                    theme={customTheme}
-                    colorScheme="dark"
-                    blockSize={12}
-                    blockMargin={4}
-                    fontSize={14}
-                    renderBlock={renderBlock}
-                    style={{
-                        width: '100%',
+                <Box
+                    sx={{
+                        transform: { xs: 'scale(0.85)', md: 'scale(1)' },
+                        transformOrigin: 'top left',
+                        width: { xs: '117.6%', md: '100%' },
+                        overflow: 'visible',
                     }}
-                />
+                >
+                    <GitHubCalendar
+                        username={githubUsername}
+                        theme={customTheme}
+                        colorScheme="dark"
+                        blockSize={12}
+                        blockMargin={4}
+                        fontSize={14}
+                        renderBlock={renderBlock}
+                        style={{
+                            width: '100%',
+                        }}
+                    />
+                </Box>
             </Box>
 
             {/* Link to GitHub Profile */}

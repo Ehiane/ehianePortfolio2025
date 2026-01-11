@@ -3,6 +3,7 @@ import { Box, Typography, Snackbar } from '@mui/material';
 import { GitHub, LinkedIn, Description } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { socialLinks } from '../../data/portfolioData';
+import { typography, spacing } from '../../theme/designTokens';
 
 const Contact = () => {
     const [hoveredLink, setHoveredLink] = useState(null);
@@ -51,11 +52,11 @@ const Contact = () => {
     return (
         <Box>
             {/* Section Header */}
-            <Box sx={{ mb: 4 }}>
+            <Box sx={{ mb: spacing.sectionHeaderMb }}>
                 <Typography
                     variant="overline"
                     sx={{
-                        fontSize: '9px',
+                        fontSize: typography.caption,
                         fontFamily: 'monospace',
                         letterSpacing: '0.3em',
                         textTransform: 'uppercase',
@@ -69,7 +70,7 @@ const Contact = () => {
                 <Typography
                     variant="h5"
                     sx={{
-                        fontSize: { xs: '1.5rem', md: '1.75rem' },
+                        fontSize: typography.h5,
                         fontFamily: '"Playfair Display", serif',
                         fontStyle: 'italic',
                         fontWeight: 400,
@@ -287,19 +288,67 @@ const Contact = () => {
                         fontStyle: 'italic',
                         fontSize: '1.25rem',
                         color: 'text.secondary',
-                        mb: 2,
+                        mb: 1,
                     }}
                 >
-                    "Technology should work for people, not the other way around."
+                    <Typography
+                        component="a"
+                        href="https://knowledge.wharton.upenn.edu/article/ibms-brad-becker-on-the-promise-of-cognitive-computing/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                            color: 'text.secondary',
+                            textDecoration: 'none',
+                            fontFamily: 'inherit',
+                            fontStyle: 'inherit',
+                            fontSize: 'inherit',
+                            '&:hover': {
+                                textDecoration: 'underline',
+                            },
+                        }}
+                    >
+                        "Technology should work for people, not the other way around."
+                    </Typography>
                 </Typography>
                 <Typography
                     variant="caption"
                     sx={{
                         color: 'text.secondary',
                         fontSize: '0.75rem',
+                        mb: 2,
+                        fontFamily: '"Playfair Display", serif',
                     }}
                 >
-                    Inspiration drawn from{' '}
+                    —{' '}
+                    <Typography
+                        component="a"
+                        href="https://www.linkedin.com/in/bradleybecker/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                            color: 'text.secondary',
+                            textDecoration: 'underline',
+                            fontFamily: 'inherit',
+                            fontStyle: 'inherit',
+                            '&:hover': {
+                                color: 'text.primary',
+                            },
+                        }}
+                    >
+                        Bradley Becker
+                    </Typography>, Chief Design Officer at IBM (2015)
+                </Typography>
+                <Typography
+                    variant="caption"
+                    sx={{
+                        color: 'text.secondary',
+                        fontSize: '0.75rem',
+                        mt: 3,
+                        display: 'block',
+                        fontFamily: '"Playfair Display", serif',
+                    }}
+                >
+                    Inspired by{' '}
                     <Typography
                         component="a"
                         href="https://tushaar.me/"
@@ -310,6 +359,7 @@ const Contact = () => {
                             textDecoration: 'underline',
                             fontSize: 'inherit',
                             fontFamily: 'inherit',
+                            fontStyle: 'inherit',
                             '&:hover': {
                                 opacity: 0.8,
                             },
@@ -317,7 +367,19 @@ const Contact = () => {
                     >
                         Tushar Negi
                     </Typography>
-                    .(check his site out!)
+                    .
+                </Typography>
+                <Typography
+                    variant="caption"
+                    sx={{
+                        color: 'text.secondary',
+                        fontSize: '0.75rem',
+                        mt: 2,
+                        display: 'block',
+                        fontFamily: '"Playfair Display", serif',
+                    }}
+                >
+                    © {new Date().getFullYear()} All rights reserved.
                 </Typography>
             </Box>
         </Box>

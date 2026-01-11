@@ -73,16 +73,17 @@ const Navbar = () => {
 
     return (
         <motion.nav
-            className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 w-full pointer-events-none"
+            className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-6 md:px-8 py-6 w-full pointer-events-none overflow-x-hidden"
             initial={{ opacity: 0, y: -20 }}
             animate={{
                 opacity: 1,
                 y: (isVisible || isMobileMenuOpen) ? 0 : -100
             }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={{ marginBottom: '16px' }}
         >
             {/* Left: Logo */}
-            <div className="pointer-events-auto px-4 py-2 rounded-full transition-colors duration-300">
+            <div className="pointer-events-auto px-4 py-2 rounded-full transition-colors duration-300" style={{ marginBottom: '16px' }}>
                 <motion.button
                     onClick={handleLogoBounce}
                     className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
@@ -91,16 +92,21 @@ const Navbar = () => {
                     animate={isBouncing ? "bounce" : "initial"}
                     variants={bounceVariants}
                 >
-                    <img
+                    <Box
+                        component="img"
                         src="/images/ehiane_2026_logo.png"
                         alt="Ehiane Kelvin Oigiagbe logo"
-                        className="h-12 w-12 object-contain"
+                        sx={{
+                            height: { xs: '40px', sm: '44px', md: '48px' },
+                            width: { xs: '40px', sm: '44px', md: '48px' },
+                            objectFit: 'contain'
+                        }}
                     />
                 </motion.button>
             </div>
 
             {/* Right: Links and toggles */}
-            <div className="pointer-events-auto px-6 py-3 rounded-full transition-colors duration-300 flex items-center gap-2 bg-zinc-900/50 backdrop-blur-md border border-zinc-800">
+            <div className="pointer-events-auto px-6 py-3 rounded-full transition-colors duration-300 flex items-center gap-2 bg-zinc-900/50 backdrop-blur-md border border-zinc-800" style={{ marginBottom: '16px' }}>
                 <div className="hidden md:flex items-center gap-6">
                     <button
                         onClick={() => scrollToSection('experience')}
@@ -148,6 +154,7 @@ const Navbar = () => {
 
                 <div className="hidden md:block h-4 w-[1px] bg-zinc-700 mx-2" />
 
+                {/* Social Icons */}
                 <div className="hidden md:flex items-center gap-3">
                     {iconLinks.map((item, index) => (
                         <a
@@ -162,14 +169,15 @@ const Navbar = () => {
                     ))}
                 </div>
 
+                {/* Mobile Menu Button */}
                 <div className="flex items-center gap-3 md:hidden">
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="flex items-center justify-center p-2 rounded-full hover:bg-zinc-800 transition-all duration-200 cursor-pointer"
+                        className="flex items-center justify-center p-1 rounded-full hover:bg-zinc-800 transition-all duration-200 cursor-pointer"
                         aria-label="Toggle Menu"
                         style={{ background: 'none', border: 'none' }}
                     >
-                        <MenuIcon sx={{ fontSize: 20, color: '#d4d4d8' }} />
+                        <MenuIcon sx={{ fontSize: 14, color: '#d4d4d8' }} />
                     </button>
                 </div>
             </div>
@@ -190,7 +198,7 @@ const Navbar = () => {
                         />
 
                         <motion.div
-                            className="relative mt-16 w-[90%] max-w-sm rounded-2xl bg-zinc-900/95 border border-zinc-800 shadow-2xl p-8 flex flex-col items-center gap-6"
+                            className="relative mt-16 w-[90%] max-w-sm rounded-2xl bg-zinc-900/50 backdrop-blur-md border border-zinc-800 shadow-2xl p-8 flex flex-col items-start gap-5"
                             initial={{ y: -40, opacity: 0, scale: 0.95 }}
                             animate={{ y: 0, opacity: 1, scale: 1 }}
                             exit={{ y: -40, opacity: 0, scale: 0.95 }}
@@ -207,50 +215,50 @@ const Navbar = () => {
 
                             <button
                                 onClick={() => scrollToSection('experience')}
-                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
-                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                                className="text-base font-normal text-zinc-300 hover:text-white transition-all duration-300 w-full text-left"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: '"Playfair Display", serif', fontStyle: 'italic' }}
                             >
                                 Experience
                             </button>
                             <button
                                 onClick={() => scrollToSection('projects')}
-                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
-                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                                className="text-base font-normal text-zinc-300 hover:text-white transition-all duration-300 w-full text-left"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: '"Playfair Display", serif', fontStyle: 'italic' }}
                             >
                                 Projects
                             </button>
                             <button
                                 onClick={() => scrollToSection('github')}
-                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
-                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                                className="text-base font-normal text-zinc-300 hover:text-white transition-all duration-300 w-full text-left"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: '"Playfair Display", serif', fontStyle: 'italic' }}
                             >
                                 GitHub
                             </button>
                             <button
                                 onClick={() => scrollToSection('tech-stack')}
-                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
-                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                                className="text-base font-normal text-zinc-300 hover:text-white transition-all duration-300 w-full text-left"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: '"Playfair Display", serif', fontStyle: 'italic' }}
                             >
                                 Tech Stack
                             </button>
                             <button
                                 onClick={() => scrollToSection('achievements')}
-                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
-                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                                className="text-base font-normal text-zinc-300 hover:text-white transition-all duration-300 w-full text-left"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: '"Playfair Display", serif', fontStyle: 'italic' }}
                             >
                                 Achievements
                             </button>
                             <button
                                 onClick={() => scrollToSection('contact')}
-                                className="text-2xl font-medium text-zinc-300 hover:text-white transition-all duration-300 w-full text-center"
-                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                                className="text-base font-normal text-zinc-300 hover:text-white transition-all duration-300 w-full text-left"
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: '"Playfair Display", serif', fontStyle: 'italic' }}
                             >
                                 Contact
                             </button>
 
-                            <div className="w-full h-px bg-zinc-800" />
+                            <div className="w-full h-px bg-zinc-800 my-2" />
 
-                            <div className="flex items-center justify-center gap-6">
+                            <div className="flex items-center justify-center gap-6 w-full">
                                 {iconLinks.map((item, index) => (
                                     <a
                                         key={index}

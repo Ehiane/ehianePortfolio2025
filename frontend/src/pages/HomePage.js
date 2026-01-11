@@ -8,10 +8,11 @@ import BeyondCode from '../components/portfolio/BeyondCode';
 import TechStack from '../components/portfolio/TechStack';
 import Contact from '../components/portfolio/Contact';
 import CertificateViewer3D from '../components/portfolio/CertificateViewer3D';
+import { spacing } from '../theme/designTokens';
 
 const HomePage = () => {
     // Consistent spacing between sections
-    const sectionSpacing = { xs: 16, md: 24 };
+    const sectionSpacing = spacing.sectionGap;
 
     // Shared 3D Certificate Viewer state
     const [viewer3DOpen, setViewer3DOpen] = useState(false);
@@ -32,8 +33,10 @@ const HomePage = () => {
             sx={{
                 maxWidth: '800px',
                 mx: 'auto',
-                px: { xs: 3, sm: 4, md: 6 },
+                px: { xs: 2, sm: 3, md: 4 },
                 py: { xs: 8, md: 12 },
+                width: '100%',
+                boxSizing: 'border-box',
             }}
         >
             {/* 1. Hero Section (Banner + Profile) */}
@@ -47,7 +50,7 @@ const HomePage = () => {
             </Box>
 
             {/* 3. Projects (Selected Works) */}
-            <Box id="projects" sx={{ mb: { xs: 4, md: 6 } }}>
+            <Box id="projects" sx={{ mb: sectionSpacing }}>
                 <Projects />
             </Box>
 

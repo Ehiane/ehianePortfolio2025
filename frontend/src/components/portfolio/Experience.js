@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { roles } from '../../data/portfolioData';
+import { typography, spacing, sizing } from '../../theme/designTokens';
 
 const Experience = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -66,8 +67,8 @@ const Experience = () => {
             {/* Section Header */}
             <Box
                 sx={{
-                    mb: 8,
-                    pb: 4,
+                    mb: spacing.sectionHeaderMb,
+                    pb: { xs: 3, sm: 3.5, md: 4 },
                     borderBottom: '1px solid',
                     borderColor: 'divider',
                     display: 'flex',
@@ -79,7 +80,7 @@ const Experience = () => {
                     <Typography
                         variant="overline"
                         sx={{
-                            fontSize: '9px',
+                            fontSize: typography.caption,
                             fontFamily: 'monospace',
                             letterSpacing: '0.3em',
                             textTransform: 'uppercase',
@@ -93,7 +94,7 @@ const Experience = () => {
                     <Typography
                         variant="h4"
                         sx={{
-                            fontSize: { xs: '2rem', md: '2.5rem' },
+                            fontSize: typography.h4,
                             fontFamily: '"Playfair Display", serif',
                             fontStyle: 'italic',
                             fontWeight: 400,
@@ -117,7 +118,7 @@ const Experience = () => {
                 <Typography
                     variant="caption"
                     sx={{
-                        fontSize: '10px',
+                        fontSize: typography.caption,
                         fontFamily: 'monospace',
                         color: 'text.secondary',
                         display: { xs: 'none', md: 'block' },
@@ -140,19 +141,20 @@ const Experience = () => {
                             mb: 3,
                             position: 'relative',
                             cursor: 'pointer',
-                            transition: 'all 0.3s ease',
+                            transition: 'all 0.5s ease-in-out',
                         }}
                     >
                         {/* Timeline Dot - All Green */}
                         <Box
                             sx={{
-                                width: '12px',
-                                height: '12px',
+                                width: sizing.timelineDot,
+                                height: sizing.timelineDot,
                                 borderRadius: '50%',
                                 bgcolor: '#22c55e', // All green
                                 mt: 1,
                                 flexShrink: 0,
-                                transition: 'all 0.3s ease',
+                                transition: 'all 0.5s ease-in-out',
+                                transitionDelay: hoveredIndex === index ? '0.1s' : '0s',
                                 boxShadow: hoveredIndex === index
                                     ? '0 0 12px #22c55e'
                                     : 'none',
@@ -177,9 +179,9 @@ const Experience = () => {
                                         sx={{
                                             fontFamily: '"Playfair Display", serif',
                                             fontStyle: 'italic',
-                                            fontSize: '1.5rem',
+                                            fontSize: typography.h6,
                                             fontWeight: 400,
-                                            transition: 'color 0.3s ease',
+                                            transition: 'color 0.5s ease-in-out',
                                             color: hoveredIndex === index ? '#9ca3af' : 'text.primary',
                                         }}
                                     >
@@ -215,7 +217,7 @@ const Experience = () => {
                                 sx={{
                                     maxHeight: hoveredIndex === index ? '500px' : '0px',
                                     overflow: 'hidden',
-                                    transition: 'max-height 1.2s ease-in-out',
+                                    transition: 'max-height 1.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease-in-out, margin 0.5s ease-in-out',
                                     pt: hoveredIndex === index ? 2 : 0,
                                     pb: hoveredIndex === index ? 2 : 0,
                                     mt: hoveredIndex === index ? 1 : 0,
@@ -252,7 +254,7 @@ const Experience = () => {
                                                         variant="caption"
                                                         sx={{
                                                             color: 'text.secondary',
-                                                            fontSize: '0.7rem',
+                                                            fontSize: typography.caption,
                                                             fontFamily: 'monospace',
                                                         }}
                                                     >

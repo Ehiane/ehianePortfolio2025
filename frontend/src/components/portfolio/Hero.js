@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Box, Typography, Avatar, Tooltip } from '@mui/material';
-import { personalInfo } from '../../data/portfolioData';
+import { personalInfo, achievements } from '../../data/portfolioData';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import { typography, sizing } from '../../theme/designTokens';
+import SurpriseMeButton from './SurpriseMeButton';
+import CertificateViewer3D from './CertificateViewer3D';
 
 // Static banners defined at module scope to avoid useEffect lint warning
 const banners = [
@@ -16,6 +20,8 @@ const Hero = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [randomBanner, setRandomBanner] = useState('');
     const [currentTime, setCurrentTime] = useState('');
+    const [selectedCertificate, setSelectedCertificate] = useState(null);
+    const [viewerOpen, setViewerOpen] = useState(false);
 
     // Sway animation for organization tooltips
     const swayVariants = {
@@ -52,8 +58,22 @@ const Hero = () => {
         return () => clearInterval(interval);
     }, []);
 
+    // Handle surprise button click - open random certificate viewer
+    const handleSurpriseClick = () => {
+        const certificates = achievements.certifications;
+        const randomIndex = Math.floor(Math.random() * certificates.length);
+        setSelectedCertificate(certificates[randomIndex]);
+        setViewerOpen(true);
+    };
+
+    // Handle shuffle banner
+    const handleShuffleBanner = () => {
+        const randomIndex = Math.floor(Math.random() * banners.length);
+        setRandomBanner(banners[randomIndex]);
+    };
+
     return (
-        <Box>
+        <Box sx={{ mt: 4 }}>
             {/* Banner Image */}
             <Tooltip
                 title="Paul Pogba - My favorite footballer."
@@ -70,7 +90,7 @@ const Hero = () => {
                 <Box
                     sx={{
                         width: '100%',
-                        height: { xs: '200px', sm: '250px', md: '280px' },
+                        height: sizing.bannerHeight,
                         borderRadius: '16px',
                         overflow: 'hidden',
                         mb: '-60px',
@@ -87,6 +107,44 @@ const Hero = () => {
                             objectFit: 'cover',
                         }}
                     />
+                    {/* Shuffle Button */}
+                    <Box
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleShuffleBanner();
+                        }}
+                        sx={{
+                            position: 'absolute',
+                            bottom: 16,
+                            right: 16,
+                            zIndex: 10,
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            backdropFilter: 'blur(10px)',
+                            WebkitBackdropFilter: 'blur(10px)',
+                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                            borderRadius: '50%',
+                            color: '#ffffff',
+                            width: '36px',
+                            height: '36px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                            transition: 'all 0.4s ease',
+                            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                            '&:hover': {
+                                background: 'rgba(255, 255, 255, 0.15)',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                                border: '1px solid rgba(255, 255, 255, 0.3)',
+                            },
+                            '&:active': {
+                                transform: 'translateY(0px)',
+                            },
+                        }}
+                    >
+                        <ShuffleIcon sx={{ fontSize: '1rem' }} />
+                    </Box>
                 </Box>
             </Tooltip>
 
@@ -98,8 +156,8 @@ const Hero = () => {
             >
                 <Box
                     sx={{
-                        width: { xs: 100, sm: 120 },
-                        height: { xs: 100, sm: 120 },
+                        width: sizing.avatar,
+                        height: sizing.avatar,
                         position: 'relative',
                         borderRadius: '50%',
                         cursor: 'pointer',
@@ -142,81 +200,84 @@ const Hero = () => {
 
             {/* Name and Bio */}
             <Box sx={{ mt: 2 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            fontSize: { xs: '2rem', md: '2.5rem' },
-                            fontFamily: '"Playfair Display", serif',
-                            fontStyle: 'italic',
-                            fontWeight: 400,
-                            color: 'text.primary',
-                        }}
-                    >
-                        {personalInfo.name}
-                    </Typography>
-                    <Tooltip
-                        title="yes! it's really me 😂"
-                        arrow
-                        sx={{
-                            '& .MuiTooltip-tooltip': {
-                                backgroundColor: '#1a1a1a',
-                                border: '1px solid #333333',
-                                borderRadius: '8px',
-                                padding: '8px 12px',
-                            },
-                        }}
-                    >
-                        <VerifiedIcon
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2, justifyContent: 'space-between' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography
+                            variant="h3"
                             sx={{
-                                fontSize: '1.5rem',
-                                color: '#3b82f6',
-                                cursor: 'pointer',
+                                fontSize: typography.h3,
+                                fontFamily: '"Playfair Display", serif',
+                                fontStyle: 'italic',
+                                fontWeight: 400,
+                                color: 'text.primary',
                             }}
-                        />
-                    </Tooltip>
-                    <Tooltip
-                        title={
-                            <Box sx={{ textAlign: 'center', py: 0.5 }}>
-                                <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
-                                    🇺🇸 Washington, USA
-                                </Typography>
-                                <Typography sx={{ fontSize: '0.75rem', color: '#a1a1aa' }}>
-                                    {currentTime}
-                                </Typography>
-                            </Box>
-                        }
-                        arrow
-                        sx={{
-                            '& .MuiTooltip-tooltip': {
-                                backgroundColor: '#1a1a1a',
-                                border: '1px solid #333333',
-                                borderRadius: '8px',
-                                padding: '8px 12px',
-                            },
-                        }}
-                    >
-                        <Box
-                            component="img"
-                            src="/images/stickers/location.png"
-                            alt="Location"
+                        >
+                            {personalInfo.name}
+                        </Typography>
+                        <Tooltip
+                            title="yes! it's really me 😂"
+                            arrow
                             sx={{
-                                height: '36px',
-                                cursor: 'pointer',
-                                transition: 'transform 0.2s',
-                                '&:hover': {
-                                    transform: 'scale(1.1)',
+                                '& .MuiTooltip-tooltip': {
+                                    backgroundColor: '#1a1a1a',
+                                    border: '1px solid #333333',
+                                    borderRadius: '8px',
+                                    padding: '8px 12px',
                                 },
                             }}
-                        />
-                    </Tooltip>
+                        >
+                            <VerifiedIcon
+                                sx={{
+                                    fontSize: '1.5rem',
+                                    color: '#3b82f6',
+                                    cursor: 'pointer',
+                                }}
+                            />
+                        </Tooltip>
+                        <Tooltip
+                            title={
+                                <Box sx={{ textAlign: 'center', py: 0.5 }}>
+                                    <Typography sx={{ fontSize: '0.85rem', mb: 0.5 }}>
+                                        🇺🇸 Washington, USA
+                                    </Typography>
+                                    <Typography sx={{ fontSize: '0.75rem', color: '#a1a1aa' }}>
+                                        {currentTime}
+                                    </Typography>
+                                </Box>
+                            }
+                            arrow
+                            sx={{
+                                '& .MuiTooltip-tooltip': {
+                                    backgroundColor: '#1a1a1a',
+                                    border: '1px solid #333333',
+                                    borderRadius: '8px',
+                                    padding: '8px 12px',
+                                },
+                            }}
+                        >
+                            <Box
+                                component="img"
+                                src="/images/stickers/location.png"
+                                alt="Location"
+                                sx={{
+                                    height: '36px',
+                                    cursor: 'pointer',
+                                    transition: 'transform 0.2s',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                    },
+                                }}
+                            />
+                        </Tooltip>
+                    </Box>
+                    <SurpriseMeButton onClick={handleSurpriseClick} />
                 </Box>
 
                 {/* Tagline */}
                 <Typography
                     variant="h4"
                     sx={{
-                        fontSize: { xs: '1.75rem', md: '2.25rem' },
+                        fontSize: typography.h4,
                         fontFamily: '"Playfair Display", serif',
                         fontStyle: 'italic',
                         fontWeight: 400,
@@ -291,6 +352,7 @@ const Hero = () => {
                         lineHeight: 1.7,
                         fontSize: '1rem',
                         maxWidth: '650px',
+                        mt: 4,
                     }}
                 >
                     Computer Science graduate from{' '}
@@ -433,11 +495,18 @@ const Hero = () => {
                             },
                         }}
                     >
-                        I care about building software that bridges the gap between technical systems and the people who rely on them, especially in spaces where access and clarity matter most
+                        Building software that makes complex systems feel accessible
                     </Typography>
                     .
                 </Typography>
             </Box>
+
+            {/* Certificate Viewer */}
+            <CertificateViewer3D
+                certificate={selectedCertificate}
+                open={viewerOpen}
+                onClose={() => setViewerOpen(false)}
+            />
         </Box>
     );
 };
