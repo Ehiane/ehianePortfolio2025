@@ -1,0 +1,19 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/Ehiane/AI-built-todo-app.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	vscode-merge-base = origin/main
+	gk-last-accessed = 2026-01-09T23:55:52.883Z
+[branch "professional-revamp"]
+	vscode-merge-base = origin/main
+	gk-last-accessed = 2026-01-11T00:19:01.656Z
+	remote = origin
+	merge = refs/heads/professional-revamp
+	gk-last-modified = 2026-01-11T00:19:01.656Z
