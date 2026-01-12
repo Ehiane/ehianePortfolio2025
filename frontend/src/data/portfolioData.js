@@ -3,9 +3,9 @@
 export const personalInfo = {
     name: "Ehiane Oigiagbe",
     fullName: "Ehiane Kelvin Oigiagbe",
-    title: "Software Engineer & QA Specialist",
-    tagline: "Building Robust",
-    taglineAccent: "Digital Experiences.",
+    title: "",
+    tagline: "",
+    taglineAccent: "",
     bio: "BSc Computer Science from Washington State University. Previously, I worked as a Software Test Engineer Intern at Schweitzer Engineering Laboratories. I build quality-driven interfaces and robust solutions, guided by the philosophy that the best code is tested code.",
     location: "Washington, USA",
     // bannerImage: "/images/Pogba_dab.gif",
