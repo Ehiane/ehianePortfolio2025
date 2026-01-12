@@ -9,13 +9,9 @@ import SurpriseMeButton from './SurpriseMeButton';
 import CertificateViewer3D from './CertificateViewer3D';
 import FrostedTooltip from './FrostedTooltip';
 
-// Static banners defined at module scope to avoid useEffect lint warning
-const banners = [
-    '/images/banner/paul_pogba_1.gif',
-    '/images/banner/paul_pogba_2.gif',
-    '/images/banner/paul_pogba_3.gif',
-    '/images/banner/Pogba_dab.gif'
-];
+// Dynamically load all banner images from the public/images/banner folder
+const bannerContext = require.context('../../../public/images/banner', false, /\.(gif|jpg|jpeg|png)$/);
+const banners = bannerContext.keys().map(key => `/images/banner/${key.replace('./', '')}`);
 
 // Greeting messages for profile picture tooltip
 const greetings = [
