@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Typography } from '@mui/material';
+import MetallicLogo3D from './three/MetallicLogo3D';
 
 const IntroAnimation = ({ onComplete }) => {
     const [showIntro, setShowIntro] = useState(true);
@@ -10,10 +11,24 @@ const IntroAnimation = ({ onComplete }) => {
     const [rotateY, setRotateY] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(false);
 
     // Rotation limits
     const MAX_ROTATE_Y = 30;
     const MAX_ROTATE_X = 20;
+
+    // Sway animation for intro text
+    const swayVariants = {
+        initial: { opacity: 0, x: -20 },
+        animate: { 
+            opacity: 1, 
+            x: 0,
+            transition: {
+                duration: 0.8,
+                ease: 'easeOut',
+            }
+        },
+    };
 
     useEffect(() => {
         // Check if user has seen intro before
@@ -26,6 +41,10 @@ const IntroAnimation = ({ onComplete }) => {
         //     onComplete();
         //     return;
         // }
+
+        // Detect mobile device
+        const isMobileDevice = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+        setIsMobile(isMobileDevice);
 
         // Show "Click/Tap to Start" text after 0.5s
         const textTimer = setTimeout(() => {
@@ -63,10 +82,17 @@ const IntroAnimation = ({ onComplete }) => {
         if (isAnimating) return;
         setIsAnimating(true);
 
+        // Remove previous transition time so it starts fresh
+        localStorage.removeItem('logoTransitionTime');
+
         // Complete animation after logo reaches navbar
         setTimeout(() => {
             setShowIntro(false);
             localStorage.setItem('hasSeenIntro', 'true');
+
+            // Dispatch custom event to notify Navbar
+            window.dispatchEvent(new CustomEvent('introCompleted'));
+
             onComplete();
         }, 1300); // 1s animation + 300ms buffer
     };
@@ -106,9 +132,9 @@ const IntroAnimation = ({ onComplete }) => {
                         animate={
                             isAnimating
                                 ? {
-                                      scale: 0.3,
-                                      x: -window.innerWidth / 2 + 100,
-                                      y: -window.innerHeight / 2 + 60,
+                                      scale: 0.45,
+                                      x: -window.innerWidth / 2 + 105,
+                                      y: -window.innerHeight / 2 + 90,
                                       rotateX: 0,
                                       rotateY: 0,
                                       transition: {
@@ -131,17 +157,27 @@ const IntroAnimation = ({ onComplete }) => {
                             perspective: '1000px',
                         }}
                     >
-                        <img
-                            src="/images/ehiane_2026_logo.png"
-                            alt="Logo"
-                            style={{
-                                width: '120px',
-                                height: '120px',
-                                objectFit: 'contain',
-                                pointerEvents: 'none',
-                            }}
-                            draggable={false}
-                        />
+                        <div style={{
+                            width: '280px',
+                            height: '280px',
+                            position: 'relative'
+                        }}>
+                            <Suspense fallback={
+                                <img
+                                    src="/images/mettalic_ehiane_logo.png"
+                                    alt="Logo"
+                                    style={{ width: '280px', height: '280px', objectFit: 'contain' }}
+                                />
+                            }>
+                                <MetallicLogo3D
+                                    rotateX={rotateX}
+                                    rotateY={rotateY}
+                                    isAnimating={isAnimating}
+                                    width={280}
+                                    height={280}
+                                />
+                            </Suspense>
+                        </div>
                     </motion.div>
 
                     {/* Click/Tap to Start Text */}
@@ -152,6 +188,10 @@ const IntroAnimation = ({ onComplete }) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
+                                variants={swayVariants}
+                                initial="initial"
+                                animate="animate"
+                                style={{ marginTop: isMobile ? '-80px' : '-40px' }}
                             >
                                 <Typography
                                     sx={{
@@ -161,9 +201,26 @@ const IntroAnimation = ({ onComplete }) => {
                                         fontWeight: 500,
                                         letterSpacing: '0.05em',
                                         textAlign: 'center',
+                                        background: 'linear-gradient(90deg, #e5e7eb 0%, #e5e7eb 50%, #71717a 50%, #71717a 100%)',
+                                        backgroundSize: '200% 100%',
+                                        backgroundClip: 'text',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        animation: 'colorFill 5.5s ease-in-out infinite',
+                                        '@keyframes colorFill': {
+                                            '0%': {
+                                                backgroundPosition: '100% 0',
+                                            },
+                                            '80%': {
+                                                backgroundPosition: '-100% 0',
+                                            },
+                                            '100%': {
+                                                backgroundPosition: '-100% 0',
+                                            },
+                                        },
                                     }}
                                 >
-                                    Drag to rotate • Click or Tap to Start
+                                    {isMobile ? 'Tap the logo to start' : 'Drag to rotate • Click or Tap to Start'}
                                 </Typography>
                             </motion.div>
                         )}

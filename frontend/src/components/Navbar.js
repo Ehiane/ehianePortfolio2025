@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, IconButton } from '@mui/material';
 import { GitHub, LinkedIn, Email, LightMode, DarkMode, Menu as MenuIcon, Close } from '@mui/icons-material';
 import { socialLinks } from '../data/portfolioData';
+import MetallicLogo3D from './three/MetallicLogo3D';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isBouncing, setIsBouncing] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [showMetallicLogo, setShowMetallicLogo] = useState(true);
 
     const iconLinks = [
         { Icon: GitHub, href: socialLinks.github },
@@ -45,6 +47,68 @@ const Navbar = () => {
         };
     }, [lastScrollY]);
 
+    // Handle metallic to normal logo transition
+    useEffect(() => {
+        const checkIntroStatus = () => {
+            const introCompleted = localStorage.getItem('hasSeenIntro');
+            const transitionTime = localStorage.getItem('logoTransitionTime');
+            const now = Date.now();
+
+            console.log('Navbar logo transition check:', { introCompleted, transitionTime, now });
+
+            if (introCompleted) {
+                if (!transitionTime) {
+                    // Intro just completed, show metallic logo for 2.0s
+                    console.log('Setting 3s timer for logo transition');
+                    const timer = setTimeout(() => {
+                        console.log('Transitioning to normal logo NOW');
+                        setShowMetallicLogo(false);
+                        localStorage.setItem('logoTransitionTime', Date.now().toString());
+                    }, 2000);
+
+                    return timer;
+                } else if (now - parseInt(transitionTime) >= 2000) {
+                    // Transition already happened in a previous session
+                    console.log('Transition already completed, showing normal logo');
+                    setShowMetallicLogo(false);
+                } else {
+                    // Still within the 3s window
+                    const remainingTime = 2000 - (now - parseInt(transitionTime));
+                    console.log('Setting timer for remaining time:', remainingTime);
+                    const timer = setTimeout(() => {
+                        console.log('Transitioning to normal logo NOW (remaining time)');
+                        setShowMetallicLogo(false);
+                    }, remainingTime);
+
+                    return timer;
+                }
+            } else {
+                console.log('Intro not completed yet, showing normal logo by default');
+                setShowMetallicLogo(false);
+            }
+        };
+
+        // Check initial status
+        const initialTimer = checkIntroStatus();
+
+        // Listen for intro completion
+        const handleIntroCompleted = () => {
+            console.log('Intro just completed! Starting metallic logo transition');
+            setShowMetallicLogo(true);
+            setTimeout(() => {
+                setShowMetallicLogo(false);
+                localStorage.setItem('logoTransitionTime', Date.now().toString());
+            }, 2000);
+        };
+
+        window.addEventListener('introCompleted', handleIntroCompleted);
+
+        return () => {
+            if (initialTimer) clearTimeout(initialTimer);
+            window.removeEventListener('introCompleted', handleIntroCompleted);
+        };
+    }, []);
+
     const bounceVariants = {
         initial: { scale: 1 },
         bounce: {
@@ -60,7 +124,7 @@ const Navbar = () => {
     const handleLogoBounce = () => {
         setIsBouncing(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => setIsBouncing(false), 2500);
+        setTimeout(() => setIsBouncing(false), 2000);
     };
 
     const scrollToSection = (sectionId) => {
@@ -80,10 +144,10 @@ const Navbar = () => {
                 y: (isVisible || isMobileMenuOpen) ? 0 : -100
             }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            style={{ marginBottom: '16px' }}
+            style={{ marginTop: '-30px' }}
         >
             {/* Left: Logo */}
-            <div className="pointer-events-auto px-4 py-2 rounded-full transition-colors duration-300" style={{ marginBottom: '16px' }}>
+            <div className="pointer-events-auto px-4 py-3 rounded-full transition-colors duration-300" style={{ marginBottom: '0px' }}>
                 <motion.button
                     onClick={handleLogoBounce}
                     className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
@@ -92,21 +156,50 @@ const Navbar = () => {
                     animate={isBouncing ? "bounce" : "initial"}
                     variants={bounceVariants}
                 >
-                    <Box
-                        component="img"
-                        src="/images/ehiane_2026_logo.png"
-                        alt="Ehiane Kelvin Oigiagbe logo"
-                        sx={{
-                            height: { xs: '40px', sm: '44px', md: '48px' },
-                            width: { xs: '40px', sm: '44px', md: '48px' },
-                            objectFit: 'contain'
-                        }}
-                    />
+                    <div style={{ width: '98px', height: '98px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <AnimatePresence mode="wait">
+                            {showMetallicLogo ? (
+                                <motion.div
+                                    key="metallic"
+                                    initial={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 1.2 }}
+                                    style={{ width: '120px', height: '120px', position: 'absolute', top: -5, left: -11 }} // mid transition logo
+                                >
+                                    <Suspense fallback={
+                                        <img
+                                            src="/images/mettalic_ehiane_logo.png"
+                                            alt="Ehiane Kelvin Oigiagbe logo"
+                                            style={{ width: '120px', height: '120px', objectFit: 'contain', top:-5, left:-11 }}
+                                        />
+                                    }>
+                                        <MetallicLogo3D
+                                            rotateX={0}
+                                            rotateY={0}
+                                            isAnimating={false}
+                                            width={120}
+                                            height={120}
+                                        />
+                                    </Suspense>
+                                </motion.div>
+                            ) : (
+                                <motion.img
+                                    key="normal"
+                                    src="/images/ehiane_2026_logo.png"
+                                    alt="Ehiane Kelvin Oigiagbe logo"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 1.5 }}
+                                    style={{ width: '55px', height: '55px', objectFit: 'contain', display: 'block' }}
+                                />
+                            )}
+                        </AnimatePresence>
+                    </div>
                 </motion.button>
             </div>
 
             {/* Right: Links and toggles */}
-            <div className="pointer-events-auto px-6 py-3 rounded-full transition-colors duration-300 flex items-center gap-2 bg-zinc-900/50 backdrop-blur-md border border-zinc-800" style={{ marginBottom: '16px' }}>
+            <div className="pointer-events-auto px-6 py-3 rounded-full transition-colors duration-300 flex items-center gap-2 bg-zinc-900/50 backdrop-blur-md border border-zinc-800" style={{ marginBottom: '0px' }}>
                 <div className="hidden md:flex items-center gap-6">
                     <button
                         onClick={() => scrollToSection('experience')}

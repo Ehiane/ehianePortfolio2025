@@ -1,5 +1,5 @@
 {
-  "name": "kanban-todo-frontend",
+  "name": "Ehiane-portfolio-v2-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,6 +7,8 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.5",
     "@mui/material": "^5.14.5",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "autoprefixer": "^10.4.16",
     "axios": "^1.5.0",
     "date-fns": "^2.30.0",
@@ -21,7 +23,8 @@
     "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
     "react-tooltip": "^5.30.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "three": "^0.160.1"
   },
   "scripts": {
     "start": "react-scripts start",
