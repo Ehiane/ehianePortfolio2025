@@ -29,16 +29,13 @@ const SurpriseMeButton = ({ onClick }) => {
                         background: 'rgba(255, 255, 255, 0.15)',
                         transform: 'translateY(-2px)',
                         boxShadow: `
-                            0 0 15px rgba(255, 0, 0, 0.3),
-                            0 0 20px rgba(255, 127, 0, 0.3),
-                            0 0 25px rgba(255, 255, 0, 0.2),
-                            0 0 30px rgba(0, 255, 0, 0.2),
-                            0 0 35px rgba(0, 255, 255, 0.2),
-                            0 0 40px rgba(0, 0, 255, 0.1),
-                            0 0 45px rgba(136, 0, 255, 0.1),
+                            0 0 15px rgba(0, 255, 0, 0.4),
+                            0 0 25px rgba(0, 255, 0, 0.3),
+                            0 0 35px rgba(0, 255, 0, 0.2),
+                            0 0 45px rgba(0, 255, 0, 0.1),
                             inset 0 1px 0 rgba(255, 255, 255, 0.3)
                         `,
-                        border: '1px solid rgba(255, 255, 255, 0.4)',
+                        border: '1px solid rgba(0, 255, 0, 0.4)',
                     },
                     '&:active': {
                         transform: 'translateY(0px)',
@@ -64,17 +61,11 @@ const SurpriseMeButton = ({ onClick }) => {
             >
                 <defs>
                     <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#ff0000" stopOpacity="0.1" />
-                        <stop offset="5%" stopColor="#ff0000" stopOpacity="0.3" />
-                        <stop offset="10%" stopColor="#ff7700" stopOpacity="0.5" />
-                        <stop offset="15%" stopColor="#ffff00" stopOpacity="0.7" />
-                        <stop offset="25%" stopColor="#00ff00" stopOpacity="0.85" />
-                        <stop offset="35%" stopColor="#00ffff" stopOpacity="0.95" />
-                        <stop offset="50%" stopColor="#0000ff" stopOpacity="1" />
-                        <stop offset="65%" stopColor="#8800ff" stopOpacity="1" />
-                        <stop offset="80%" stopColor="#ff00ff" stopOpacity="1" />
-                        <stop offset="90%" stopColor="#ff0066" stopOpacity="1" />
-                        <stop offset="100%" stopColor="#ff0000" stopOpacity="1" />
+                        <stop offset="0%" stopColor="#00ff00" stopOpacity="0.3" />
+                        <stop offset="25%" stopColor="#00ff00" stopOpacity="0.6" />
+                        <stop offset="50%" stopColor="#00ff00" stopOpacity="1" />
+                        <stop offset="75%" stopColor="#00ff00" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#00ff00" stopOpacity="0.3" />
                     </linearGradient>
 
                     <filter id="glow">
