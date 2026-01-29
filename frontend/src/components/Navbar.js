@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Box, IconButton } from '@mui/material';
-import { GitHub, LinkedIn, Email, LightMode, DarkMode, Menu as MenuIcon, Close } from '@mui/icons-material';
+import { GitHub, LinkedIn, Email, Menu as MenuIcon, Close } from '@mui/icons-material';
 import { socialLinks } from '../data/portfolioData';
 import MetallicLogo3D from './three/MetallicLogo3D';
 

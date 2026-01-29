@@ -32,7 +32,7 @@ const IntroAnimation = ({ onComplete }) => {
 
     useEffect(() => {
         // Check if user has seen intro before
-        const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+        // const hasSeenIntro = localStorage.getItem('hasSeenIntro');
 
         // For development, always show intro
         // Uncomment to enable localStorage skip
@@ -189,8 +189,6 @@ const IntroAnimation = ({ onComplete }) => {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
                                 variants={swayVariants}
-                                initial="initial"
-                                animate="animate"
                                 style={{ marginTop: isMobile ? '-80px' : '-40px' }}
                             >
                                 <Typography

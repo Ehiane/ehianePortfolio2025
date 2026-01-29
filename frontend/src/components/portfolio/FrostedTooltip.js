@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Box } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -16,7 +16,7 @@ const FrostedTooltip = ({
     const tooltipRef = useRef(null);
     const touchTimer = useRef(null);
 
-    const calculatePosition = () => {
+    const calculatePosition = useCallback(() => {
         if (!triggerRef.current || !tooltipRef.current) return;
 
         const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -61,7 +61,7 @@ const FrostedTooltip = ({
         }
 
         setPosition({ top, left });
-    };
+    }, [arrow, placement]);
 
     useEffect(() => {
         if (isOpen) {
@@ -73,7 +73,7 @@ const FrostedTooltip = ({
                 window.removeEventListener('resize', calculatePosition);
             };
         }
-    }, [isOpen]);
+    }, [isOpen, calculatePosition]);
 
     const handleMouseEnter = () => {
         setIsOpen(true);
