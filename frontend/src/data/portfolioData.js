@@ -23,8 +23,8 @@ export const roles = [
             {
                 title: "Associate Software Engineer",
                 date: "2026",
-                description: "Incoming",
-                visible: false
+                description: "Recently started - currently onboarding and learning the ropes",
+                visible: true
             },
             {
                 title: "Software Test Engineer Intern",
