@@ -39,7 +39,7 @@ export const roles = [
         date: "June 2025 — Present",
         logo: "JAT",
         description:
-            "Developing and maintaining software solutions for accounting and tax management systems. Building robust applications that streamline financial operations and client services.",
+            "Developed and maintained software solutions for accounting and tax management systems. Built robust applications that streamlined financial operations and client services.",
     },
     {
         company: "Washington State University",
