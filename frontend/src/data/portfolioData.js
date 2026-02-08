@@ -79,17 +79,17 @@ export const projects = [
         github: null
     },
     {
-        id: "wage-report",
-        title: "Wage Report",
+        id: "fincurio",
+        title: "Fincurio",
         role: "Full Stack",
-        description: "A modern analytics tool for understanding wage trends and income data (coming soon).",
-        longDescription: "Wage Report is a comprehensive wage tracking and reporting system that helps organizations manage payroll data and generate insights through advanced analytics.",
-        stack: ["React", "Python", "SQL", "Tailwind CSS"],
+        description: "A financial reflection tool that emphasizes calm awareness over reactive number-crunching.",
+        longDescription: "Fincurio is a financial reflection platform that helps users understand their relationship with money. It features transaction tracking, spending visualization, monthly reflection insights, and an editorially-designed interface built with React, TypeScript, and ASP.NET Core.",
+        stack: ["React", "TypeScript", "Tailwind CSS", ".NET", "PostgreSQL", "Azure", "Resend"],
         gradient: "from-purple-500 to-pink-500",
         bgColor: "#a855f7",
-        img: "https://picsum.photos/seed/wage-report/800/450", // Placeholder
-        live: null,
-        github: null
+        img: "/images/previews/projects/fincurio-preview.png",
+        live: "https://www.getfincurio.com",
+        github: "https://github.com/Ehiane/Fincurio"
     },
     {
         id: "current-portfolio",
