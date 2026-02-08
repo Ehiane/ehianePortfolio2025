@@ -53,6 +53,19 @@ export const roles = [
 
 export const projects = [
     {
+        id: "fincurio",
+        title: "Fincurio",
+        role: "Full Stack",
+        description: "A financial reflection tool that emphasizes calm awareness over reactive number-crunching.",
+        longDescription: "Fincurio is a financial reflection platform that helps users understand their relationship with money. It features transaction tracking, spending visualization, monthly reflection insights, and an editorially-designed interface built with React, TypeScript, and ASP.NET Core.",
+        stack: ["React", "TypeScript", "Tailwind CSS", ".NET", "PostgreSQL", "Azure", "Resend"],
+        gradient: "from-purple-500 to-pink-500",
+        bgColor: "#E6501B",
+        img: "/images/previews/projects/fincurio-preview.png",
+        live: "https://www.getfincurio.com",
+        github: "https://github.com/Ehiane/Fincurio"
+    },
+    {
         id: "tree-inspect",
         title: "TreeInspect",
         role: "Full Stack",
@@ -66,32 +79,6 @@ export const projects = [
         github: "https://github.com/Ehiane/TreeInspect"
     },
     {
-        id: "harvard-akute",
-        title: "Harvard School Akute",
-        role: "Frontend",
-        description: "A website built to bring Harvard School Akute online and make the school more digitally accessible.",
-        longDescription: "Harvard School Akute is a full-featured school management platform that streamlines administrative tasks, student management, and academic tracking.",
-        stack: ["HTML", "CSS", "JavaScript", "PHP"],
-        gradient: "from-blue-500 to-indigo-500",
-        bgColor: "#3b82f6",
-        img: "/images/previews/projects/harvard_school_akute-preview.png",
-        live: "https://harvardschoolakute.com/",
-        github: null
-    },
-    {
-        id: "fincurio",
-        title: "Fincurio",
-        role: "Full Stack",
-        description: "A financial reflection tool that emphasizes calm awareness over reactive number-crunching.",
-        longDescription: "Fincurio is a financial reflection platform that helps users understand their relationship with money. It features transaction tracking, spending visualization, monthly reflection insights, and an editorially-designed interface built with React, TypeScript, and ASP.NET Core.",
-        stack: ["React", "TypeScript", "Tailwind CSS", ".NET", "PostgreSQL", "Azure", "Resend"],
-        gradient: "from-purple-500 to-pink-500",
-        bgColor: "#a855f7",
-        img: "/images/previews/projects/fincurio-preview.png",
-        live: "https://www.getfincurio.com",
-        github: "https://github.com/Ehiane/Fincurio"
-    },
-    {
         id: "current-portfolio",
         title: "Portfolio v2.0",
         role: "Full Stack",
@@ -103,6 +90,19 @@ export const projects = [
         img: "/images/previews/projects/portfolio_v2-preview.png",
         live: "https://www.ehiane.com/",
         github: "https://github.com/Ehiane/ehianePortfolio2025"
+    },
+    {
+        id: "harvard-akute",
+        title: "Harvard School Akute",
+        role: "Frontend",
+        description: "A website built to bring Harvard School Akute online and make the school more digitally accessible.",
+        longDescription: "Harvard School Akute is a full-featured school management platform that streamlines administrative tasks, student management, and academic tracking.",
+        stack: ["HTML", "CSS", "JavaScript", "PHP"],
+        gradient: "from-blue-500 to-indigo-500",
+        bgColor: "#3b82f6",
+        img: "/images/previews/projects/harvard_school_akute-preview.png",
+        live: "https://harvardschoolakute.com/",
+        github: null
     },
 ];
 
@@ -120,8 +120,10 @@ export const techStack = [
     { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg", url: "https://expressjs.com", invertDark: true },
     { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", url: "https://tailwindcss.com" },
     { name: ".NET", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg", url: "https://dotnet.microsoft.com" },
+    { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", url: "https://azure.microsoft.com" },
     { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", url: "https://git-scm.com" },
     { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", url: "https://www.mysql.com" },
+    { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", url: "https://www.postgresql.org" },
     { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", url: "https://www.mongodb.com" },
     { name: "Selenium", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg", url: "https://www.selenium.dev" },
     { name: "Cypress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cypressio/cypressio-original.svg", url: "https://www.cypress.io" },
@@ -134,6 +136,7 @@ export const techStack = [
     { name: "Google Stitch", icon: "https://learnai.tw/wp-content/uploads/2025/06/Google-Stitch-Logo.png", url: "https://www.mongodb.com/products/platform/stitch" },
     { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", url: "https://www.figma.com" },
     { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg", url: "https://www.postman.com" },
+    { name: "Resend", icon: "/images/resend-icon-white.png", url: "https://resend.com", invertDark: false },
 ];
 
 export const socialLinks = {
