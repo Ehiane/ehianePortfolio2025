@@ -6,6 +6,7 @@ import { socialLinks } from '../../data/portfolioData';
 import { typography, spacing } from '../../theme/designTokens';
 
 const Contact = () => {
+    const showResumeLink = false;
     const [hoveredLink, setHoveredLink] = useState(null);
     const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -40,13 +41,17 @@ const Contact = () => {
             onClick: handleCopyEmail,
             emailAddress: 'ehiane.dev@gmail.com'
         },
-        {
-            icon: <Description />,
-            label: 'Resume',
-            url: 'https://drive.google.com/file/d/1bOKZAC6kS7NyEnmYqIBRCHepRPPHpu3q/view?usp=sharing',
-            preview: '/images/previews/resume-preview.png',
-            previewText: 'View Resume'
-        },
+        ...(showResumeLink
+            ? [
+                {
+                    icon: <Description />,
+                    label: 'Resume',
+                    url: 'https://drive.google.com/file/d/1bOKZAC6kS7NyEnmYqIBRCHepRPPHpu3q/view?usp=sharing',
+                    preview: '/images/previews/resume-preview.png',
+                    previewText: 'View Resume'
+                },
+            ]
+            : []),
     ];
 
     return (
