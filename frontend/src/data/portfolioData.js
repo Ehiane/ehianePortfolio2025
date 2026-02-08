@@ -58,7 +58,7 @@ export const projects = [
         role: "Full Stack",
         description: "A financial reflection tool that emphasizes calm awareness over reactive number-crunching.",
         longDescription: "Fincurio is a financial reflection platform that helps users understand their relationship with money. It features transaction tracking, spending visualization, monthly reflection insights, and an editorially-designed interface built with React, TypeScript, and ASP.NET Core.",
-        stack: ["React", "TypeScript", "Tailwind CSS", ".NET", "PostgreSQL", "Azure", "Resend"],
+        stack: ["C#", ".NET", "React", "TypeScript", "PostgreSQL", "Azure", "Resend"],
         gradient: "from-purple-500 to-pink-500",
         bgColor: "#E6501B",
         img: "/images/previews/projects/fincurio-preview.png",
